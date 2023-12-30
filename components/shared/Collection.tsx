@@ -37,7 +37,7 @@ function Collection({
           </div>
         </>
       ) : (
-        <div className="flex-center wrapper min-h-[200px] w-full flex-col gap-3 rounded-[140px] bg-grey-50 py-28 text-center">
+        <div className="flex-center wrapper min-h-[200px] w-full flex-col gap-3 rounded-[140px] bg-grey-50 py-28 text-left">
           <h3 className="p-bold-20 md:h5-bold ">{emptyTitle}</h3>
           <p className="p-regular-14 text-gray-400">{emptyStateSubtext}</p>
         </div>

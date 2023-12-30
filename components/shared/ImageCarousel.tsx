@@ -1,32 +1,76 @@
 "use client";
-import React from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+import React, { useState } from "react";
+import { ArrowRightIcon, ArrowLeftIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
+import { Button } from "../ui/button";
 function ImageCarousel({ images }: { images: string[] }) {
-  console.log(images);
+  const [defaultImg, setDefaultImg] = useState({
+    src: images[0],
+    index: 0,
+  });
   return (
-    <Carousel className="w-max " plugins={[]}>
-      <CarouselContent>
+    <div className="flex flex-col h-[700px]">
+      <span className="flex-1 border relative ">
+        <Image
+          src={defaultImg.src}
+          alt="default"
+          fill
+          className="transition-all"
+        />
+        <Button
+          className="absolute right-0 rounded-full top-56"
+          variant={"outline"}
+          size={"icon"}
+          onClick={() => {
+            if (defaultImg.index === images.length - 1) {
+              setDefaultImg({
+                src: images[0],
+                index: 0,
+              });
+              return;
+            }
+            setDefaultImg({
+              src: images[defaultImg.index + 1],
+              index: defaultImg.index + 1,
+            });
+          }}
+        >
+          <ArrowRightIcon />
+        </Button>
+        <Button
+          className="absolute left-0 rounded-full top-56"
+          variant={"outline"}
+          size={"icon"}
+          onClick={() => {
+            if (defaultImg.index === 0) {
+              setDefaultImg({
+                src: images[images.length - 1],
+                index: images.length - 1,
+              });
+              return;
+            }
+            setDefaultImg({
+              src: images[defaultImg.index - 1],
+              index: defaultImg.index - 1,
+            });
+          }}
+        >
+          <ArrowLeftIcon />
+        </Button>
+      </span>
+      <span className="flex-none border flex justify-between py-5 gap-2">
         {images.map((img, index) => (
-          <CarouselItem key={index}>
-            <Card>
-              <CardContent className="flex aspect-square items-center justify-center p-6">
-                <Image src={img} alt="product" fill />
-              </CardContent>
-            </Card>
-          </CarouselItem>
+          <div
+            key={img}
+            className={`${
+              index === defaultImg.index ? "shadow-2xl " : ""
+            } p-1 hover:cursor-pointer`}
+          >
+            <Image src={img} width={100} height={100} alt="image" />
+          </div>
         ))}
-      </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
-    </Carousel>
+      </span>
+    </div>
   );
 }
 
