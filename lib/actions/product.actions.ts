@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import { connectToDatabase } from "../database";
-import { Category } from "../database/models";
 
 export const getProductsByCategory = async (category?: string, id?: string) => {
   try {
