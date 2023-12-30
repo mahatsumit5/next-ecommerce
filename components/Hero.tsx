@@ -1,10 +1,14 @@
 import Image from "next/image";
 import React from "react";
 import { Button } from "./ui/button";
+import { DM_Serif_Display } from "next/font/google";
 
+const dancing = DM_Serif_Display({ weight: ["400"], subsets: ["latin"] });
 const Hero = () => {
   return (
-    <div className="  mt-5 wrapper flex flex-col  md:flex-row justify-between items-center h-fit ">
+    <div
+      className={`${dancing.className}  mt-5 wrapper flex flex-col  md:flex-row justify-between items-center h-fit `}
+    >
       <div className="flex flex-col  gap-7">
         <p className="text-xl text-muted-foreground">
           Get your winter Jacket Now!!

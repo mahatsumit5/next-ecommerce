@@ -18,3 +18,45 @@ export const getProductsByCategory = async (category: string) => {
     console.log(error);
   }
 };
+export const getAllProducts = async () => {
+  try {
+    await connectToDatabase();
+
+    const products = await mongoose.connection.db
+      .collection("products")
+      .find()
+      .toArray();
+
+    return JSON.parse(JSON.stringify(products));
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const getFewProducts = async (limit: number) => {
+  try {
+    await connectToDatabase();
+
+    const products = await mongoose.connection.db
+      .collection("products")
+      .find()
+      .limit(limit)
+      .toArray();
+
+    return JSON.parse(JSON.stringify(products));
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const getProductsBySlug = async (slug: string) => {
+  try {
+    await connectToDatabase();
+
+    const product = await mongoose.connection.db
+      .collection("products")
+      .findOne({ slug });
+
+    return JSON.parse(JSON.stringify(product));
+  } catch (error) {
+    console.log(error);
+  }
+};

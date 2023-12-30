@@ -14,7 +14,7 @@ import Image from "next/image";
 import Link from "next/link";
 type CardProps = {
   data: IProduct;
-  slug: string;
+  slug?: string;
 };
 function CustomProductCard({ data, slug }: CardProps) {
   return (
@@ -51,7 +51,7 @@ function CustomProductCard({ data, slug }: CardProps) {
             ${data.price}
           </p>
           <div className="grid">
-            <Button size={"lg"} variant={"outline"}>
+            <Button size={"lg"} variant={"primary"}>
               Add to Cart
             </Button>
           </div>
