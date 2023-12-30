@@ -2,18 +2,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
-import { CiSearch } from "react-icons/ci";
 import { NavigationMenuDemo } from "./NavigationMenuDemo";
 import { Button } from "../ui/button";
 import { ThemeChanger } from "./ThemeChanger";
 import { Badge } from "../ui/badge";
-import Search from "./Search";
+import MobileMenu from "./MobileMenu";
+import Dialog from "./Dialog";
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className=" wrapper w-full  p-5 ">
-      <div className="flex justify-between h-16 items-center gap-5">
+    <header className=" w-full  p-5 border-b-2 shadow-2xl sticky top-0 z-10 ">
+      <div className="  wrapper flex justify-between h-16 items-center gap-5">
         <div className="flex gap-2 justify-between items-center">
           <Link href={"/"}>
             <div>
@@ -25,29 +25,13 @@ const Header = () => {
               />
             </div>
           </Link>
-
-          <NavigationMenuDemo />
-          <ThemeChanger />
+          <div className="hidden md:flex gap-2 ">
+            <NavigationMenuDemo />
+            <ThemeChanger />
+          </div>
         </div>
-        {isOpen && <Search />}
-        <div className="flex  gap-5 ">
-          <Button
-            className="rounded-full "
-            variant="secondary"
-            onClick={() => {
-              setIsOpen(!isOpen);
-            }}
-          >
-            <Image
-              src={"/assets/search.svg"}
-              width={15}
-              height={15}
-              alt="logo"
-              className="rounded-image"
-              style={{}}
-            />
-            Search
-          </Button>
+        <div className=" gap-5  hidden md:flex">
+          <Dialog isOpen={isOpen} setIsOpen={setIsOpen} />
           <Button
             className="rounded-full border gap-2"
             variant="ghost"
@@ -60,6 +44,7 @@ const Header = () => {
             Login
           </Button>
         </div>
+        <MobileMenu isOpen={isOpen} setIsOpen={setIsOpen} />
       </div>
     </header>
   );
