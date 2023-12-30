@@ -4,7 +4,7 @@ import { Button } from "./ui/button";
 
 const Hero = () => {
   return (
-    <div className="  bg-dotted-pattern  wrapper flex justify-between items-center h-full ">
+    <div className="  wrapper flex flex-row  justify-between items-center h-full  ">
       <div className="flex flex-col  gap-7">
         <p className="text-xl text-muted-foreground">
           Get your winter Jacket Now!!
