@@ -26,8 +26,8 @@ function MobileMenu({ setIsOpen, isOpen }: MobileMenuProps) {
     <div className="block md:hidden">
       <Sheet>
         <SheetTrigger asChild>
-          <Button variant="outline" className="border-none dark:bg-none">
-            <HamburgerMenuIcon className="text-4xl" />
+          <Button variant="ghost" className="border-none dark:bg-none">
+            <HamburgerMenuIcon />
           </Button>
         </SheetTrigger>
         <SheetContent>

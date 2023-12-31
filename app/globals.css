@@ -81,4 +81,7 @@
   .rounded-image {
     @apply rounded-lg;
   }
+  .product-card {
+    @apply h-[150px]  sm:h-[150px] md:h-[200px];
+  }
 }
