@@ -18,7 +18,7 @@ async function Home() {
   return (
     <>
       <Hero />
-      <section className=" mt-10 flex flex-col gap-5">
+      <section className=" mt-10 flex flex-col gap-5" id="category">
         <span className="flex justify-between">
           <h3 className="scroll-m-20 text-xl font-semibold tracking-tight">
             Browser By Category

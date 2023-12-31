@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import { Button } from "./ui/button";
 import { DM_Serif_Display } from "next/font/google";
+import Link from "next/link";
 
 const dancing = DM_Serif_Display({ weight: ["400"], subsets: ["latin"] });
 const Hero = () => {
@@ -20,13 +21,15 @@ const Hero = () => {
           Limited Offer. Expires in 5 days
         </h1>
         <div>
-          <Button
-            variant={"destructive"}
-            size={"lg"}
-            className="shadow-lg rounded-3xl"
-          >
-            Explore
-          </Button>
+          <Link href={"#category"}>
+            <Button
+              variant={"destructive"}
+              size={"lg"}
+              className="shadow-lg rounded-3xl"
+            >
+              Explore
+            </Button>
+          </Link>
         </div>
       </div>
       <div className=" bg-hero-blob bg-no-repeat bg-cover ">
