@@ -12,6 +12,7 @@ export default authMiddleware({
     "/category/:slug",
     "/category/:slug/:productSlug",
   ],
+  ignoredRoutes: ["/api/webhook/clerk", "/api/webhook/stripe"],
 });
 
 export const config = {
