@@ -9,11 +9,11 @@ import { Badge } from "../ui/badge";
 import MobileMenu from "./MobileMenu";
 import Dialog from "./Dialog";
 import { useSelector } from "react-redux";
-import { CartState, TCartState } from "@/lib/redux/cart.slice";
+import { CartState } from "@/types";
+import { RootState } from "@/store";
 const Header = () => {
-  const cart = useSelector((state: TCartState) => state.cart);
+  const { cart } = useSelector((state: RootState) => state.cart);
   const [isOpen, setIsOpen] = useState(false);
-  console.log(cart.length);
   return (
     <header className=" w-full   border-b shadow-2xl sticky top-0 z-10 bg-slate-100 dark:bg-slate-950">
       <div className="  wrapper flex justify-between h-16 items-center gap-5">

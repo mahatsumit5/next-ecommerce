@@ -1,44 +1,19 @@
+import { CartState } from "@/types";
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-export interface CartState {
-  _id: string;
-  status: string;
-  title: string;
-  slug: string;
-  price: number;
-  qty: number;
-  sku: string;
-  salesPrice: number;
-  parentCat: string;
-  description: string;
-  thumbnail: string;
-  orderQty: number;
-}
-export type TCartState = CartState[];
-
-const initial: CartState = {
-  _id: "",
-  status: "",
-  title: "",
-  slug: "",
-  price: 0,
-  qty: 0,
-  sku: "",
-  salesPrice: 0,
-  parentCat: "",
-  description: "",
-  thumbnail: "",
-
-  orderQty: 0,
+type TInitial = {
+  cart: CartState[];
 };
-const initialState: TCartState = [];
+const initialState: TInitial = {
+  cart: [],
+};
 
 export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    setCart: (state, { payload }: PayloadAction<CartState>) => {
+    setCart: (state, { payload }) => {
       if (payload._id === undefined) {
         return;
       }
@@ -62,12 +37,12 @@ export const cartSlice = createSlice({
 
       state.cart = [...state.cart, payload];
     },
-    // removeItemFromCart: (state, { payload }) => {
-    //   state.cart = state.cart.filter((item) => item._id !== payload);
-    // },
-    // resetCart: (state) => {
-    //   state.cart = [];
-    // },
+    removeItemFromCart: (state, { payload }) => {
+      state.cart = state.cart.filter((item) => item._id !== payload);
+    },
+    resetCart: (state) => {
+      state.cart = [];
+    },
   },
 });
 

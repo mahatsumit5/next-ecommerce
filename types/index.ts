@@ -37,3 +37,33 @@ export type ProductPageParams = {
   params: { productSlug: string };
   // searchParams: { [key: string]: string | string[] | undefined };
 };
+export interface CartState {
+  _id: string;
+  status: string;
+  title: string;
+  slug: string;
+  price: number;
+  qty: number;
+  sku: string;
+  salesPrice: number;
+  parentCat: string;
+  description: string;
+  thumbnail: string;
+  orderQty: number;
+}
+
+export const defaultValue: CartState = {
+  _id: "",
+  status: "",
+  title: "",
+  slug: "",
+  price: 0,
+  qty: 0,
+  sku: "",
+  salesPrice: 0,
+  parentCat: "",
+  description: "",
+  thumbnail: "",
+
+  orderQty: 0,
+};
