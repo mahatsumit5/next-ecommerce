@@ -1,16 +1,17 @@
 "use client";
-import { IProduct } from "@/types";
+import { IProduct, review } from "@/types";
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { SewingPinFilledIcon } from "@radix-ui/react-icons";
 import AddToCart from "./AddToCart";
 import SelectSize from "./SelectSize";
+import ProductTabs from "./Tabs";
 
 function ProductDescription({ product }: { product: IProduct }) {
   const [size, setSize] = useState("");
   const [color, setColor] = useState(product.color[0]);
-
+  console.log(typeof product.reviews);
   return (
     <div className="  flex flex-col gap-4 ">
       <h1 className="text-3xl font-bold text-gray-800 dark:text-white">
@@ -59,7 +60,10 @@ function ProductDescription({ product }: { product: IProduct }) {
       </div>
       <span className="font-bold">Product Details</span>
       <Separator />
-      <p className="text-justify">{product.description}</p>
+      <ProductTabs
+        description={product.description}
+        review={product.reviews as review[]}
+      />
     </div>
   );
 }
