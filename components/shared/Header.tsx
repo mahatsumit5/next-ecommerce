@@ -10,6 +10,7 @@ import MobileMenu from "./MobileMenu";
 import Dialog from "./Dialog";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
+import CartDrawer from "./CartDrawer";
 const Header = () => {
   const { cart } = useSelector((state: RootState) => state.cart);
   const [isOpen, setIsOpen] = useState(false);
@@ -34,14 +35,21 @@ const Header = () => {
         </div>
         <div className=" gap-5  hidden md:flex">
           <Dialog isOpen={isOpen} setIsOpen={setIsOpen} />
-          <Button
-            className="rounded-full border gap-2"
-            variant="outline"
-            size={"default"}
-          >
-            <Image src={"/assets/cart.png"} width={25} height={25} alt="logo" />
-            <Badge variant="destructive">{cart.length}</Badge>
-          </Button>{" "}
+          <CartDrawer>
+            <Button
+              className="rounded-full  gap-2"
+              variant="outline"
+              size={"default"}
+            >
+              <Image
+                src={"/assets/cart.png"}
+                width={25}
+                height={25}
+                alt="logo"
+              />
+              <Badge variant="destructive">{cart.length}</Badge>
+            </Button>
+          </CartDrawer>
           <Button className="rounded-full " variant="default">
             Login
           </Button>
