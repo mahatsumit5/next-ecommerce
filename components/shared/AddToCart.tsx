@@ -1,35 +1,47 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "../ui/button";
-import { IProduct } from "@/types";
-import { useDispatch } from "react-redux";
-import { setCart } from "@/lib/redux/cart.slice";
-type AddToCartProps = {
-  variant:
-    | "default"
-    | "destructive"
-    | "primary"
-    | "outline"
-    | "secondary"
-    | "ghost"
-    | "link"
-    | null;
-  product: IProduct;
-};
-function AddToCart({ variant, product }: AddToCartProps) {
+import { AddToCartProps } from "@/types";
+import { useDispatch, useSelector } from "react-redux";
+import { removeItemFromCart, setCart } from "@/lib/redux/cart.slice";
+import { RootState } from "@/store";
+import CustomAlertDialog from "./AlertDialog";
+
+function AddToCart({ variant, product, color, size }: AddToCartProps) {
+  const { cart } = useSelector((state: RootState) => state.cart);
+  const itemInCart = cart.filter((item) => item._id === product._id);
+  const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   const handleAddToCart = () => {
-    dispatch(setCart({ ...product, orderQty: 1 }));
+    if (itemInCart.length > 0) {
+      dispatch(removeItemFromCart(product._id));
+      return;
+    }
+
+    if (size === "") {
+      setIsOpen(true);
+      return;
+    }
+    setIsOpen(false);
+    dispatch(setCart({ ...product, orderQty: 1, color, size }));
   };
   return (
-    <Button
-      size={"lg"}
-      variant={variant}
-      className="w-25"
-      onClick={handleAddToCart}
-    >
-      Add to Cart
-    </Button>
+    <>
+      <CustomAlertDialog
+        isOpen={isOpen}
+        description="Please select a size and try again."
+        title="Size is Required!!"
+      >
+        <Button
+          size={"lg"}
+          variant={variant}
+          className="w-[120px]"
+          onClick={handleAddToCart}
+        >
+          {itemInCart.length ? "Remove" : "Add to Cart"}
+        </Button>
+      </CustomAlertDialog>
+    </>
   );
 }
 

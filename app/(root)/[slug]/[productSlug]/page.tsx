@@ -13,7 +13,6 @@ async function page({ params: { productSlug } }: ProductPageParams) {
     undefined,
     product.parentCat
   );
-  console.log(similarproduct);
   return (
     <>
       {" "}

@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -13,11 +14,14 @@ import { IProduct } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import AddToCart from "./AddToCart";
+import SelectSize from "./SelectSize";
 type CardProps = {
   data: IProduct;
   slug?: string;
 };
 function CustomProductCard({ data, slug }: CardProps) {
+  const [color, setColor] = useState(data.color[0]);
+  const [size, setSize] = useState("");
   return (
     <Card className=" w-[300px] xs:w-[150px] sm:w-[300px] hover:shadow-2xl transition-shadow ">
       <CardHeader>
@@ -39,16 +43,41 @@ function CustomProductCard({ data, slug }: CardProps) {
         <p className="text-sm text-muted-foreground line-clamp-2 h-10">
           {data.description}
         </p>
-        <span className="flex ">
-          <StarFilledIcon color="orange" />
-          <StarFilledIcon color="orange" />
-          <StarFilledIcon color="orange" />
-          <StarIcon />
-          <StarIcon />
+        <div className="flex justify-between">
+          <span className="flex ">
+            <StarFilledIcon color="orange" />
+            <StarFilledIcon color="orange" />
+            <StarFilledIcon color="orange" />
+            <StarIcon />
+            <StarIcon />
+          </span>
+          <span className="flex justify-start gap-2">
+            {data.color.map((c) => (
+              <button
+                className={`w-5 rounded-full h-5 ${
+                  color === c && "scale-125 shadow-xl border-solid"
+                }`}
+                style={{
+                  backgroundColor: c,
+                }}
+                onClick={() => {
+                  setColor(c);
+                }}
+              />
+            ))}
+          </span>
+        </div>
+        <span className="flex justify-between">
+          <p className=" text font-bold text-red-600">${data.price}</p>
+          <SelectSize sizes={data.size} setSize={setSize} width="w-[150px]" />
         </span>
-        <p className=" text-center font-bold">${data.price}</p>
         <div className="flex flex-wrap justify-between gap-2">
-          <AddToCart variant="primary" product={data} />
+          <AddToCart
+            variant="primary"
+            product={data}
+            color={color}
+            size={size}
+          />
           <Link href={`${slug}/${data.slug}`}>
             <Button size={"lg"} variant={"outline"} className="w-25">
               View

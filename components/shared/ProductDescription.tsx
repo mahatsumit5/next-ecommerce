@@ -1,10 +1,16 @@
+"use client";
 import { IProduct } from "@/types";
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { SewingPinFilledIcon } from "@radix-ui/react-icons";
+import AddToCart from "./AddToCart";
+import SelectSize from "./SelectSize";
 
 function ProductDescription({ product }: { product: IProduct }) {
+  const [size, setSize] = useState("");
+  const [color, setColor] = useState(product.color[0]);
+
   return (
     <div className="  flex flex-col gap-4 ">
       <h1 className="text-3xl font-bold text-gray-800 dark:text-white">
@@ -13,34 +19,39 @@ function ProductDescription({ product }: { product: IProduct }) {
       <p className="mb-6 text-base text-gray-500 dark:text-gray-400 underline uppercase">
         {product.reviews.length} Reviews
       </p>
-      <p className="font-extrabold text-3xl text-red-600">$99.99</p>
+      <p className="font-extrabold text-3xl text-red-600">${product.price}</p>
       <Separator />
       <p className="font-semibold">Color</p>
       <span className="flex justify-start gap-5">
-        {product.color.map((color) => (
-          <p
-            className="border w-9 rounded-full h-9 bg"
+        {product.color.map((c) => (
+          <button
+            className={`w-10 rounded-full h-10 ${
+              color === c && "scale-125 shadow-xl border-zinc-600"
+            }`}
             style={{
-              backgroundColor: color,
+              backgroundColor: c,
             }}
-          ></p>
+            onClick={() => {
+              setColor(c);
+            }}
+          />
         ))}
       </span>
       <Separator />
-      <p className="font-semibold">Size</p>
-      <span className="flex gap-5 justify-start">
-        {product.size.map((size) => (
-          <p className="border w-10 h-10 p-2 text-center uppercase font-medium rounded-sm">
-            {size}
-          </p>
-        ))}
-      </span>{" "}
+
+      <span className="flex flex-col sm:flex-row gap-5 justify-between">
+        <p className="font-semibold">Size</p>
+        <SelectSize sizes={product.size} setSize={setSize} width="w-[300px]" />
+      </span>
       <Separator />
       <p className="font-semibold">Qty</p>
       <div className="flex gap-3 flex-wrap">
-        <Button variant={"destructive"} className="uppercase">
-          add to cart
-        </Button>
+        <AddToCart
+          product={product}
+          variant={"destructive"}
+          size={size}
+          color={color}
+        />
         <Button variant={"outline"} className="uppercase">
           <SewingPinFilledIcon color="red" />
           find in store

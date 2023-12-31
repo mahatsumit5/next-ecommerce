@@ -37,7 +37,7 @@ export type ProductPageParams = {
   params: { productSlug: string };
   // searchParams: { [key: string]: string | string[] | undefined };
 };
-export interface CartState {
+export interface ICartState {
   _id: string;
   status: string;
   title: string;
@@ -50,9 +50,11 @@ export interface CartState {
   description: string;
   thumbnail: string;
   orderQty: number;
+  size: string;
+  color: string;
 }
 
-export const defaultValue: CartState = {
+export const defaultValue: ICartState = {
   _id: "",
   status: "",
   title: "",
@@ -64,6 +66,21 @@ export const defaultValue: CartState = {
   parentCat: "",
   description: "",
   thumbnail: "",
-
+  color: "",
+  size: "",
   orderQty: 0,
+};
+export type AddToCartProps = {
+  variant:
+    | "default"
+    | "destructive"
+    | "primary"
+    | "outline"
+    | "secondary"
+    | "ghost"
+    | "link"
+    | null;
+  product: IProduct;
+  size: string;
+  color: string;
 };

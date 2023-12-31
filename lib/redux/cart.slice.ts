@@ -1,9 +1,9 @@
-import { CartState } from "@/types";
+import { ICartState } from "@/types";
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 type TInitial = {
-  cart: CartState[];
+  cart: ICartState[];
 };
 const initialState: TInitial = {
   cart: [],
@@ -13,7 +13,7 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    setCart: (state, { payload }) => {
+    setCart: (state, { payload }: PayloadAction<ICartState>) => {
       if (payload._id === undefined) {
         return;
       }
@@ -37,7 +37,8 @@ export const cartSlice = createSlice({
 
       state.cart = [...state.cart, payload];
     },
-    removeItemFromCart: (state, { payload }) => {
+    removeItemFromCart: (state, { payload }: PayloadAction<string>) => {
+      console.log(payload);
       state.cart = state.cart.filter((item) => item._id !== payload);
     },
     resetCart: (state) => {

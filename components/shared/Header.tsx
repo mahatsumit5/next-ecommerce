@@ -9,7 +9,6 @@ import { Badge } from "../ui/badge";
 import MobileMenu from "./MobileMenu";
 import Dialog from "./Dialog";
 import { useSelector } from "react-redux";
-import { CartState } from "@/types";
 import { RootState } from "@/store";
 const Header = () => {
   const { cart } = useSelector((state: RootState) => state.cart);
