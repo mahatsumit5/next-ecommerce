@@ -92,3 +92,11 @@ export type review = {
   title: string;
 };
 export type ProductTabsProps = { description: string; review: review[] };
+export type CreateUserParams = {
+  clerkId: string;
+  firstName: string;
+  lastName: string;
+  userName: string;
+  email: string;
+  photo: string;
+};
