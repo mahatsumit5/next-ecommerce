@@ -1,5 +1,7 @@
 "use client";
 import Image from "next/image";
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+
 import Link from "next/link";
 import React, { useState } from "react";
 import { NavigationMenuDemo } from "./NavigationMenuDemo";
@@ -50,9 +52,14 @@ const Header = () => {
               <Badge variant="destructive">{cart.length}</Badge>
             </Button>
           </CartDrawer>
-          <Button className="rounded-full " variant="default">
-            Login
-          </Button>
+          <SignedIn>
+            <UserButton afterSignOutUrl="/" />
+          </SignedIn>
+          <SignedOut>
+            <Button className="rounded-full " variant="default">
+              <Link href={"/sign-in"}>Login</Link>
+            </Button>
+          </SignedOut>
         </div>
         <MobileMenu isOpen={isOpen} setIsOpen={setIsOpen} />
       </div>

@@ -78,7 +78,7 @@ function CustomProductCard({ data, slug }: CardProps) {
             color={color}
             size={size}
           />
-          <Link href={`${slug}/${data.slug}`}>
+          <Link href={`/category/${slug}/${data.slug}`}>
             <Button size={"lg"} variant={"outline"} className="w-25">
               View
             </Button>

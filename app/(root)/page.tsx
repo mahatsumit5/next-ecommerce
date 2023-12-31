@@ -10,13 +10,15 @@ import { getFewProducts } from "@/lib/actions/product.actions";
 import Link from "next/link";
 import React from "react";
 import { Separator } from "@/components/ui/separator";
-
+import { UserButton } from "@clerk/nextjs";
 async function Home() {
   const categories = await getAllCategories();
   const products = await getFewProducts(4);
 
   return (
     <>
+      {" "}
+      <UserButton afterSignOutUrl="/" />
       <Hero />
       <section className=" mt-10 flex flex-col gap-5" id="category">
         <span className="flex justify-between">

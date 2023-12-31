@@ -11,7 +11,7 @@ type CardProps = {
 };
 function CustomCard({ data }: CardProps) {
   return (
-    <Link href={data.slug}>
+    <Link href={`/category/${data.slug}`}>
       <div className="h-[150px]  w-[150px] relative sm:h-[250px] md:w-[250px] ">
         <Image
           src={data.image}
