@@ -25,7 +25,7 @@ const Dialog = ({ setIsOpen, isOpen }: MobileMenuProps) => {
       <AlertDialogTrigger asChild>
         <Button
           className="rounded-full "
-          variant="secondary"
+          variant="outline"
           onClick={() => {
             setIsOpen(!isOpen);
           }}

@@ -12,7 +12,7 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className=" w-full  p-5 border-b-2 shadow-2xl sticky top-0 z-10 bg-slate-100 dark:bg-slate-950">
+    <header className=" w-full   border-b shadow-2xl sticky top-0 z-10 bg-slate-100 dark:bg-slate-950">
       <div className="  wrapper flex justify-between h-16 items-center gap-5">
         <div className="flex gap-2 justify-between items-center">
           <Link href={"/"}>
@@ -34,7 +34,7 @@ const Header = () => {
           <Dialog isOpen={isOpen} setIsOpen={setIsOpen} />
           <Button
             className="rounded-full border gap-2"
-            variant="ghost"
+            variant="outline"
             size={"default"}
           >
             <Image src={"/assets/cart.png"} width={25} height={25} alt="logo" />

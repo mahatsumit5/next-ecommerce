@@ -1,6 +1,7 @@
 import Hero from "@/components/Hero";
 import Collection from "@/components/shared/Collection";
 import { Button } from "@/components/ui/button";
+import { ArrowRightIcon, ArrowLeftIcon } from "@radix-ui/react-icons";
 import {
   getAllCategories,
   getMainCategories,
@@ -8,6 +9,7 @@ import {
 import { getFewProducts } from "@/lib/actions/product.actions";
 import Link from "next/link";
 import React from "react";
+import { Separator } from "@/components/ui/separator";
 
 async function Home() {
   const categories = await getAllCategories();
@@ -16,10 +18,20 @@ async function Home() {
   return (
     <>
       <Hero />
-      <section className=" flex flex-col gap-5">
-        <h3 className="scroll-m-20 text-xl font-semibold tracking-tight">
-          Browser By Category
-        </h3>
+      <section className=" mt-10 flex flex-col gap-5">
+        <span className="flex justify-between">
+          <h3 className="scroll-m-20 text-xl font-semibold tracking-tight">
+            Browser By Category
+          </h3>
+          <div className="flex gap-2">
+            <Button variant={"destructive"}>
+              <ArrowLeftIcon />
+            </Button>
+            <Button variant={"destructive"}>
+              <ArrowRightIcon />
+            </Button>
+          </div>
+        </span>
         <Collection
           data={categories}
           emptyTitle="No categories available"
@@ -27,13 +39,13 @@ async function Home() {
           emptyStateSubtext="Please come back later"
         />
       </section>
-      <section className=" flex flex-col gap-5 mt-10">
+      <Separator />
+      <section className=" flex flex-col gap-5 mt-32">
         <span className="flex justify-between">
           <h3 className="scroll-m-20 text-xl font-semibold tracking-tight">
             Featured products
           </h3>
           <Link href={"/product"}>
-            {" "}
             <Button variant={"destructive"}>View All Products</Button>
           </Link>
         </span>

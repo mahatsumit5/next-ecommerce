@@ -10,33 +10,18 @@ type CardProps = {
   data: ICategory;
 };
 function CustomCard({ data }: CardProps) {
-  const [toggle, setToggle] = useState(false);
   return (
     <Link href={data.slug}>
-      <div
-        className="h-[150px] relative"
-        onMouseEnter={(e) => {
-          setToggle(true);
-        }}
-        onMouseLeave={(e) => {
-          setToggle(false);
-        }}
-      >
+      <div className="h-[250px]  w-[250px] relative ">
         <Image
           src={data.image}
-          width={200}
-          height={200}
+          fill
           alt="category-image"
-          className="rounded-lg hover:scale-105 hover:blur transition-all h-[150px] "
+          className=" hover:scale-105 transition-all  "
         />
-        <Button
-          className={`absolute top-14  left-14 transition-all ${
-            toggle ? "" : "opacity-0"
-          }`}
-          variant={"outline"}
-        >
+        <p className="absolute -bottom-8 font-semibold  text-xl">
           {data.title}
-        </Button>
+        </p>
       </div>
     </Link>
   );

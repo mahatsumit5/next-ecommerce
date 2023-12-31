@@ -8,12 +8,10 @@ export const getProductsByCategory = async (category?: string, id?: string) => {
     const cat = await mongoose.connection.db
       .collection("categories")
       .findOne({ slug: category });
-    console.log(cat);
     const products = await mongoose.connection.db
       .collection("products")
-      .find({ parentCat: !_id ? cat?._id : _id })
+      .find({ parentCat: !id ? cat?._id : _id })
       .toArray();
-
     return JSON.parse(JSON.stringify(products));
   } catch (error) {
     console.log(error);

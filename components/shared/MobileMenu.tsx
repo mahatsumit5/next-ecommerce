@@ -16,6 +16,7 @@ import Image from "next/image";
 import { Badge } from "../ui/badge";
 import { ThemeChanger } from "./ThemeChanger";
 import { NavigationMenuDemo } from "./NavigationMenuDemo";
+import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 type MobileMenuProps = {
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
@@ -25,13 +26,8 @@ function MobileMenu({ setIsOpen, isOpen }: MobileMenuProps) {
     <div className="block md:hidden">
       <Sheet>
         <SheetTrigger asChild>
-          <Button variant="secondary" className="border-none">
-            <Image
-              src={"/assets/menu.svg"}
-              alt="menu-icon"
-              width={25}
-              height={25}
-            />
+          <Button variant="outline" className="border-none dark:bg-none">
+            <HamburgerMenuIcon className="text-4xl" />
           </Button>
         </SheetTrigger>
         <SheetContent>
