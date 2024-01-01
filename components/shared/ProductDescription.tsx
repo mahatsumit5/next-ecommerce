@@ -27,7 +27,7 @@ function ProductDescription({ product }: { product: IProduct }) {
         {product.color.map((c, index) => (
           <button
             key={index}
-            className={`w-10 rounded-full h-10 ${
+            className={`w-7 rounded-full h-7 ${
               color === c && "scale-125 shadow-xl border-zinc-600"
             }`}
             style={{
