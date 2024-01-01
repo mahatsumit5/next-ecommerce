@@ -24,14 +24,13 @@ const Dialog = ({ setIsOpen, isOpen }: MobileMenuProps) => {
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <Button
-          className="rounded-full "
-          variant="outline"
+          className="rounded-3xl hover:border "
+          variant="link"
           onClick={() => {
             setIsOpen(!isOpen);
           }}
         >
-          <MagnifyingGlassIcon className="mr-2 h-4 w-4" color="blue" />{" "}
-          Search...
+          <MagnifyingGlassIcon className="mr-2 h-5 w-8" color="blue" />{" "}
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>

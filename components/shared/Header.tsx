@@ -13,6 +13,7 @@ import Dialog from "./Dialog";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 import CartDrawer from "./CartDrawer";
+import CartButton from "./CartButton";
 const Header = () => {
   const { cart } = useSelector((state: RootState) => state.cart);
   const [isOpen, setIsOpen] = useState(false);
@@ -20,38 +21,24 @@ const Header = () => {
     <header className=" w-full   border-b shadow-2xl sticky top-0 z-10 bg-slate-100 dark:bg-slate-950">
       <div className="  wrapper flex justify-between h-16 items-center gap-5">
         <div className="flex gap-2 justify-between items-center">
-          <Link href={"/"}>
-            <div>
-              <Image
-                src={"/assets/logo.svg"}
-                width={150}
-                height={0}
-                alt="logo"
-              />
-            </div>
-          </Link>
+          <MobileMenu isOpen={isOpen} setIsOpen={setIsOpen} cart={cart} />
+
+          <div className=" relative w-[120px] h-[80px]">
+            <Link href={"/"}>
+              <Image src={"/assets/logo.svg"} fill alt="logo" />
+            </Link>
+          </div>
+
           <div className="hidden md:flex gap-2 ">
             <NavigationMenuDemo />
             <ThemeChanger />
           </div>
         </div>
-        <div className=" gap-5  hidden md:flex">
+        <div className=" gap-1  flex">
           <Dialog isOpen={isOpen} setIsOpen={setIsOpen} />
-          <CartDrawer>
-            <Button
-              className="rounded-full  gap-2"
-              variant="outline"
-              size={"default"}
-            >
-              <Image
-                src={"/assets/cart.png"}
-                width={25}
-                height={25}
-                alt="logo"
-              />
-              <Badge variant="destructive">{cart.length}</Badge>
-            </Button>
-          </CartDrawer>
+          <span className="hidden sm:block">
+            <CartButton cart={cart} />
+          </span>
           <SignedIn>
             <UserButton afterSignOutUrl="/" />
           </SignedIn>
@@ -61,7 +48,6 @@ const Header = () => {
             </Button>
           </SignedOut>
         </div>
-        <MobileMenu isOpen={isOpen} setIsOpen={setIsOpen} />
       </div>
     </header>
   );

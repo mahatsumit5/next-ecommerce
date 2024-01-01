@@ -17,11 +17,15 @@ import { Badge } from "../ui/badge";
 import { ThemeChanger } from "./ThemeChanger";
 import { NavigationMenuDemo } from "./NavigationMenuDemo";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
+import CartDrawer from "./CartDrawer";
+import { ICartState } from "@/types";
+import CartButton from "./CartButton";
 type MobileMenuProps = {
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
+  cart: ICartState[];
 };
-function MobileMenu({ setIsOpen, isOpen }: MobileMenuProps) {
+function MobileMenu({ setIsOpen, isOpen, cart }: MobileMenuProps) {
   return (
     <div className="block md:hidden">
       <Sheet>
@@ -33,46 +37,14 @@ function MobileMenu({ setIsOpen, isOpen }: MobileMenuProps) {
         <SheetContent>
           <SheetHeader>
             <div className="flex gap-2 justify-between mt-3">
-              <Button
-                className="rounded-full w-full "
-                variant="secondary"
-                onClick={() => {
-                  setIsOpen(!isOpen);
-                }}
-              >
-                <Image
-                  src={"/assets/search.svg"}
-                  width={15}
-                  height={15}
-                  alt="logo"
-                  className="rounded-image"
-                  style={{}}
-                />
-                Search
-              </Button>
               <ThemeChanger />
+              <CartButton cart={cart} />
             </div>
           </SheetHeader>
           <div className="mt-5 flex flex-col gap-3 ">
             <div className="w-full">
               <NavigationMenuDemo />
             </div>
-            <Button
-              className="rounded-full border gap-2"
-              variant="ghost"
-              size={"default"}
-            >
-              <Image
-                src={"/assets/cart.png"}
-                width={25}
-                height={25}
-                alt="logo"
-              />
-              <Badge variant="destructive">5</Badge>
-            </Button>{" "}
-            <Button className="rounded-full " variant="default">
-              Login
-            </Button>
           </div>
         </SheetContent>
       </Sheet>
