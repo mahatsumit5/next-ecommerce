@@ -1,4 +1,4 @@
-import Hero from "@/components/Hero";
+import Hero from "@/components/hero/Hero";
 import Collection from "@/components/shared/Collection";
 import { Button } from "@/components/ui/button";
 import { ArrowRightIcon, ArrowLeftIcon } from "@radix-ui/react-icons";

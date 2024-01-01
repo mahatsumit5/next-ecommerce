@@ -1,24 +1,21 @@
 "use client";
 import Image from "next/image";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
-
 import Link from "next/link";
 import React, { useState } from "react";
-import { NavigationMenuDemo } from "./NavigationMenuDemo";
 import { Button } from "../ui/button";
-import { ThemeChanger } from "./ThemeChanger";
-import { Badge } from "../ui/badge";
-import MobileMenu from "./MobileMenu";
-import Dialog from "./Dialog";
-import { useSelector } from "react-redux";
+import { ThemeChanger } from "../theme-provider/ThemeChanger";
+import MobileMenu from "../menu/MobileMenu";
+import Dialog from "../dialog/Dialog";
 import { RootState } from "@/store";
-import CartDrawer from "./CartDrawer";
-import CartButton from "./CartButton";
+import CartButton from "../cart/CartButton";
+import { useAppSelector } from "@/hook";
+import { HeaderMenu } from "../menu/HeaderMenu";
 const Header = () => {
-  const { cart } = useSelector((state: RootState) => state.cart);
+  const { cart } = useAppSelector((state: RootState) => state.cart);
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <header className=" w-full   border-b shadow-2xl sticky top-0 z-10 bg-slate-100 dark:bg-slate-950">
+    <header className=" w-full   shadow-2xl sticky top-0 z-10 bg-slate-100 dark:bg-slate-950">
       <div className="  wrapper flex justify-between h-16 items-center gap-5">
         <div className="flex gap-2 justify-between items-center">
           <MobileMenu isOpen={isOpen} setIsOpen={setIsOpen} cart={cart} />
@@ -30,7 +27,7 @@ const Header = () => {
           </div>
 
           <div className="hidden md:flex gap-2 ">
-            <NavigationMenuDemo />
+            <HeaderMenu />
             <ThemeChanger />
           </div>
         </div>

@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { SewingPinFilledIcon } from "@radix-ui/react-icons";
-import AddToCart from "./AddToCart";
+import AddToCart from "../cart/AddToCart";
 import SelectSize from "./SelectSize";
 import ProductTabs from "./Tabs";
 

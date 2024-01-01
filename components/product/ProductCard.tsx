@@ -13,7 +13,7 @@ import { StarFilledIcon, StarIcon } from "@radix-ui/react-icons";
 import { IProduct } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
-import AddToCart from "./AddToCart";
+import AddToCart from "../cart/AddToCart";
 import SelectSize from "./SelectSize";
 type CardProps = {
   data: IProduct;

@@ -2,16 +2,16 @@
 import React, { useState } from "react";
 import { Button } from "../ui/button";
 import { AddToCartProps } from "@/types";
-import { useDispatch, useSelector } from "react-redux";
 import { removeItemFromCart, setCart } from "@/lib/redux/cart.slice";
 import { RootState } from "@/store";
-import CustomAlertDialog from "./AlertDialog";
+import CustomAlertDialog from "../dialog/AlertDialog";
+import { useAppDispatch, useAppSelector } from "@/hook";
 
 function AddToCart({ variant, product, color, size }: AddToCartProps) {
-  const { cart } = useSelector((state: RootState) => state.cart);
+  const { cart } = useAppSelector((state: RootState) => state.cart);
   const itemInCart = cart.filter((item) => item._id === product._id);
   const [isOpen, setIsOpen] = useState(false);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const handleAddToCart = () => {
     if (itemInCart.length > 0) {
       dispatch(removeItemFromCart(product._id));

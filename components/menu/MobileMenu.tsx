@@ -14,12 +14,12 @@ import {
 } from "@/components/ui/sheet";
 import Image from "next/image";
 import { Badge } from "../ui/badge";
-import { ThemeChanger } from "./ThemeChanger";
-import { NavigationMenuDemo } from "./NavigationMenuDemo";
+import { ThemeChanger } from "../theme-provider/ThemeChanger";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
-import CartDrawer from "./CartDrawer";
+import CartDrawer from "../cart/CartDrawer";
 import { ICartState } from "@/types";
-import CartButton from "./CartButton";
+import CartButton from "../cart/CartButton";
+import { HeaderMenu } from "./HeaderMenu";
 type MobileMenuProps = {
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
@@ -43,7 +43,7 @@ function MobileMenu({ setIsOpen, isOpen, cart }: MobileMenuProps) {
           </SheetHeader>
           <div className="mt-5 flex flex-col gap-3 ">
             <div className="w-full">
-              <NavigationMenuDemo />
+              <HeaderMenu />
             </div>
           </div>
         </SheetContent>

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import { DM_Serif_Display } from "next/font/google";
 import Link from "next/link";
 

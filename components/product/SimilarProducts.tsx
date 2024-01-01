@@ -1,5 +1,5 @@
 import React from "react";
-import Collection from "./Collection";
+import Collection from "../shared/Collection";
 import { IProduct } from "@/types";
 
 function SimilarProducts({ title, data }: { title: string; data: IProduct[] }) {

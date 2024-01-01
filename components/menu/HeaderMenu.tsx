@@ -14,7 +14,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 
-export function NavigationMenuDemo() {
+export function HeaderMenu() {
   return (
     <NavigationMenu>
       <NavigationMenuList className="flex gap-5">

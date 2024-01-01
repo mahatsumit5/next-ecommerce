@@ -1,6 +1,6 @@
-import ImageCarousel from "@/components/shared/ImageCarousel";
-import ProductDescription from "@/components/shared/ProductDescription";
-import SimilarProducts from "@/components/shared/SimilarProducts";
+import ImageCarousel from "@/components/product/ImageCarousel";
+import ProductDescription from "@/components/product/ProductDescription";
+import SimilarProducts from "@/components/product/SimilarProducts";
 import {
   getProductsByCategory,
   getProductsBySlug,

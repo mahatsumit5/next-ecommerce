@@ -4,8 +4,11 @@ import { Button } from "../ui/button";
 import Image from "next/image";
 import { Badge } from "../ui/badge";
 import { ICartState } from "@/types";
+import { countTotalItemsInCart } from "@/lib/utils";
 
 function CartButton({ cart }: { cart: ICartState[] }) {
+  const total = countTotalItemsInCart(cart);
+  console.log(total);
   return (
     <CartDrawer>
       <Button
@@ -16,7 +19,7 @@ function CartButton({ cart }: { cart: ICartState[] }) {
         <Image src={"/assets/cart.png"} width={25} height={25} alt="logo" />{" "}
         {cart.length > 0 && (
           <Badge variant="destructive" className="absolute top-0 -right-1">
-            {cart.length}
+            {total}
           </Badge>
         )}
       </Button>

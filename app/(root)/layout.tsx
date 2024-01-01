@@ -13,7 +13,7 @@ export default function RootLayout({
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor} loading={null}>
-        <div className="flex flex-col h-screen">
+        <div className="flex flex-col h-full">
           <Header />
           <main className="wrapper flex-1">{children}</main>
           <Footer />

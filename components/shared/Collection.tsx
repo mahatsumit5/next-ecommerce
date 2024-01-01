@@ -2,7 +2,7 @@ import { ICategory, IProduct } from "@/types";
 import React from "react";
 import Card from "./Card";
 import CustomCard from "./Card";
-import CustomProductCard from "./ProductCard";
+import CustomProductCard from "../product/ProductCard";
 type CollectionProps = {
   data: ICategory[] | IProduct[];
   emptyTitle: string;
