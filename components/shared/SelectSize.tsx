@@ -30,8 +30,8 @@ function SelectSize({
       <SelectContent>
         <SelectGroup>
           <SelectLabel>Available Sizes</SelectLabel>
-          {sizes.map((size) => (
-            <SelectItem value={size} className="uppercase">
+          {sizes.map((size, index) => (
+            <SelectItem value={size} className="uppercase" key={index}>
               {size}
             </SelectItem>
           ))}

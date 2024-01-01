@@ -52,8 +52,9 @@ function CustomProductCard({ data, slug }: CardProps) {
             <StarIcon />
           </span>
           <span className="flex justify-start gap-2">
-            {data.color.map((c) => (
+            {data.color.map((c, index) => (
               <button
+                key={index}
                 className={`w-5 rounded-full h-5 ${
                   color === c && "scale-125 shadow-xl border-solid"
                 }`}

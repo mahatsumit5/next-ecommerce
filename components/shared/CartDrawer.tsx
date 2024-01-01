@@ -33,7 +33,10 @@ function CartDrawer({ children }: { children: React.ReactNode }) {
         </SheetHeader>
         {cart.length > 0 ? (
           cart.map((item) => (
-            <div className="flex flex-col items-center gap-2 shadow-md p-3 rounded-md mt-3">
+            <div
+              className="flex flex-col items-center gap-2 shadow-md p-3 rounded-md mt-3"
+              key={item._id}
+            >
               <div className=" w-full h-[180px] flex gap-2">
                 <span className="w-[150px]  relative rounded-lg">
                   <Image src={item.thumbnail} fill alt="thumbnail" />

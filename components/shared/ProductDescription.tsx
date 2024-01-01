@@ -24,8 +24,9 @@ function ProductDescription({ product }: { product: IProduct }) {
       <Separator />
       <p className="font-semibold">Color</p>
       <span className="flex justify-start gap-5">
-        {product.color.map((c) => (
+        {product.color.map((c, index) => (
           <button
+            key={index}
             className={`w-10 rounded-full h-10 ${
               color === c && "scale-125 shadow-xl border-zinc-600"
             }`}

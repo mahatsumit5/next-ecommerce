@@ -16,7 +16,7 @@ function ProductTabs({ description, review }: ProductTabsProps) {
       </TabsContent>
       <TabsContent value="review">
         {review.map((review) => (
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-3" key={review._id}>
             <span className="flex justify-between">
               <p className="font-bold text-3xl">{review.title}</p>
               <div className="flex gap-5">
