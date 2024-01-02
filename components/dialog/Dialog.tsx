@@ -21,7 +21,7 @@ type MobileMenuProps = {
 const Dialog = ({ setIsOpen, isOpen }: MobileMenuProps) => {
   return (
     <AlertDialog>
-      <AlertDialogTrigger asChild>
+      <AlertDialogTrigger asChild className="">
         <Button
           className="rounded-3xl hover:border "
           variant="link"
@@ -32,16 +32,16 @@ const Dialog = ({ setIsOpen, isOpen }: MobileMenuProps) => {
           <MagnifyingGlassIcon className="mr-2 h-5 w-8" color="blue" />{" "}
         </Button>
       </AlertDialogTrigger>
-      <AlertDialogContent>
+      <AlertDialogContent className="fixed top-20">
         <AlertDialogHeader>
           <AlertDialogTitle>
             <Search />
           </AlertDialogTitle>
-          <AlertDialogDescription>aksjdbfjkbf</AlertDialogDescription>
+          {/* <AlertDialogDescription>aksjdbfjkbf</AlertDialogDescription> */}
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction>Continue</AlertDialogAction>
+          {/* <AlertDialogAction>Continue</AlertDialogAction> */}
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

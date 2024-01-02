@@ -19,7 +19,7 @@ function Collection({
 }: CollectionProps) {
   return (
     <>
-      {data.length > 0 ? (
+      {data?.length > 0 ? (
         <>
           <div
             className={`grid  ${

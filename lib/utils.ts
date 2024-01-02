@@ -27,7 +27,6 @@ export function countTotalPrice(cart: ICartState[]) {
 export function formUrlQuery({ params, key, value }: UrlQueryParams) {
   const currentUrl = qs.parse(params);
   currentUrl[key] = value;
-  console.log((currentUrl[key] = value));
   const url = qs.stringifyUrl(
     {
       url: window.location.pathname,
@@ -35,7 +34,6 @@ export function formUrlQuery({ params, key, value }: UrlQueryParams) {
     },
     { skipNull: true }
   );
-  console.log(url);
   return url;
 }
 export function removeKeysFromQuery({

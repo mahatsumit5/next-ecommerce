@@ -39,7 +39,7 @@ const Search = () => {
         onChange={(e) => {
           setQuery(e.target.value);
         }}
-        className="w-full rounded-full shadow-lg border-none focus:border-slate-400"
+        className="w-full rounded-full shadow-lg border-none  bg-slate-200 bor"
       />
     </div>
   );

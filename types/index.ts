@@ -119,3 +119,9 @@ export type RemoveUrlQueryParams = {
   params: string;
   keysToRemove: string[];
 };
+
+export type getAllProductProps = {
+  query: string;
+  limit: number;
+  page: number;
+};

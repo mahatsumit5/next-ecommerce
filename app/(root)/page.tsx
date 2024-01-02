@@ -10,9 +10,11 @@ import { getFewProducts } from "@/lib/actions/product.actions";
 import Link from "next/link";
 import React from "react";
 import { Separator } from "@/components/ui/separator";
-async function Home() {
-  const categories = await getAllCategories();
-  const products = await getFewProducts(4);
+import { SearchParamProps } from "@/types";
+async function Home({ searchParams }: SearchParamProps) {
+  const query = (searchParams?.query as string) || "";
+  const categories = await getAllCategories(query);
+  const products = await getFewProducts(4, query);
   return (
     <>
       <Hero />
