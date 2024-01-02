@@ -4,6 +4,7 @@ import { CreateUserParams, UpdateUserParams } from "@/types";
 import { connectToDatabase } from "../database";
 import Customer from "../database/models/user.model";
 import { revalidatePath } from "next/cache";
+import { handleError } from "../utils";
 
 export async function createUser(user: CreateUserParams) {
   try {
@@ -12,7 +13,7 @@ export async function createUser(user: CreateUserParams) {
     const newUser = await Customer.create(user);
     return JSON.parse(JSON.stringify(newUser));
   } catch (error) {
-    console.log(error);
+    handleError(error);
   }
 }
 
@@ -25,7 +26,7 @@ export async function updateCustomer(clerkId: string, user: UpdateUserParams) {
     if (!updatedUser) throw new Error("User update failed");
     return JSON.parse(JSON.stringify(updatedUser));
   } catch (error) {
-    console.log(error);
+    handleError(error);
   }
 }
 
@@ -39,6 +40,6 @@ export async function deleteCustomer(clerkId: string) {
     revalidatePath("/");
     return JSON.parse(JSON.stringify(deletedUser));
   } catch (error) {
-    console.log(error);
+    handleError(error);
   }
 }
