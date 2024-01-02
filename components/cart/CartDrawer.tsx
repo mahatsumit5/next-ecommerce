@@ -24,7 +24,7 @@ function CartDrawer({ children }: { children: React.ReactNode }) {
         <SheetHeader className="flex flex-row gap-2 justify-between">
           <SheetTitle className="mt-3">Cart</SheetTitle>
         </SheetHeader>
-        <CartItem />
+        <CartItem type="drawer" />
         <SheetFooter>
           <SheetClose asChild>
             {cart.length > 0 ? (

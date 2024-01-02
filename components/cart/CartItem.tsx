@@ -6,11 +6,10 @@ import React from "react";
 import { Button } from "../ui/button";
 import { ICartState } from "@/types";
 import { removeItemFromCart, setCart } from "@/lib/redux/cart.slice";
-import { it } from "node:test";
 import { toast } from "sonner";
 import Link from "next/link";
 
-function CartItem() {
+function CartItem({ type }: { type: "drawer" | "page" }) {
   const cart = useAppSelector((store: RootState) => store.cart.cart);
   const dispatch = useAppDispatch();
 
@@ -47,17 +46,32 @@ function CartItem() {
       {cart.length > 0 ? (
         cart.map((item) => (
           <div
-            className="flex flex-col items-center gap-2 shadow-md p-3 rounded-md mt-3"
+            className="flex flex-col items-center gap-3 shadow-md p-2 rounded-md mt-2 "
             key={item._id}
           >
-            <div className=" w-full h-[180px] flex gap-2">
-              <span className="w-[250px]  relative rounded-lg">
-                <Image src={item.thumbnail} fill alt="thumbnail" />
+            <div className=" w-full  flex gap-2">
+              <span
+                className={`${
+                  type === "drawer" ? "drawer-cart-image" : "cart-page-image"
+                } `}
+              >
+                <Image
+                  src={item.thumbnail}
+                  fill
+                  alt="thumbnail"
+                  className="rounded-lg hover:shadow-xl"
+                />
               </span>
-              <span className="flex flex-col  gap-2 justify-between">
-                <p className="leading-7  font-bold">{item.title}</p>
+              <span className="  flex flex-col gap-1 justify-between">
+                <p className="leading-7 text-sm font-bold line-clamp-1">
+                  {item.title}
+                </p>
+                <p className="text-sm text-muted-foreground mt-1 hidden md:block">
+                  {" "}
+                  ${item.sku}
+                </p>
                 <span className="flex gap-2">
-                  <p className="leading-7  font-bold">Color:</p>
+                  <p className="leading-7  text-sm font-bold">Color:</p>
                   <button
                     className={`w-6 rounded-full h-6 `}
                     key={item._id}
@@ -67,58 +81,64 @@ function CartItem() {
                   />
                 </span>
                 <span className="flex gap-2">
-                  <p className="leading-7  font-bold">Size: </p>
+                  <p className="leading-7  text-sm font-bold">Size: </p>
                   <p className="text-sm text-muted-foreground mt-1">
                     {item.size.toUpperCase()}
                   </p>
                 </span>
-
-                <span className="flex justify-between gap-2">
-                  <Link href={`/category/slug/${item.slug}`}>
-                    <Button variant={"outline"} className="flex-1">
-                      Edit
-                    </Button>
-                  </Link>
+                <span className="flex gap-2">
+                  <p className="leading-7  text-sm font-bold">Price: </p>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    {" "}
+                    ${item.price}
+                  </p>
+                </span>
+                <span className=" flex   justify-between rounded-3xl shadow-md  ">
                   <Button
-                    variant={"default"}
+                    variant={"link"}
+                    size={"icon"}
+                    className="hover:no-underline hover:scale-x-150"
                     onClick={() => {
-                      handleQuanityChange(item, "delete");
+                      handleQuanityChange(item, "decrease");
                     }}
                   >
-                    Delete
+                    -
+                  </Button>
+                  <Button variant={"link"} disabled size={"icon"} className="">
+                    {item.orderQty}
+                  </Button>
+                  <Button
+                    variant={"link"}
+                    size={"icon"}
+                    className="hover:no-underline  hover:scale-x-150"
+                    onClick={() => {
+                      handleQuanityChange(item, "increase");
+                    }}
+                  >
+                    +
                   </Button>
                 </span>
               </span>
             </div>
-            <div className=" w-full   flex flex-col  justify-between gap-2">
-              <span className="border flex  justify-between rounded-sm shadow-md">
+            <div className="flex w-full  justify-between gap-2">
+              <span className="flex justify-start gap-2">
+                <Link href={`/category/slug/${item.slug}`}>
+                  <Button variant={"outline"} className="">
+                    Edit
+                  </Button>
+                </Link>
                 <Button
-                  variant={"link"}
-                  size={"icon"}
-                  className="hover:no-underline flex-1  hover:border"
+                  variant={"default"}
                   onClick={() => {
-                    handleQuanityChange(item, "decrease");
+                    handleQuanityChange(item, "delete");
                   }}
                 >
-                  -
-                </Button>
-                <Button variant={"link"} disabled size={"icon"} className="">
-                  {item.orderQty}
-                </Button>
-                <Button
-                  variant={"link"}
-                  size={"icon"}
-                  className="hover:no-underline flex-1 hover:border"
-                  onClick={() => {
-                    handleQuanityChange(item, "increase");
-                  }}
-                >
-                  +
+                  Delete
                 </Button>
               </span>
-              <span className="text-xl flex gap-2">
-                <p className="leading-7  font-bold">Total:</p>$
-                {item.price * item.orderQty}
+              <span className="text-sm sm:text-xl flex gap-2">
+                <p className="font-bold">Total:</p>
+                <p className="">${item.price * item.orderQty}</p>
               </span>
             </div>
           </div>

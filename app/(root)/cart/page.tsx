@@ -15,7 +15,7 @@ function page() {
         Your cart:&nbsp;{length} {length > 1 ? "items" : "item"}
       </h1>
       <div className="grid grid-cols-1 sm:grid-cols-2  gap-5 ">
-        <CartItem />
+        <CartItem type="page" />
         <CartSummary />
       </div>
     </div>

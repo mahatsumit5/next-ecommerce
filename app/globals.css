@@ -84,4 +84,10 @@
   .product-card {
     @apply h-[150px]  sm:h-[150px] md:h-[200px];
   }
+  .drawer-cart-image {
+    @apply w-[150px] h-[150px] relative rounded-lg;
+  }
+  .cart-page-image {
+    @apply w-[150px] h-[150px] sm:w-[200px] sm:h-[200px] md:w-[300px]  md:h-[300px] relative rounded-lg;
+  }
 }
