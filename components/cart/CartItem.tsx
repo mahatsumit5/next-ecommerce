@@ -8,6 +8,7 @@ import { ICartState } from "@/types";
 import { removeItemFromCart, setCart } from "@/lib/redux/cart.slice";
 import { it } from "node:test";
 import { toast } from "sonner";
+import Link from "next/link";
 
 function CartItem() {
   const cart = useAppSelector((store: RootState) => store.cart.cart);
@@ -73,9 +74,11 @@ function CartItem() {
                 </span>
 
                 <span className="flex justify-between gap-2">
-                  <Button variant={"outline"} className="flex-1">
-                    Edit
-                  </Button>
+                  <Link href={`/category/slug/${item.slug}`}>
+                    <Button variant={"outline"} className="flex-1">
+                      Edit
+                    </Button>
+                  </Link>
                   <Button
                     variant={"default"}
                     onClick={() => {

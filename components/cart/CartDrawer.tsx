@@ -28,15 +28,11 @@ function CartDrawer({ children }: { children: React.ReactNode }) {
         <SheetFooter>
           <SheetClose asChild>
             {cart.length > 0 ? (
-              <>
-                <Button variant={"default"} className="mt-4" size={"sm"}>
-                  Checkout
-                </Button>
-
+              <Link href={"/cart"}>
                 <Button size={"sm"} variant={"default"} className="mt-4">
-                  <Link href={"/cart"}> View Cart</Link>
+                  View Cart
                 </Button>
-              </>
+              </Link>
             ) : (
               <Link href={"/"}>
                 <Button variant={"outline"}>Continue Shopping</Button>

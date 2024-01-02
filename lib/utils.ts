@@ -17,3 +17,10 @@ export function handleError(error: any) {
   console.log("An error occurred: ", error);
   throw new Error(JSON.stringify(error));
 }
+
+export function countTotalPrice(cart: ICartState[]) {
+  return cart.reduce(
+    (totalPrice, num) => totalPrice + num.orderQty * num.price,
+    0
+  );
+}
