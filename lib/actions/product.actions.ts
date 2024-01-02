@@ -17,13 +17,13 @@ export const getProductsByCategory = async (category?: string, id?: string) => {
     console.log(error);
   }
 };
-export const getAllProducts = async () => {
+export const getAllProducts = async (query: string) => {
   try {
     await connectToDatabase();
-
+    const condition = query ? { slug: { $regex: query, $options: "i" } } : {};
     const products = await mongoose.connection.db
       .collection("products")
-      .find()
+      .find(condition)
       .toArray();
 
     return JSON.parse(JSON.stringify(products));
@@ -39,6 +39,7 @@ export const getFewProducts = async (limit: number) => {
       .collection("products")
       .find()
       .limit(limit)
+      .skip(0)
       .toArray();
 
     return JSON.parse(JSON.stringify(products));

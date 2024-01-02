@@ -13,7 +13,6 @@ import { Separator } from "@/components/ui/separator";
 async function Home() {
   const categories = await getAllCategories();
   const products = await getFewProducts(4);
-
   return (
     <>
       <Hero />

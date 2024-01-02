@@ -31,7 +31,7 @@ export interface IProduct {
 }
 export type SearchParamProps = {
   params: { slug: string };
-  // searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: { [key: string]: string | string[] | undefined };
 };
 export type ProductPageParams = {
   params: { productSlug: string };
@@ -107,4 +107,15 @@ export type UpdateUserParams = {
   lastName: string;
   username: string;
   photo: string;
+};
+
+export type UrlQueryParams = {
+  params: string;
+  key: string;
+  value: string | null;
+};
+
+export type RemoveUrlQueryParams = {
+  params: string;
+  keysToRemove: string[];
 };

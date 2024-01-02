@@ -13,13 +13,12 @@ import {
 import { Button } from "@/components/ui/button";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { Input } from "../ui/input";
+import Search from "../shared/Search";
 type MobileMenuProps = {
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
 };
 const Dialog = ({ setIsOpen, isOpen }: MobileMenuProps) => {
-  const [query, setQuery] = useState("");
-
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
@@ -36,16 +35,7 @@ const Dialog = ({ setIsOpen, isOpen }: MobileMenuProps) => {
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>
-            <div className="flex-1">
-              <Input
-                placeholder={"Search Your Products"}
-                type={"text"}
-                onChange={(e) => {
-                  setQuery(e.target.value);
-                }}
-                className="w-full rounded-full shadow-lg border "
-              />
-            </div>
+            <Search />
           </AlertDialogTitle>
           <AlertDialogDescription>aksjdbfjkbf</AlertDialogDescription>
         </AlertDialogHeader>
