@@ -7,11 +7,12 @@ import { SewingPinFilledIcon } from "@radix-ui/react-icons";
 import AddToCart from "../cart/AddToCart";
 import SelectSize from "./SelectSize";
 import ProductTabs from "./Tabs";
+import SelectQuantity from "./SelectQuantity";
 
 function ProductDescription({ product }: { product: IProduct }) {
   const [size, setSize] = useState("");
   const [color, setColor] = useState(product.color[0]);
-  console.log(typeof product.reviews);
+  const [orderQty, setOrderQty] = useState(0);
   return (
     <div className="  flex flex-col gap-4 ">
       <h1 className="text-3xl font-bold text-gray-800 dark:text-white">
@@ -41,20 +42,24 @@ function ProductDescription({ product }: { product: IProduct }) {
       </span>
       <Separator />
 
-      <span className="flex flex-col sm:flex-row gap-5 justify-between">
+      <span className="flex flex-row gap-5 justify-between">
         <p className="font-semibold">Size</p>
-        <SelectSize sizes={product.size} setSize={setSize} width="w-[300px]" />
+        <SelectSize sizes={product.size} setSize={setSize} width="w-[180px]" />
       </span>
       <Separator />
-      <p className="font-semibold">Qty</p>
+      <span className="flex justify-between">
+        <p className="font-semibold">Qty</p>
+        <SelectQuantity qty={product.qty} setOrderQty={setOrderQty} />
+      </span>
       <div className="flex gap-3 flex-wrap">
         <AddToCart
           product={product}
           variant={"destructive"}
           size={size}
           color={color}
+          orderQuantity={orderQty}
         />
-        <Button variant={"outline"} className="uppercase">
+        <Button variant={"outline"} className="uppercase" size={"lg"}>
           <SewingPinFilledIcon color="red" />
           find in store
         </Button>

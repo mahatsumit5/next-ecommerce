@@ -83,6 +83,7 @@ export type AddToCartProps = {
   product: IProduct;
   size: string;
   color: string;
+  orderQuantity?: number;
 };
 export type review = {
   _id: string;
@@ -98,5 +99,12 @@ export type CreateUserParams = {
   lastName: string;
   userName?: string;
   email: string;
+  photo: string;
+};
+
+export type UpdateUserParams = {
+  firstName: string;
+  lastName: string;
+  username: string;
   photo: string;
 };

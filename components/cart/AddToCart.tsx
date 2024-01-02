@@ -7,7 +7,13 @@ import { RootState } from "@/store";
 import CustomAlertDialog from "../dialog/AlertDialog";
 import { useAppDispatch, useAppSelector } from "@/hook";
 
-function AddToCart({ variant, product, color, size }: AddToCartProps) {
+function AddToCart({
+  variant,
+  product,
+  color,
+  size,
+  orderQuantity,
+}: AddToCartProps) {
   const { cart } = useAppSelector((state: RootState) => state.cart);
   const itemInCart = cart.filter((item) => item._id === product._id);
   const [isOpen, setIsOpen] = useState(false);
@@ -23,7 +29,14 @@ function AddToCart({ variant, product, color, size }: AddToCartProps) {
       return;
     }
     setIsOpen(false);
-    dispatch(setCart({ ...product, orderQty: 1, color, size }));
+    dispatch(
+      setCart({
+        ...product,
+        orderQty: orderQuantity ? orderQuantity : 1,
+        color,
+        size,
+      })
+    );
   };
   return (
     <>

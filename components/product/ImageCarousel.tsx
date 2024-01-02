@@ -65,6 +65,12 @@ function ImageCarousel({ images }: { images: string[] }) {
             className={`${
               index === defaultImg.index ? "shadow-2xl " : ""
             } p-1 hover:cursor-pointer`}
+            onClick={() => {
+              setDefaultImg({
+                src: images[index],
+                index,
+              });
+            }}
           >
             <Image src={img} width={100} height={100} alt="image" />
           </div>
