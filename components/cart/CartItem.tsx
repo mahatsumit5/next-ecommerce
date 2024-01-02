@@ -51,7 +51,7 @@ function CartItem() {
             key={item._id}
           >
             <div className=" w-full h-[180px] flex gap-2">
-              <span className="w-[180px]  relative rounded-lg">
+              <span className="w-[250px]  relative rounded-lg">
                 <Image src={item.thumbnail} fill alt="thumbnail" />
               </span>
               <span className="flex flex-col  gap-2 justify-between">
@@ -90,30 +90,25 @@ function CartItem() {
                 </span>
               </span>
             </div>
-            <div className=" w-full h-[50px] flex justify-between gap-2">
-              <span className="border rounded-2xl shadow-md">
+            <div className=" w-full   flex flex-col  justify-between gap-2">
+              <span className="border flex  justify-between rounded-sm shadow-md">
                 <Button
                   variant={"link"}
                   size={"icon"}
-                  className="hover:no-underline border-r"
+                  className="hover:no-underline flex-1  hover:border"
                   onClick={() => {
                     handleQuanityChange(item, "decrease");
                   }}
                 >
                   -
                 </Button>
-                <Button
-                  variant={"link"}
-                  disabled
-                  size={"icon"}
-                  className=" border-r"
-                >
+                <Button variant={"link"} disabled size={"icon"} className="">
                   {item.orderQty}
                 </Button>
                 <Button
                   variant={"link"}
                   size={"icon"}
-                  className="hover:no-underline"
+                  className="hover:no-underline flex-1 hover:border"
                   onClick={() => {
                     handleQuanityChange(item, "increase");
                   }}
