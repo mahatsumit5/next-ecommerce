@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import cartReducer from "@/lib/redux/cart.slice";
+import menuReducer from "@/lib/redux/menu.slice";
 
 const persistConfig = {
   key: "cartInfo",
@@ -9,7 +10,7 @@ const persistConfig = {
 };
 const persistedCartReducer = persistReducer(persistConfig, cartReducer);
 const store = configureStore({
-  reducer: { cart: persistedCartReducer },
+  reducer: { cart: persistedCartReducer, menu: menuReducer },
 });
 const persistor = persistStore(store);
 

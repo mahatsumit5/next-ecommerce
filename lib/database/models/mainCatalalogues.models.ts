@@ -20,5 +20,6 @@ const mainCatSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-const ParentCatalogue = mongoose.model("mainCat");
+const ParentCatalogue =
+  models.mainCat || mongoose.model("mainCat", mainCatSchema);
 export default ParentCatalogue;
