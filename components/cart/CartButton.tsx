@@ -13,14 +13,14 @@ function CartButton({ cart }: { cart: ICartState[] }) {
       <Button
         className="rounded-full  gap-2 relative mr-3 hover:border hover:shadow-lg"
         variant="ghost"
-        size={"default"}
+        size={"sm"}
       >
         <Image src={"/assets/cart.png"} width={25} height={25} alt="logo" />{" "}
         {cart.length > 0 && (
           <Badge variant="destructive" className="absolute top-0 -right-1">
             {total}
           </Badge>
-        )}
+        )}{" "}
       </Button>
     </CartDrawer>
   );

@@ -15,28 +15,30 @@ const Header = () => {
   const { cart } = useAppSelector((state: RootState) => state.cart);
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <header className=" w-full   shadow-2xl sticky top-0 z-10 bg-slate-100/30 backdrop-blur-md dark:bg-slate-950">
+    <header className=" w-full  h-[80px] shadow-2xl sticky top-0 z-10 bg-slate-100/30 backdrop-blur-md dark:bg-slate-800 pt-1 ">
       <div className="  wrapper flex justify-between h-16 items-center gap-5">
         <div className="flex gap-2 justify-between items-center">
           <MobileMenu isOpen={isOpen} setIsOpen={setIsOpen} cart={cart} />
 
-          <div className=" relative w-[150px] h-[80px] overflow-hidden">
+          <div className=" relative w-[150px]  h-[100px] overflow-hidden">
             <Link href={"/"}>
               <Image
                 src={"/assets/logo.svg"}
                 fill
                 alt="logo"
-                className="object-cover"
+                className="object-fill"
               />
             </Link>
           </div>
 
-          <div className="hidden md:flex gap-2 ">
+          <div className="hidden lg:flex gap-2 ">
             <HeaderMenu />
-            <ThemeChanger />
           </div>
         </div>
         <div className=" gap-1  flex">
+          <div className=" hidden xs:block ">
+            <ThemeChanger />
+          </div>
           <Dialog isOpen={isOpen} setIsOpen={setIsOpen} />
           <span className="hidden sm:block">
             <CartButton cart={cart} />
@@ -45,7 +47,7 @@ const Header = () => {
             <UserButton afterSignOutUrl="/" />
           </SignedIn>
           <SignedOut>
-            <Button className="rounded-full " variant="default">
+            <Button className="rounded-full " variant="default" size={"sm"}>
               <Link href={"/sign-in"}>Login</Link>
             </Button>
           </SignedOut>

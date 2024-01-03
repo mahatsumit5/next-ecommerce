@@ -20,6 +20,7 @@ import CartDrawer from "../cart/CartDrawer";
 import { ICartState } from "@/types";
 import CartButton from "../cart/CartButton";
 import { HeaderMenu } from "./HeaderMenu";
+import { Separator } from "@radix-ui/react-separator";
 type MobileMenuProps = {
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
@@ -27,7 +28,7 @@ type MobileMenuProps = {
 };
 function MobileMenu({ setIsOpen, isOpen, cart }: MobileMenuProps) {
   return (
-    <div className="block md:hidden">
+    <div className="block lg:hidden">
       <Sheet>
         <SheetTrigger asChild>
           <Button variant="ghost" className="border-none dark:bg-none">
@@ -35,16 +36,12 @@ function MobileMenu({ setIsOpen, isOpen, cart }: MobileMenuProps) {
           </Button>
         </SheetTrigger>
         <SheetContent>
-          <SheetHeader>
-            <div className="flex gap-2 justify-between mt-3">
-              <ThemeChanger />
-              <CartButton cart={cart} />
-            </div>
+          <SheetHeader className="flex w-[80px]">
+            <CartButton cart={cart} />
           </SheetHeader>
+          <div className="border-b-2 border-r-slate-950"></div>
           <div className="mt-5 flex flex-col gap-3 ">
-            <div className="w-full">
-              <HeaderMenu />
-            </div>
+            <HeaderMenu />
           </div>
         </SheetContent>
       </Sheet>

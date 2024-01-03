@@ -3,13 +3,15 @@ import React from "react";
 import { Button } from "../ui/button";
 import { ADLaM_Display, Playfair_Display } from "next/font/google";
 import Link from "next/link";
+import { ThemeChanger } from "../theme-provider/ThemeChanger";
 
 const adlam = Playfair_Display({ weight: ["400"], subsets: ["latin"] });
 const Hero = () => {
   return (
     <div
-      className={`${adlam.className}  mt-5 wrapper flex flex-col  md:flex-row justify-between items-center h-fit `}
+      className={`${adlam.className}  mt-5 wrapper flex flex-col  md:flex-row justify-between items-center h-fit relative  `}
     >
+      <ThemeChanger className="absolute right-2 -top-10 block xs:hidden" />
       <div className="flex flex-col  gap-7">
         <p className="text-xl text-muted-foreground">
           Get your winter Jacket Now!!

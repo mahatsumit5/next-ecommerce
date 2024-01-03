@@ -14,12 +14,12 @@ const adlam = Raleway({ weight: ["400"], subsets: ["cyrillic-ext"] });
 const Footer = () => {
   return (
     <footer
-      className={`${adlam.className} bg-white dark:bg-slate-800 min-h-[50vh] `}
+      className={`${adlam.className} bg-blue-50 dark:bg-slate-800 min-h-[50vh] `}
     >
       <div className="wrapper flex flex-col">
         <div className="w-full flex-col md:flex-row flex border-b pb-4 gap-5 ">
           <div className="flex-1  flex flex-col gap-5">
-            <div className="relative w-96 h-32">
+            <div className="relative w-full h-32">
               <Link href={"/"}>
                 <Image
                   src={"/assets/logo.svg"}
@@ -62,7 +62,7 @@ const Footer = () => {
             </div>
           </div>
           <div className="flex-1  flex flex-col gap-5">
-            <h3 className="scroll-m-20 text-2xl font-bold tracking-tight flex items-center h-32 ">
+            <h3 className="scroll-m-20 text-2xl font-bold tracking-tight flex items-center h-5 sm:h-32 ">
               Newsletter
             </h3>{" "}
             <span className="text-justify  text-muted-foreground text-md">
