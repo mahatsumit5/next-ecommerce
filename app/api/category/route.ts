@@ -1,5 +1,6 @@
 import { getCatByParentCat } from "@/lib/actions/category.actions";
 import { handleError } from "@/lib/utils";
+import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
   try {
@@ -7,11 +8,10 @@ export async function GET(request: Request) {
     const id = searchParams.get("id");
 
     const result = await getCatByParentCat(id!);
-    console.log(result);
     if (result.length) {
-      return Response.json({ category: result });
+      return NextResponse.json({ category: result });
     }
-    return Response.json({ category: [] });
+    return NextResponse.json({ category: [] });
   } catch (error) {
     handleError(error);
   }
