@@ -145,3 +145,9 @@ export type ICateogry = {
   image: string;
   parentCat: string;
 };
+
+export type TMenuStore = {
+  parentCat: string;
+  category: ICateogry[];
+  index: number;
+};

@@ -8,7 +8,6 @@ import { countTotalItemsInCart } from "@/lib/utils";
 
 function CartButton({ cart }: { cart: ICartState[] }) {
   const total = countTotalItemsInCart(cart);
-  console.log(total);
   return (
     <CartDrawer>
       <Button

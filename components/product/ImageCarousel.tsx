@@ -10,12 +10,12 @@ function ImageCarousel({ images }: { images: string[] }) {
   });
   return (
     <div className="flex flex-col h-[700px]">
-      <span className="flex-1 border relative ">
+      <span className="flex-1  relative overflow-hidden ">
         <Image
           src={defaultImg.src}
           alt="default"
           fill
-          className="transition-all"
+          className="transition-all object-contain"
         />
         <Button
           className="absolute right-0 rounded-full top-56"
@@ -58,12 +58,12 @@ function ImageCarousel({ images }: { images: string[] }) {
           <ArrowLeftIcon />
         </Button>
       </span>
-      <span className="flex-none border flex justify-between py-5 gap-2">
+      <span className="flex-none  flex justify-between py-5 gap-2">
         {images.map((img, index) => (
           <div
             key={img}
-            className={`${
-              index === defaultImg.index ? "shadow-2xl " : ""
+            className={`overflow-hidden relative h-[150px] w-[150px] rounded-md ${
+              index === defaultImg.index ? "scale-125 " : ""
             } p-1 hover:cursor-pointer`}
             onClick={() => {
               setDefaultImg({
@@ -72,7 +72,7 @@ function ImageCarousel({ images }: { images: string[] }) {
               });
             }}
           >
-            <Image src={img} width={100} height={100} alt="image" />
+            <Image src={img} fill alt="image" className="object-contain" />
           </div>
         ))}
       </span>

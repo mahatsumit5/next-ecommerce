@@ -26,12 +26,12 @@ function CustomProductCard({ data, slug }: CardProps) {
     <Card className=" w-[300px] xs:w-[150px] sm:w-[300px] hover:shadow-2xl transition-shadow ">
       <CardHeader>
         <CardTitle>
-          <div className=" product-card relative ">
+          <div className=" product-card relative  overflow-hidden">
             <Image
               src={data.images[0]}
               fill
               alt="category-image"
-              className="rounded-lg hover:scale-105 transition-all product-card  "
+              className="rounded-lg hover:scale-105 transition-all product-card object-cover "
             />{" "}
           </div>
         </CardTitle>

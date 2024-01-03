@@ -1,13 +1,9 @@
-import { ICateogry } from "@/types";
+import { ICateogry, TMenuStore } from "@/types";
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-type main = {
-  parentCat: string;
-  category: ICateogry[];
-};
 type Initial = {
-  menu: main[];
+  menu: TMenuStore[];
 };
 
 const initialState: Initial = {
@@ -17,7 +13,7 @@ export const menuSlice = createSlice({
   name: "menu",
   initialState,
   reducers: {
-    setMenu: (state, { payload }: PayloadAction<main>) => {
+    setMenu: (state, { payload }: PayloadAction<TMenuStore>) => {
       state.menu = [...state.menu, payload];
     },
   },

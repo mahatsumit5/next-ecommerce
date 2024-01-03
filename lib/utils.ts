@@ -1,4 +1,10 @@
-import { ICartState, RemoveUrlQueryParams, UrlQueryParams } from "@/types";
+import {
+  ICartState,
+  IMainCat,
+  RemoveUrlQueryParams,
+  TMenuStore,
+  UrlQueryParams,
+} from "@/types";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import qs from "query-string";
@@ -53,3 +59,21 @@ export function removeKeysFromQuery({
     { skipNull: true }
   );
 }
+
+export const rearrangeReduxData = (
+  parentCat: IMainCat[],
+  menuItems: TMenuStore[]
+) => {
+  let array = [];
+  for (let i = 0; i < parentCat.length; i++) {
+    const parent = parentCat[i];
+    for (let j = 0; j < menuItems.length; j++) {
+      const cat = menuItems[j];
+
+      if (parent._id === cat.parentCat) {
+        array.push(cat);
+      }
+    }
+  }
+  return array;
+};

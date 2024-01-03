@@ -39,6 +39,7 @@ const Hero = () => {
           height={1000}
           alt="hero"
           className="max-h-[70vh] object-contain object-center"
+          priority
         />
       </div>
     </div>

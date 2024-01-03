@@ -20,9 +20,14 @@ const Header = () => {
         <div className="flex gap-2 justify-between items-center">
           <MobileMenu isOpen={isOpen} setIsOpen={setIsOpen} cart={cart} />
 
-          <div className=" relative w-[120px] h-[80px]">
+          <div className=" relative w-[150px] h-[80px] overflow-hidden">
             <Link href={"/"}>
-              <Image src={"/assets/logo.svg"} fill alt="logo" />
+              <Image
+                src={"/assets/logo.svg"}
+                fill
+                alt="logo"
+                className="object-cover"
+              />
             </Link>
           </div>
 

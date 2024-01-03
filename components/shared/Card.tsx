@@ -12,16 +12,16 @@ type CardProps = {
 function CustomCard({ data }: CardProps) {
   return (
     <Link href={`/category/${data.slug}`}>
-      <div className="h-[150px]  w-[150px] relative sm:h-[250px] md:w-[250px]  ">
-        <Image
-          src={data.image}
-          fill
-          alt="category-image"
-          className=" hover:scale-105 transition-all  "
-        />
-        <p className="absolute -bottom-8 font-semibold  text-xl">
-          {data.title}
-        </p>
+      <div>
+        <div className="h-[150px] rounded-2xl w-[150px] relative sm:h-[250px] md:w-[250px] overflow-hidden ">
+          <Image
+            src={data.image}
+            fill
+            alt="category-image"
+            className=" hover:scale-105 transition-all  object-cover"
+          />
+        </div>{" "}
+        <p className=" font-semibold  text-xl">{data.title}</p>
       </div>
     </Link>
   );

@@ -51,7 +51,7 @@ function CartItem({ type }: { type: "drawer" | "page" }) {
           >
             <div className=" w-full  flex gap-2">
               <span
-                className={`${
+                className={` overflow-hidden ${
                   type === "drawer" ? "drawer-cart-image" : "cart-page-image"
                 } `}
               >
@@ -59,7 +59,7 @@ function CartItem({ type }: { type: "drawer" | "page" }) {
                   src={item.thumbnail}
                   fill
                   alt="thumbnail"
-                  className="rounded-lg hover:shadow-xl"
+                  className="rounded-lg hover:shadow-xl object-cover"
                 />
               </span>
               <span className="  flex flex-col gap-1 justify-between">
