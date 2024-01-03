@@ -4,7 +4,7 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
-const inter = Poppins({ weight: ["300"], subsets: ["devanagari"] });
+const inter = Poppins({ weight: ["300"], subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Classic Fashion Wears",

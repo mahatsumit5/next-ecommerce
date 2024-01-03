@@ -1,7 +1,4 @@
-import {
-  getCatByParentCat,
-  getMainCategories,
-} from "@/lib/actions/category.actions";
+import { getCatByParentCat } from "@/lib/actions/category.actions";
 import { handleError } from "@/lib/utils";
 
 export async function GET(request: Request) {
@@ -10,7 +7,9 @@ export async function GET(request: Request) {
     const id = searchParams.get("id");
 
     const result = await getCatByParentCat(id!);
-    return Response.json({ category: result });
+    if (result.length) {
+    }
+    return Response.json({ category: [] });
   } catch (error) {
     handleError(error);
   }
