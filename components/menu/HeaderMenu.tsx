@@ -42,7 +42,6 @@ export function HeaderMenu() {
     dispatch(getCatgoryAction(id, index));
   };
   const newArray = rearrangeReduxData(parentCat, menu);
-  console.log(newArray);
   return (
     <NavigationMenu>
       <NavigationMenuList className="flex gap-5 flex-col justify-start md:flex-row">
@@ -60,7 +59,7 @@ export function HeaderMenu() {
               <NavigationMenuContent className="">
                 <ul className="p-6 md:w-[400px] lg:w-[500px] flex flex-col md:flex-row justify-between ">
                   {newArray[index]?.category.map((cat, index) => (
-                    <Link href={`/category/${parentCat.slug}`} key={index}>
+                    <Link href={`/category/${cat.slug}`} key={index}>
                       <li className=" flex   flex-col justify-between">
                         <span className="menu-page-image  overflow-hidden gap-2 border">
                           <Image
