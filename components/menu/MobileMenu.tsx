@@ -21,12 +21,15 @@ import { ICartState } from "@/types";
 import CartButton from "../cart/CartButton";
 import { HeaderMenu } from "./HeaderMenu";
 import { Separator } from "@radix-ui/react-separator";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 type MobileMenuProps = {
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
   cart: ICartState[];
 };
 function MobileMenu({ setIsOpen, isOpen, cart }: MobileMenuProps) {
+  const router = useRouter();
   return (
     <div className="block lg:hidden">
       <Sheet>
@@ -35,14 +38,34 @@ function MobileMenu({ setIsOpen, isOpen, cart }: MobileMenuProps) {
             <HamburgerMenuIcon />
           </Button>
         </SheetTrigger>
-        <SheetContent>
-          <SheetHeader className="flex w-[80px]">
-            <CartButton cart={cart} />
+        <SheetContent className="overflow-y-auto">
+          <SheetHeader className="flex w-full relative h-[80px] border-b-4">
+            <Link href={"/"}>
+              <Image
+                src={"/assets/logo.svg"}
+                fill
+                alt="logo"
+                className="object-cover"
+              />
+            </Link>
           </SheetHeader>
-          <div className="border-b-2 border-r-slate-950"></div>
+
           <div className="mt-5 flex flex-col gap-3 ">
             <HeaderMenu />
           </div>
+          <SheetFooter className="mt-2 sm:justify-start w-full">
+            <SheetClose asChild>
+              <Link href={"/cart"}>
+                <Button
+                  size={"lg"}
+                  variant={"default"}
+                  className="mt-4 rounded-lg"
+                >
+                  View Cart
+                </Button>
+              </Link>
+            </SheetClose>
+          </SheetFooter>
         </SheetContent>
       </Sheet>
     </div>

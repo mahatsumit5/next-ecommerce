@@ -27,11 +27,11 @@ function CartDrawer({ children }: { children: React.ReactNode }) {
         </SheetHeader>
         <CartItem type="drawer" />
         <CartSummary />
-        <SheetFooter>
+        <SheetFooter className="sm:justify-start">
           <SheetClose asChild>
             {cart.length > 0 ? (
               <Link href={"/cart"}>
-                <Button size={"sm"} variant={"default"} className="mt-4">
+                <Button size={"sm"} variant={"default"}>
                   View Cart
                 </Button>
               </Link>
