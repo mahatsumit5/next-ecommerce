@@ -41,14 +41,20 @@ const Dialog = ({ setIsOpen, isOpen }: MobileMenuProps) => {
           <AlertDialogTitle>
             <Search query={query} setQuery={setQuery} />
           </AlertDialogTitle>
-          <AlertDialogDescription className="flex flex-col gap-2 h-4 text-slate-100 items-start">
+          <AlertDialogDescription className="flex flex-col gap-2  text-slate-100 items-start">
             <Catagory query={query} />
 
-            <Products query={query} />
+            {/* <Products query={query} /> */}
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogCancel
+            onClick={() => {
+              setQuery("");
+            }}
+          >
+            Cancel
+          </AlertDialogCancel>
           {/* <AlertDialogAction>Continue</AlertDialogAction> */}
         </AlertDialogFooter>
       </AlertDialogContent>

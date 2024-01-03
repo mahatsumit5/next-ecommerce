@@ -31,7 +31,9 @@ function SelectQuantity({ setOrderQty, qty }: SelectQuantityProps) {
         <SelectGroup>
           <SelectLabel>Select Quantity</SelectLabel>
           {quantiy.map((qty) => (
-            <SelectItem value={`${qty}`}>{qty}</SelectItem>
+            <SelectItem value={`${qty}`} key={qty}>
+              {qty}
+            </SelectItem>
           ))}
         </SelectGroup>
       </SelectContent>

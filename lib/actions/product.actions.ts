@@ -24,7 +24,6 @@ export const getAllProducts = async ({
   page,
 }: getAllProductProps) => {
   try {
-    console.log(query);
     await connectToDatabase();
     const condition = query ? { slug: { $regex: query, $options: "i" } } : {};
     const skipAmount = (Number(page) - 1) * limit;

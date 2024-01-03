@@ -19,19 +19,19 @@ function Catagory({ query }: { query: string }) {
   }, [query]);
 
   return (
-    <div className="flex flex-col gap-3 items-start w-full">
-      <h3 className="text-2xl">Categories</h3>
-
-      <Separator />
+    <span className="flex flex-col gap-3 items-start w-full">
+      <span className="text-2xl">Categories</span>
 
       {categories.map((cat) => (
-        <Link href={`/category/${cat.slug}`}>
-          <p className="text-sm sm:text-md hover:underline hover:cursor-pointer">
-            {cat.title}
-          </p>
+        <Link
+          href={`/category/${cat.slug}`}
+          key={cat._id}
+          className="text-sm hover:underline"
+        >
+          {cat.title}
         </Link>
       ))}
-    </div>
+    </span>
   );
 }
 

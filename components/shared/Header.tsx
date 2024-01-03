@@ -15,7 +15,7 @@ const Header = () => {
   const { cart } = useAppSelector((state: RootState) => state.cart);
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <header className=" w-full   shadow-2xl sticky top-0 z-10 bg-slate-100 dark:bg-slate-950">
+    <header className=" w-full   shadow-2xl sticky top-0 z-10 bg-slate-100/30 backdrop-blur-md dark:bg-slate-950">
       <div className="  wrapper flex justify-between h-16 items-center gap-5">
         <div className="flex gap-2 justify-between items-center">
           <MobileMenu isOpen={isOpen} setIsOpen={setIsOpen} cart={cart} />

@@ -19,19 +19,15 @@ function Products({ query }: { query: string }) {
   }, [query]);
 
   return (
-    <div className="flex flex-col gap-3 items-start w-full">
-      <h3 className="text-2xl">Products</h3>
-
-      <Separator />
+    <span className="flex flex-col gap-3 items-start w-full">
+      <span className="text-2xl">Products</span>
 
       {products?.map((product) => (
-        <Link href={`/category/item/${product.slug}`}>
-          <p className="text-sm sm:text-md hover:underline hover:cursor-pointer">
-            {product.title}
-          </p>
+        <Link href={`/category/item/${product.slug}`} key={product._id}>
+          {product.title}
         </Link>
       ))}
-    </div>
+    </span>
   );
 }
 
