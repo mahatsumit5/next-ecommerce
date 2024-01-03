@@ -1,17 +1,15 @@
 import Image from "next/image";
 import React from "react";
 import { Button } from "../ui/button";
-import { ADLaM_Display, Playfair_Display } from "next/font/google";
+import { ADLaM_Display } from "next/font/google";
 import Link from "next/link";
-import { ThemeChanger } from "../theme-provider/ThemeChanger";
 
-const adlam = Playfair_Display({ weight: ["400"], subsets: ["latin"] });
+const adlam = ADLaM_Display({ weight: ["400"], subsets: ["adlam"] });
 const Hero = () => {
   return (
     <div
-      className={`${adlam.className}  mt-5 wrapper flex flex-col  md:flex-row justify-between items-center h-fit relative  `}
+      className={`${adlam.className}   bg-dotted-pattern bg-cover mt-5 wrapper flex flex-col  md:flex-row justify-between items-center h-fit relative  `}
     >
-      <ThemeChanger className="absolute right-2 -top-10 block xs:hidden" />
       <div className="flex flex-col  gap-7">
         <p className="text-xl text-muted-foreground">
           Get your winter Jacket Now!!
@@ -36,7 +34,7 @@ const Hero = () => {
       </div>
       <div className="bg-hero-blob  bg-cover bg-center ">
         <Image
-          src={"/assets/hero.png"}
+          src={"/assets/hero2.png"}
           width={1000}
           height={1000}
           alt="hero"

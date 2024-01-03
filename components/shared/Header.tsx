@@ -20,7 +20,7 @@ const Header = () => {
         <div className="flex gap-2 justify-between items-center">
           <MobileMenu isOpen={isOpen} setIsOpen={setIsOpen} cart={cart} />
 
-          <div className=" relative w-[150px]  h-[100px] overflow-hidden">
+          <div className=" relative w-[150px]  h-[100px] overflow-hidden hidden sm:block">
             <Link href={"/"}>
               <Image
                 src={"/assets/logo.svg"}
@@ -35,19 +35,18 @@ const Header = () => {
             <HeaderMenu />
           </div>
         </div>
-        <div className=" gap-1  flex">
-          <div className=" hidden xs:block ">
-            <ThemeChanger />
-          </div>
+        <div className=" gap-2  flex">
+          <ThemeChanger />
+
           <Dialog isOpen={isOpen} setIsOpen={setIsOpen} />
-          <span className="hidden sm:block">
-            <CartButton cart={cart} />
-          </span>
+
+          <CartButton cart={cart} />
+
           <SignedIn>
             <UserButton afterSignOutUrl="/" />
           </SignedIn>
           <SignedOut>
-            <Button className="rounded-full " variant="default" size={"sm"}>
+            <Button className="rounded-full  " variant="default" size={"sm"}>
               <Link href={"/sign-in"}>Login</Link>
             </Button>
           </SignedOut>

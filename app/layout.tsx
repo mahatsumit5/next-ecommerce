@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Raleway } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
-const inter = Poppins({ weight: ["300"], subsets: ["latin"] });
+const raleway = Raleway({ weight: ["400"], subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Classic Fashion Wears",
@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en" className="scroll-smooth">
-        <body className={`${inter.className}  bg-dotted-pattern bg-cover`}>
+        <body className={`${raleway.className}  `}>
           <ThemeProvider
             attribute="class"
             defaultTheme="light"

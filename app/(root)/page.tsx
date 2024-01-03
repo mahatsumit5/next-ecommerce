@@ -22,10 +22,10 @@ async function Home({ searchParams }: SearchParamProps) {
             Browser By Category
           </h3>
           <div className="flex gap-2">
-            <Button variant={"destructive"}>
+            <Button variant={"outline"}>
               <ArrowLeftIcon />
             </Button>
-            <Button variant={"destructive"}>
+            <Button variant={"default"}>
               <ArrowRightIcon />
             </Button>
           </div>
@@ -44,7 +44,7 @@ async function Home({ searchParams }: SearchParamProps) {
             Featured products
           </h3>
           <Link href={"/product"}>
-            <Button variant={"destructive"}>View All Products</Button>
+            <Button variant={"primary"}>View All Products</Button>
           </Link>
         </span>
         <Collection
