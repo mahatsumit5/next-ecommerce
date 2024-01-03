@@ -125,3 +125,23 @@ export type getAllProductProps = {
   limit: number;
   page: number;
 };
+export type IMainCat = {
+  _id: string;
+  status: string;
+  title: string;
+  slug: string;
+  createdAt: Date;
+  updatedAt: Date;
+  __v: number;
+};
+export type ICateogry = {
+  _id: string;
+  status: string;
+  title: string;
+  slug: string;
+  createdAt: Date;
+  updatedAt: Date;
+  __v: number;
+  image: string;
+  parentCat: string;
+};

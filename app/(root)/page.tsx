@@ -2,15 +2,13 @@ import Hero from "@/components/hero/Hero";
 import Collection from "@/components/shared/Collection";
 import { Button } from "@/components/ui/button";
 import { ArrowRightIcon, ArrowLeftIcon } from "@radix-ui/react-icons";
-import {
-  getAllCategories,
-  getMainCategories,
-} from "@/lib/actions/category.actions";
+import { getAllCategories } from "@/lib/actions/category.actions";
 import { getFewProducts } from "@/lib/actions/product.actions";
 import Link from "next/link";
 import React from "react";
 import { Separator } from "@/components/ui/separator";
 import { SearchParamProps } from "@/types";
+import { getParentCatalogues } from "@/lib/actions/mainCatalogues.actions";
 async function Home({ searchParams }: SearchParamProps) {
   const query = (searchParams?.query as string) || "";
   const categories = await getAllCategories(query);

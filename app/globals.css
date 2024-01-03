@@ -90,4 +90,7 @@
   .cart-page-image {
     @apply w-[150px] h-[150px] sm:w-[200px] sm:h-[200px] md:w-[300px]  md:h-[300px] relative rounded-lg;
   }
+  .menu-page-image {
+    @apply w-[50px] h-[50px] relative rounded-lg;
+  }
 }

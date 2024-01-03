@@ -14,6 +14,7 @@ import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import Link from "next/link";
 import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
+import Checkout from "./Checkout";
 function CartSummary() {
   const { cart } = useAppSelector((store: RootState) => store.cart);
   const shippingPrice = 15.0;
@@ -55,12 +56,7 @@ function CartSummary() {
       </span>
       <div className="">
         <SignedIn>
-          {" "}
-          <Link href={"/checkout"}>
-            <Button variant={"default"} className="rounded-lg">
-              Checkout
-            </Button>
-          </Link>
+          <Checkout cart={cart} />
         </SignedIn>
         <SignedOut>
           <Link href={"/sign-in"}>
