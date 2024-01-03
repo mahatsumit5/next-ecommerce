@@ -36,7 +36,7 @@ const Dialog = ({ setIsOpen, isOpen }: MobileMenuProps) => {
           <MagnifyingGlassIcon className="mr-2 h-5 w-8" color="blue" />{" "}
         </Button>
       </AlertDialogTrigger>
-      <AlertDialogContent className=" bg-black/50 backdrop-blur-lg min-h-screen overflow-y-auto ">
+      <AlertDialogContent className=" bg-black/30 backdrop-blur-md   overflow-y-auto ">
         <AlertDialogHeader>
           <AlertDialogTitle>
             <Search query={query} setQuery={setQuery} />
