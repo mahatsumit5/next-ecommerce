@@ -7,7 +7,9 @@ export async function GET(request: Request) {
     const id = searchParams.get("id");
 
     const result = await getCatByParentCat(id!);
+    console.log(result);
     if (result.length) {
+      return Response.json({ category: result });
     }
     return Response.json({ category: [] });
   } catch (error) {
