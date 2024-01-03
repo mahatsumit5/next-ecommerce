@@ -29,11 +29,11 @@ export function HeaderMenu() {
     getData();
   }, []);
   const getcategories = async (id: string) => {
-    const result = await fetch(`/api/category?id=${id}`, {
-      method: "GET",
-    });
-    const data = await result.json();
-    setCategories(data?.category);
+    // const result = await fetch(`/api/category?id=${id}`, {
+    //   method: "GET",
+    // });
+    // const data = await result.json();
+    // setCategories(data?.category);
   };
   console.log(categories);
   return (
