@@ -1,6 +1,7 @@
 import { ICartState } from "@/types";
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
+import { toast } from "sonner";
 
 type TInitial = {
   cart: ICartState[];
@@ -17,6 +18,7 @@ export const cartSlice = createSlice({
       if (payload._id === undefined) {
         return;
       }
+      toast.success("Item added to cart", {});
       const itemExist = state.cart.filter((item) => item._id === payload._id);
       // console.log(itemExist.length);
       if (itemExist.length > 0) {
@@ -38,10 +40,15 @@ export const cartSlice = createSlice({
       state.cart = [...state.cart, payload];
     },
     removeItemFromCart: (state, { payload }: PayloadAction<string>) => {
-      console.log(payload);
+      toast.warning("Your item has been removed from cart.", {
+        description: `${new Date()}`,
+      });
       state.cart = state.cart.filter((item) => item._id !== payload);
     },
     resetCart: (state) => {
+      toast.warning("Your item has been removed from cart.", {
+        description: `${new Date()}`,
+      });
       state.cart = [];
     },
   },

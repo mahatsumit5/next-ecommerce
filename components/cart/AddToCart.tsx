@@ -6,6 +6,7 @@ import { removeItemFromCart, setCart } from "@/lib/redux/cart.slice";
 import { RootState } from "@/store";
 import CustomAlertDialog from "../dialog/AlertDialog";
 import { useAppDispatch, useAppSelector } from "@/hook";
+import { toast } from "sonner";
 
 function AddToCart({
   variant,
@@ -21,6 +22,7 @@ function AddToCart({
   const handleAddToCart = () => {
     if (itemInCart.length > 0) {
       dispatch(removeItemFromCart(product._id));
+
       return;
     }
 
