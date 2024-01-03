@@ -13,6 +13,7 @@ import { countTotalPrice } from "@/lib/utils";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import Link from "next/link";
+import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 function CartSummary() {
   const { cart } = useAppSelector((store: RootState) => store.cart);
   const shippingPrice = 15.0;
@@ -53,11 +54,21 @@ function CartSummary() {
         <p className="font-extrabold">${total + shippingPrice}</p>
       </span>
       <div className="">
-        <Link href={"/checkout"}>
-          <Button variant={"default"} className="rounded-lg">
-            Checkout
-          </Button>
-        </Link>
+        <SignedIn>
+          {" "}
+          <Link href={"/checkout"}>
+            <Button variant={"default"} className="rounded-lg">
+              Checkout
+            </Button>
+          </Link>
+        </SignedIn>
+        <SignedOut>
+          <Link href={"/sign-in"}>
+            <Button variant={"default"} className="rounded-lg">
+              Checkout
+            </Button>
+          </Link>
+        </SignedOut>
       </div>
     </div>
   );

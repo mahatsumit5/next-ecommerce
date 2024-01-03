@@ -24,6 +24,7 @@ export const getAllProducts = async ({
   page,
 }: getAllProductProps) => {
   try {
+    console.log(query);
     await connectToDatabase();
     const condition = query ? { slug: { $regex: query, $options: "i" } } : {};
     const skipAmount = (Number(page) - 1) * limit;
@@ -70,6 +71,13 @@ export const getProductsBySlug = async (slug: string) => {
       .findOne({ slug });
 
     return JSON.parse(JSON.stringify(product));
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const test = async () => {
+  try {
+    await connectToDatabase();
   } catch (error) {
     console.log(error);
   }

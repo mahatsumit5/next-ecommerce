@@ -12,13 +12,17 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
-import { Input } from "../ui/input";
 import Search from "../shared/Search";
+import Catagory from "./Catagory";
+import Products from "./Products";
+
 type MobileMenuProps = {
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
 };
 const Dialog = ({ setIsOpen, isOpen }: MobileMenuProps) => {
+  const [query, setQuery] = useState("");
+
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild className="">
@@ -32,12 +36,16 @@ const Dialog = ({ setIsOpen, isOpen }: MobileMenuProps) => {
           <MagnifyingGlassIcon className="mr-2 h-5 w-8" color="blue" />{" "}
         </Button>
       </AlertDialogTrigger>
-      <AlertDialogContent className="fixed top-20">
+      <AlertDialogContent className=" bg-black/50 backdrop-blur-lg min-h-screen overflow-y-auto ">
         <AlertDialogHeader>
           <AlertDialogTitle>
-            <Search />
+            <Search query={query} setQuery={setQuery} />
           </AlertDialogTitle>
-          {/* <AlertDialogDescription>aksjdbfjkbf</AlertDialogDescription> */}
+          <AlertDialogDescription className="flex flex-col gap-2 h-4 text-slate-100 items-start">
+            <Catagory query={query} />
+
+            <Products query={query} />
+          </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>

@@ -38,7 +38,7 @@ export function ProductPagination({ count }: { count: number }) {
         });
       }
 
-      router.push(newUrl, { scroll: false });
+      router.push(newUrl, { scroll: true });
     }, 300);
 
     return () => clearTimeout(delayDebounceFn);

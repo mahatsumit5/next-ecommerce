@@ -1,4 +1,5 @@
-import { auth, currentUser } from "@clerk/nextjs";
+import { auth, currentUser, useUser } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 async function page() {
