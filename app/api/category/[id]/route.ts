@@ -2,17 +2,19 @@ import { getCatByParentCat } from "@/lib/actions/category.actions";
 import { handleError } from "@/lib/utils";
 import { NextResponse } from "next/server";
 
-export async function GET(request: Request) {
+export async function GET(
+  request: Request,
+  { params }: { params: { id: string } }
+) {
   try {
-    const { searchParams } = new URL(request.url);
-    const id = searchParams.get("id");
-
+    const id = params.id;
     const result = await getCatByParentCat(id!);
     if (result.length) {
       return NextResponse.json({ category: result });
+    } else {
+      return NextResponse.json({ category: [] });
     }
-    return NextResponse.json({ category: [] });
   } catch (error) {
-    handleError(error);
+    return NextResponse.json(error);
   }
 }

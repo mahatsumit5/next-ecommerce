@@ -13,6 +13,7 @@ export default authMiddleware({
     "/category/:slug/:productSlug",
     "/api/catalogue",
     "/api/category",
+    "/api/category/:id",
   ],
   ignoredRoutes: [
     "/api/webhook/clerk",
