@@ -46,9 +46,9 @@ export const cartSlice = createSlice({
       state.cart = state.cart.filter((item) => item._id !== payload);
     },
     resetCart: (state) => {
-      toast.warning("Your item has been removed from cart.", {
-        description: `${new Date()}`,
-      });
+      // toast.warning("Your item has been removed from cart.", {
+      //   description: `${new Date()}`,
+      // });
       state.cart = [];
     },
   },

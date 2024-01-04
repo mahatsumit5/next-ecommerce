@@ -4,6 +4,8 @@ import { CreateOrderParams, checkoutOrderProps } from "@/types";
 import { handleError } from "../utils";
 import { connectToDatabase } from "../database";
 import Order from "../database/models/order.models";
+import Product from "../database/models/product.models";
+import Customer from "../database/models/user.model";
 
 export const checkOutOrder = async ({
   cart,
@@ -91,6 +93,26 @@ export const createOrder = async (order: CreateOrderParams) => {
     await connectToDatabase();
     const newOrder = await Order.create(order);
     return JSON.parse(JSON.stringify(newOrder));
+  } catch (error) {
+    handleError(error);
+  }
+};
+export const getOrderByStripeId = async (id: string) => {
+  try {
+    await connectToDatabase();
+    const order = await Order.findOne({ stripeId: id })
+      .populate({
+        path: "orderItems",
+        model: Product,
+        select: "title",
+      })
+      .populate({
+        path: "buyer",
+        model: Customer,
+        select: "_id email firstName lastName",
+      });
+    console.log(order);
+    return JSON.parse(JSON.stringify(order));
   } catch (error) {
     handleError(error);
   }

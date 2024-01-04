@@ -11,10 +11,9 @@ export const getProductsByCategory = async (category?: string, id?: string) => {
     const cat = await mongoose.connection.db
       .collection("categories")
       .findOne({ slug: category });
-    const products = await mongoose.connection
-      .collection("products")
-      .find({ parentCat: !id ? cat?._id : _id })
-      .toArray();
+    const products = await Product.find({
+      parentCat: !id ? cat?._id : _id,
+    });
 
     return JSON.parse(JSON.stringify(products));
   } catch (error) {
@@ -30,12 +29,9 @@ export const getAllProducts = async ({
     await connectToDatabase();
     const condition = query ? { slug: { $regex: query, $options: "i" } } : {};
     const skipAmount = (Number(page) - 1) * limit;
-    const products = await mongoose.connection
-      .collection("products")
-      .find(condition)
+    const products = await Product.find(condition)
       .limit(limit)
-      .skip(skipAmount)
-      .toArray();
+      .skip(skipAmount);
 
     const totalProducts = await mongoose.connection.db
       .collection("products")
@@ -52,12 +48,7 @@ export const getFewProducts = async (limit: number, query: string) => {
   try {
     await connectToDatabase();
     const condition = query ? { slug: { $regex: query, $options: "i" } } : {};
-    const products = await mongoose.connection
-      .collection("products")
-      .find(condition)
-      .limit(limit)
-      .skip(0)
-      .toArray();
+    const products = await Product.find(condition).limit(limit).skip(0);
 
     return JSON.parse(JSON.stringify(products));
   } catch (error) {

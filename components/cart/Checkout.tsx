@@ -22,7 +22,6 @@ function Checkout({
 }) {
   const router = useRouter();
   const { user } = useUser();
-  console.log(user);
   React.useEffect(() => {
     // Check to see if this is a redirect back from Checkout
     const query = new URLSearchParams(window.location.search);
@@ -45,6 +44,7 @@ function Checkout({
       shippingRate: shippingRate,
     };
     const session = await checkOutOrder(obj);
+    localStorage.setItem("payment_id", session.id);
     router.push(session.url);
   };
   return (

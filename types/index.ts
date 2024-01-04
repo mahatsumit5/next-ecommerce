@@ -182,3 +182,27 @@ export type CreateOrderParams = {
     state: string;
   };
 };
+
+export type IOrderItem = {
+  _id: string;
+  stripeId: string;
+  status: string;
+  totalAmount: number;
+  buyer: { _id: string; email: string; firstName: string; lastName: string };
+  orderItems: [
+    {
+      _id: string;
+      orderQty: string;
+      size: string;
+      color: string;
+    }
+  ];
+  address: {
+    city: string;
+    country: string;
+    line1: string;
+    line2: string | null;
+    postal_code: string;
+    state: string;
+  };
+};

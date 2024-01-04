@@ -1,4 +1,71 @@
-import { models } from "mongoose";
+import mongoose, { model, models } from "mongoose";
+const productSchema = new mongoose.Schema(
+  {
+    status: {
+      type: String,
+      default: "inactive",
+    },
+    title: {
+      type: String,
+      required: true,
+    },
+    slug: {
+      type: String,
+      unique: true,
+      index: 1,
+      required: true,
+    },
+    price: {
+      type: Number,
+      required: true,
+    },
+    qty: {
+      type: Number,
+      required: true,
+    },
+    sku: {
+      type: String,
+      unique: true,
+      required: true,
+    },
+    salesPrice: {
+      type: Number,
+    },
+    color: [{ type: String, required: true }],
+    size: [{ type: String, required: true }],
 
-const Product = models.products;
+    parentCat: {
+      type: mongoose.Types.ObjectId,
+      ref: "categories",
+      required: true,
+    },
+    salesStartDate: {
+      type: Date,
+    },
+    salesEndDate: {
+      type: Date,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    thumbnail: {
+      type: String,
+      required: true,
+    },
+    images: [
+      {
+        type: String,
+      },
+    ],
+    reviews: [
+      {
+        type: Object,
+        default: {},
+      },
+    ],
+  },
+  { timestamps: true }
+);
+const Product = models.products || model("products", productSchema);
 export default Product;

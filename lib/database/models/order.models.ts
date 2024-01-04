@@ -1,4 +1,28 @@
-import { Schema, model, models } from "mongoose";
+import { Document, Schema, model, models } from "mongoose";
+
+export interface InterfaceOrder extends Document {
+  _id: string;
+  stripeId: string;
+  status: string;
+  totalAmount: number;
+  buyer: string;
+  orderItems: [
+    {
+      _id: string;
+      orderQty: string;
+      size: string;
+      color: string;
+    }
+  ];
+  address: {
+    city: string;
+    country: string;
+    line1: string;
+    line2: string | null;
+    postal_code: string;
+    state: string;
+  };
+}
 
 const orderSchema = new Schema(
   {
