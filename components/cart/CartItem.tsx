@@ -93,7 +93,7 @@ function CartItem({ type }: { type: "drawer" | "page" }) {
                     ${item.price}
                   </p>
                 </span>
-                <span className=" flex   justify-between rounded-3xl shadow-md  ">
+                <span className=" flex   justify-between rounded-3xl shadow-2xl shadow-slate-500  border-black dark:bg-slate-700  dark:shadow-gray-500">
                   <Button
                     variant={"link"}
                     size={"icon"}

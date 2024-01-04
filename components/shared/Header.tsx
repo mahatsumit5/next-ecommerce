@@ -11,11 +11,12 @@ import { RootState } from "@/store";
 import CartButton from "../cart/CartButton";
 import { useAppSelector } from "@/hook";
 import { HeaderMenu } from "../menu/HeaderMenu";
+import LoginButton from "../user-login/LoginButton";
 const Header = () => {
   const { cart } = useAppSelector((state: RootState) => state.cart);
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <header className=" w-full  h-[80px] shadow-2xl sticky top-0 z-10 bg-slate-100/30 backdrop-blur-md dark:bg-slate-800 pt-1 ">
+    <header className=" w-full  h-[80px] shadow-2xl sticky top-0 z-10 bg-slate-100/55 backdrop-blur-2xl dark:bg-slate-800 pt-1 ">
       <div className="  wrapper flex justify-between h-16 items-center gap-5">
         <div className="flex gap-2 justify-between items-center">
           <MobileMenu isOpen={isOpen} setIsOpen={setIsOpen} cart={cart} />
@@ -36,20 +37,15 @@ const Header = () => {
           </div>
         </div>
         <div className=" gap-2  flex">
-          <ThemeChanger />
-
+          <div className="hidden sm:flex mt-2">
+            <ThemeChanger />
+          </div>
           <Dialog isOpen={isOpen} setIsOpen={setIsOpen} />
 
           <CartButton cart={cart} />
-
-          <SignedIn>
-            <UserButton afterSignOutUrl="/" />
-          </SignedIn>
-          <SignedOut>
-            <Button className="rounded-full  " variant="default" size={"sm"}>
-              <Link href={"/sign-in"}>Login</Link>
-            </Button>
-          </SignedOut>
+          <div className="hidden sm:block ">
+            <LoginButton />
+          </div>
         </div>
       </div>
     </header>

@@ -77,16 +77,6 @@ export const rearrangeReduxData = (
   }
   return array;
 };
-const metadata = {
-  _id0: "65211498f4eb1835e78206b4",
-  _id1: "6521144cf4eb1835e782069f",
-  color0: "#6f63ca",
-  color1: "#0e0101",
-  orderQty0: "3",
-  orderQty1: "1",
-  size0: "md",
-  size1: "xl",
-};
 
 export const changeMetaDataIntoArray = (metadata: Record<string, string>) => {
   const orderItems: any = [];

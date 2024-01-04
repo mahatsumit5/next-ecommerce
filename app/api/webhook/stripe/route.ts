@@ -43,7 +43,7 @@ export async function POST(request: Request) {
       },
       buyer: client_reference_id!,
       stripeId: id,
-      totalAmount: amount_total!,
+      totalAmount: amount_total! / 100,
       orderItems: orderItems,
       uniqueId,
     };
