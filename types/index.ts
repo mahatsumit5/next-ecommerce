@@ -156,12 +156,14 @@ export type TMenuStore = {
 
 export type checkoutOrderProps = {
   cart: ICartState[];
+  uniqueId: string;
   email: string;
   customerId: string;
   shippingRate: number;
 };
 
 export type CreateOrderParams = {
+  uniqueId: string;
   stripeId: string;
   totalAmount: number;
   buyer: string;

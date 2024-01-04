@@ -2,12 +2,14 @@ import { ICartState } from "@/types";
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { toast } from "sonner";
-
+import { v4 } from "uuid";
 type TInitial = {
   cart: ICartState[];
+  uniqueId: string;
 };
 const initialState: TInitial = {
   cart: [],
+  uniqueId: v4(),
 };
 
 export const cartSlice = createSlice({
@@ -38,18 +40,24 @@ export const cartSlice = createSlice({
       }
 
       state.cart = [...state.cart, payload];
+      state.uniqueId = v4();
     },
     removeItemFromCart: (state, { payload }: PayloadAction<string>) => {
       toast.warning("Your item has been removed from cart.", {
         description: `${new Date()}`,
       });
       state.cart = state.cart.filter((item) => item._id !== payload);
+
+      if (!state.cart.length) {
+        state.uniqueId = "";
+      }
     },
     resetCart: (state) => {
       // toast.warning("Your item has been removed from cart.", {
       //   description: `${new Date()}`,
       // });
       state.cart = [];
+      state.uniqueId = "";
     },
   },
 });

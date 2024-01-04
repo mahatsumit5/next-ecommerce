@@ -29,7 +29,8 @@ export async function POST(request: Request) {
       amount_total,
       metadata,
     } = event.data.object;
-    const orderItems = changeMetaDataIntoArray(metadata!);
+    const { uniqueId, ...rest }: any = metadata;
+    const orderItems = changeMetaDataIntoArray(rest!);
     const address = shipping_details?.address;
     const obj: CreateOrderParams = {
       address: {
@@ -44,6 +45,7 @@ export async function POST(request: Request) {
       stripeId: id,
       totalAmount: amount_total!,
       orderItems: orderItems,
+      uniqueId,
     };
     const newOrder = await createOrder(obj);
 

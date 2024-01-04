@@ -2,9 +2,8 @@
 import React from "react";
 import { Button } from "../ui/button";
 import { loadStripe } from "@stripe/stripe-js";
-import { ICartState } from "@/types";
+import { ICartState, checkoutOrderProps } from "@/types";
 import { checkOutOrder } from "@/lib/actions/order.actions";
-import { countTotalItemsInCart } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { useUser } from "@clerk/nextjs";
 
@@ -15,26 +14,15 @@ function Checkout({
   cart,
   total,
   shippingRate,
+  uniqueId,
 }: {
   cart: ICartState[];
   total: number;
   shippingRate: number;
+  uniqueId: string;
 }) {
   const router = useRouter();
   const { user } = useUser();
-  React.useEffect(() => {
-    // Check to see if this is a redirect back from Checkout
-    const query = new URLSearchParams(window.location.search);
-    if (query.get("success")) {
-      console.log("Order placed! You will receive an email confirmation.");
-    }
-
-    if (query.get("canceled")) {
-      console.log(
-        "Order canceled -- continue to shop around and checkout when you’re ready."
-      );
-    }
-  }, []);
 
   const checkout = async () => {
     const obj = {
@@ -42,7 +30,9 @@ function Checkout({
       email: user?.primaryEmailAddress?.emailAddress!,
       customerId: user?.publicMetadata.userId! as string,
       shippingRate: shippingRate,
-    };
+      uniqueId,
+    } as checkoutOrderProps;
+
     const session = await checkOutOrder(obj);
     localStorage.setItem("payment_id", session.id);
     router.push(session.url);

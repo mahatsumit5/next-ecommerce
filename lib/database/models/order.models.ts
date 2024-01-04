@@ -1,6 +1,7 @@
 import { Document, Schema, model, models } from "mongoose";
 
 export interface InterfaceOrder extends Document {
+  uniqueId: string;
   _id: string;
   stripeId: string;
   status: string;
@@ -26,6 +27,11 @@ export interface InterfaceOrder extends Document {
 
 const orderSchema = new Schema(
   {
+    uniqueId: {
+      type: String,
+      required: true,
+      unique: true,
+    },
     stripeId: {
       type: String,
       required: true,

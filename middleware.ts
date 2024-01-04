@@ -21,6 +21,7 @@ export default authMiddleware({
     "/api/webhook/clerk",
     "/api/webhook/stripe",
     "/api/catalogue",
+    "/api/checkout_sessions",
   ],
 });
 

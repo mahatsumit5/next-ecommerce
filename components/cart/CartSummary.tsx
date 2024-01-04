@@ -17,6 +17,7 @@ import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 import Checkout from "./Checkout";
 function CartSummary() {
   const { cart } = useAppSelector((store: RootState) => store.cart);
+  const { uniqueId } = useAppSelector((store: RootState) => store.cart);
   const shippingPrice = 15.0;
   const total = countTotalPrice(cart);
   return (
@@ -56,7 +57,12 @@ function CartSummary() {
       </span>
       <div className="">
         <SignedIn>
-          <Checkout cart={cart} total={total} shippingRate={shippingPrice} />
+          <Checkout
+            cart={cart}
+            total={total}
+            shippingRate={shippingPrice}
+            uniqueId={uniqueId}
+          />
         </SignedIn>
         <SignedOut>
           <Link href={"/sign-in"}>

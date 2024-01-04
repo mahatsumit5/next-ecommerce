@@ -12,6 +12,7 @@ export const checkOutOrder = async ({
   email,
   customerId,
   shippingRate,
+  uniqueId,
 }: checkoutOrderProps) => {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
@@ -70,12 +71,12 @@ export const checkOutOrder = async ({
         };
       }),
 
-      metadata,
+      metadata: { uniqueId, ...metadata },
       mode: "payment",
-      success_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/order-confirmation`,
+      success_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/order-confirmation?success=true?id=${uniqueId}`,
       invoice_creation: { enabled: true },
 
-      cancel_url: `${process.env.NEXT_PUBLIC_SERVER_URL}`,
+      cancel_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/?cancelled=true`,
     });
 
     if (session.id) {
@@ -111,7 +112,6 @@ export const getOrderByStripeId = async (id: string) => {
         model: Customer,
         select: "_id email firstName lastName",
       });
-    console.log(order);
     return JSON.parse(JSON.stringify(order));
   } catch (error) {
     handleError(error);

@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { connectToDatabase } from "../database";
-import { getAllProductProps } from "@/types";
+import { ICartState, IProduct, getAllProductProps } from "@/types";
 import Product from "../database/models/product.models";
 import { handleError } from "../utils";
 
@@ -64,6 +64,27 @@ export const getProductsBySlug = async (slug: string) => {
       .findOne({ slug });
 
     return JSON.parse(JSON.stringify(product));
+  } catch (error) {
+    handleError(error);
+  }
+};
+
+export const updateProductQuantity = async (cart: ICartState[]) => {
+  try {
+    await connectToDatabase();
+    let updated: IProduct[] = [];
+    for (let i = 0; i < cart.length; i++) {
+      const result = await Product.findById(cart[i]._id);
+      const newQuantity = result.qty - cart[i].orderQty;
+
+      const updatedProduct = await Product.findByIdAndUpdate(
+        cart[i]._id,
+        { qty: newQuantity },
+        { new: true }
+      );
+      updated = [...updated, updatedProduct];
+    }
+    return JSON.parse(JSON.stringify(updated));
   } catch (error) {
     handleError(error);
   }
