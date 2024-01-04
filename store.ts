@@ -9,6 +9,7 @@ const persistConfig = {
   storage,
 };
 const persistedCartReducer = persistReducer(persistConfig, cartReducer);
+
 const store = configureStore({
   reducer: { cart: persistedCartReducer, menu: menuReducer },
 });

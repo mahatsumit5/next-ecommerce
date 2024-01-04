@@ -8,7 +8,6 @@ import Link from "next/link";
 import React from "react";
 import { Separator } from "@/components/ui/separator";
 import { SearchParamProps } from "@/types";
-import { getParentCatalogues } from "@/lib/actions/mainCatalogues.actions";
 async function Home({ searchParams }: SearchParamProps) {
   const query = (searchParams?.query as string) || "";
   const categories = await getAllCategories(query);

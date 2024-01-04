@@ -49,6 +49,7 @@ export interface ICartState {
   parentCat: string;
   description: string;
   thumbnail: string;
+  images: string[];
   orderQty: number;
   size: string;
   color: string;
@@ -65,6 +66,7 @@ export const defaultValue: ICartState = {
   salesPrice: 0,
   parentCat: "",
   description: "",
+  images: [""],
   thumbnail: "",
   color: "",
   size: "",
@@ -150,4 +152,33 @@ export type TMenuStore = {
   parentCat: string;
   category: ICateogry[];
   index: number;
+};
+
+export type checkoutOrderProps = {
+  cart: ICartState[];
+  email: string;
+  customerId: string;
+  shippingRate: number;
+};
+
+export type CreateOrderParams = {
+  stripeId: string;
+  totalAmount: number;
+  buyer: string;
+  orderItems: [
+    {
+      _id: string;
+      orderQty: number;
+      size: string;
+      color: string;
+    }
+  ];
+  address: {
+    city: string;
+    country: string;
+    line1: string;
+    line2: string | null;
+    postal_code: string;
+    state: string;
+  };
 };

@@ -77,3 +77,39 @@ export const rearrangeReduxData = (
   }
   return array;
 };
+const metadata = {
+  _id0: "65211498f4eb1835e78206b4",
+  _id1: "6521144cf4eb1835e782069f",
+  color0: "#6f63ca",
+  color1: "#0e0101",
+  orderQty0: "3",
+  orderQty1: "1",
+  size0: "md",
+  size1: "xl",
+};
+
+export const changeMetaDataIntoArray = (metadata: Record<string, string>) => {
+  const orderItems: any = [];
+
+  // Iterate through the properties of metadata
+  for (const key in metadata) {
+    if (metadata.hasOwnProperty(key)) {
+      const match = key.match(/(\D+)(\d+)/);
+      if (match && match[1] && match[2]) {
+        const index = match[2];
+        const property = match[1];
+
+        if (!orderItems[index]) {
+          orderItems[index] = {};
+        }
+
+        orderItems[index][property] = metadata[key] as string;
+      }
+    }
+  }
+
+  return orderItems;
+};
+
+const array = changeMetaDataIntoArray(metadata);
+console.log(array);

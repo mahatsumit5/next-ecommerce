@@ -34,7 +34,7 @@ const Hero = () => {
       </div>
       <div className="bg-hero-blob  bg-cover bg-center ">
         <Image
-          src={"/assets/hero2.png"}
+          src={"/assets/hero.png"}
           width={1000}
           height={1000}
           alt="hero"

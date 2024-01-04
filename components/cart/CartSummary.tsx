@@ -47,7 +47,7 @@ function CartSummary() {
       </span>
       <span className="flex justify-between w-full">
         <p className="font-semibold">Estimated Tax</p>
-        <p>-</p>
+        <p>Included</p>
       </span>
       <Separator />
       <span className="flex justify-between  w-full">
@@ -56,7 +56,7 @@ function CartSummary() {
       </span>
       <div className="">
         <SignedIn>
-          <Checkout cart={cart} />
+          <Checkout cart={cart} total={total} shippingRate={shippingPrice} />
         </SignedIn>
         <SignedOut>
           <Link href={"/sign-in"}>
