@@ -110,6 +110,3 @@ export const changeMetaDataIntoArray = (metadata: Record<string, string>) => {
 
   return orderItems;
 };
-
-const array = changeMetaDataIntoArray(metadata);
-console.log(array);

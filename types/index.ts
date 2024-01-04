@@ -168,7 +168,7 @@ export type CreateOrderParams = {
   orderItems: [
     {
       _id: string;
-      orderQty: number;
+      orderQty: string;
       size: string;
       color: string;
     }

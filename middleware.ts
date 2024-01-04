@@ -14,6 +14,8 @@ export default authMiddleware({
     "/api/catalogue",
     "/api/category",
     "/api/category/:id",
+    "/api/webhook/clerk",
+    "/api/webhook/stripe",
   ],
   ignoredRoutes: [
     "/api/webhook/clerk",
