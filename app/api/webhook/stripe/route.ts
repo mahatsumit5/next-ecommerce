@@ -46,8 +46,6 @@ export async function POST(request: Request) {
       orderItems: orderItems,
     };
     const newOrder = await createOrder(obj);
-    return NextResponse.redirect(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/order-confirmation?id=${newOrder._id}`
-    );
+    return NextResponse.json({ message: "OK", order: newOrder });
   }
 }
