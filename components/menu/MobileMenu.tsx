@@ -23,7 +23,7 @@ type MobileMenuProps = {
 function MobileMenu({ isSheetOpen, setIsSheetOpen }: MobileMenuProps) {
   return (
     <div className="block lg:hidden">
-      <Sheet open={isSheetOpen}>
+      <Sheet>
         <SheetTrigger asChild>
           <Button
             variant="ghost"
