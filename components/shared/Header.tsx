@@ -15,11 +15,15 @@ import LoginButton from "../user-login/LoginButton";
 const Header = () => {
   const { cart } = useAppSelector((state: RootState) => state.cart);
   const [isOpen, setIsOpen] = useState(false);
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
   return (
     <header className=" w-full  h-[80px] shadow-2xl sticky top-0 z-10 bg-slate-100/55 backdrop-blur-2xl dark:bg-slate-800 pt-1 ">
       <div className="  wrapper flex justify-between h-16 items-center gap-5">
         <div className="flex gap-2 justify-between items-center">
-          <MobileMenu isOpen={isOpen} setIsOpen={setIsOpen} cart={cart} />
+          <MobileMenu
+            isSheetOpen={isSheetOpen}
+            setIsSheetOpen={setIsSheetOpen}
+          />
 
           <div className=" relative w-[150px]  h-[100px] overflow-hidden hidden sm:block">
             <Link href={"/"}>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -15,12 +15,14 @@ function MobileMenuAccordian({
   index,
   getcategories,
   id,
+  setIsSheetOpen,
 }: {
   children: React.ReactNode;
   newArray: TMenuStore[];
   index: number;
   getcategories: (id: string, index: number) => void;
   id: string;
+  setIsSheetOpen: Dispatch<SetStateAction<boolean>>;
 }) {
   return (
     <Accordion type="single" collapsible className="w-full">
@@ -36,7 +38,13 @@ function MobileMenuAccordian({
         <AccordionContent>
           <ul className="p-6  flex flex-row justify-between overflow-x-auto  gap-2">
             {newArray[index]?.category.map((cat, index) => (
-              <Link href={`/category/${cat.slug}`} key={index}>
+              <Link
+                href={`/category/${cat.slug}`}
+                key={index}
+                onClick={() => {
+                  setIsSheetOpen(false);
+                }}
+              >
                 <li className=" flex   flex-col justify-between">
                   <span className="w-[100px] h-[100px] relative rounded-lg  overflow-hidden gap-2 ">
                     <Image

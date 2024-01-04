@@ -30,15 +30,17 @@ function CartDrawer({ children }: { children: React.ReactNode }) {
         <SheetFooter className="sm:justify-start">
           <SheetClose asChild>
             {cart.length > 0 ? (
-              <Link href={"/cart"}>
-                <Button size={"sm"} variant={"default"}>
-                  View Cart
-                </Button>
-              </Link>
+              <Button
+                size={"lg"}
+                variant={"outline"}
+                className="flex w-full dark:bg-slate-700"
+              >
+                <Link href={"/cart"}>View Cart</Link>
+              </Button>
             ) : (
-              <Link href={"/"}>
-                <Button variant={"outline"}>Continue Shopping</Button>
-              </Link>
+              <Button variant={"outline"} className="flex w-full">
+                <Link href={"/"}>Continue Shopping</Link>
+              </Button>
             )}
           </SheetClose>
         </SheetFooter>

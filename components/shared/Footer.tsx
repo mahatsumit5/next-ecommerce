@@ -20,7 +20,12 @@ const Footer = () => {
         <div className="w-full flex-col md:flex-row flex border-b pb-4 gap-5 ">
           <div className="flex-1  flex flex-col gap-5">
             <div className="relative w-full h-32">
-              <Link href={"/"}>
+              <Link
+                href={"/"}
+                onClick={() => {
+                  window.scrollTo(0, 0);
+                }}
+              >
                 <Image
                   src={"/assets/logo.svg"}
                   alt="logo"

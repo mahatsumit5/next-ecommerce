@@ -38,10 +38,10 @@ function Checkout({
     router.push(session.url);
   };
   return (
-    <form action={checkout}>
+    <form action={checkout} className="">
       <Button
         variant={"default"}
-        className="rounded-lg"
+        className="rounded-lg flex w-full "
         type="submit"
         role="link"
       >

@@ -20,7 +20,11 @@ import { RootState } from "@/store";
 import Link from "next/link";
 import MobileMenuAccordian from "./MobileMenuAccordian";
 
-export function HeaderMenu() {
+export function HeaderMenu({
+  setIsSheetOpen,
+}: {
+  setIsSheetOpen?: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   const dispatch = useAppDispatch();
   const { menu } = useAppSelector((store: RootState) => store.menu);
   const [parentCat, setParentCat] = useState<IMainCat[]>([]);
@@ -96,6 +100,7 @@ export function HeaderMenu() {
               getcategories={getcategories}
               id={category._id}
               key={category._id}
+              setIsSheetOpen={setIsSheetOpen!}
             >
               <p>{category.title}</p>
             </MobileMenuAccordian>

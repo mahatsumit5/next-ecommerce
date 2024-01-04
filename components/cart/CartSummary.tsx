@@ -20,60 +20,59 @@ function CartSummary() {
   const { uniqueId } = useAppSelector((store: RootState) => store.cart);
   const shippingPrice = 15.0;
   const total = countTotalPrice(cart);
-  return (
-    <div className="flex flex-col items-start gap-4 p-1 rounded-md mt-3">
-      <p className="text-2xl font-bold">Summary</p>
-      <Separator />
-      <Accordion type="single" collapsible className="w-full ">
-        <AccordionItem value="item-1">
-          <AccordionTrigger className="font-bold">
-            Do you have a Promo Code??
-          </AccordionTrigger>
-          <AccordionContent className="p-2">
-            <p className="text-muted-foreground">ENTER PROMO CODE</p>
-            <span className="flex gap-2">
-              <Input placeholder="promo code" />
-              <Button variant={"default"}>Submit</Button>
-            </span>
-          </AccordionContent>
-        </AccordionItem>
-      </Accordion>
-      <span className="flex justify-between  w-full">
-        <p className="font-semibold">Subtotal</p>
-        <p>${total}</p>
-      </span>
-      <span className="flex justify-between w-full">
-        <p className="font-semibold">Estimated Shipping & handling</p>
-        <p>$15.00</p>
-      </span>
-      <span className="flex justify-between w-full">
-        <p className="font-semibold">Estimated Tax</p>
-        <p>Included</p>
-      </span>
-      <Separator />
-      <span className="flex justify-between  w-full">
-        <p className="font-semibold">Total</p>
-        <p className="font-extrabold">${total + shippingPrice}</p>
-      </span>
-      <div className="">
-        <SignedIn>
-          <Checkout
-            cart={cart}
-            total={total}
-            shippingRate={shippingPrice}
-            uniqueId={uniqueId}
-          />
-        </SignedIn>
-        <SignedOut>
-          <Link href={"/sign-in"}>
-            <Button variant={"default"} className="rounded-lg">
-              Checkout
+  if (cart.length)
+    return (
+      <div className="flex flex-col items-start gap-4 p-1 rounded-md mt-3">
+        <p className="text-2xl font-bold">Summary</p>
+        <Separator />
+        <Accordion type="single" collapsible className="w-full ">
+          <AccordionItem value="item-1">
+            <AccordionTrigger className="font-bold">
+              Do you have a Promo Code??
+            </AccordionTrigger>
+            <AccordionContent className="p-2">
+              <p className="text-muted-foreground">ENTER PROMO CODE</p>
+              <span className="flex gap-2">
+                <Input placeholder="promo code" />
+                <Button variant={"default"}>Submit</Button>
+              </span>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+        <span className="flex justify-between  w-full">
+          <p className="font-semibold">Subtotal</p>
+          <p>${total}</p>
+        </span>
+        <span className="flex justify-between w-full">
+          <p className="font-semibold">Estimated Shipping & handling</p>
+          <p>$15.00</p>
+        </span>
+        <span className="flex justify-between w-full">
+          <p className="font-semibold">Estimated Tax</p>
+          <p>Included</p>
+        </span>
+        <Separator />
+        <span className="flex justify-between  w-full">
+          <p className="font-semibold">Total</p>
+          <p className="font-extrabold">${total + shippingPrice}</p>
+        </span>
+        <div className=" min-w-full  grid">
+          <SignedIn>
+            <Checkout
+              cart={cart}
+              total={total}
+              shippingRate={shippingPrice}
+              uniqueId={uniqueId}
+            />
+          </SignedIn>
+          <SignedOut>
+            <Button variant={"default"} className=" flex w-full " size={"lg"}>
+              <Link href={"/sign-in"}>Checkout</Link>
             </Button>
-          </Link>
-        </SignedOut>
+          </SignedOut>
+        </div>
       </div>
-    </div>
-  );
+    );
 }
 
 export default CartSummary;
