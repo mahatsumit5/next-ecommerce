@@ -70,7 +70,7 @@ export const checkOutOrder = async ({
 
       metadata,
       mode: "payment",
-      success_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/profile`,
+      success_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/order-confirmation`,
       invoice_creation: { enabled: true },
 
       cancel_url: `${process.env.NEXT_PUBLIC_SERVER_URL}`,
