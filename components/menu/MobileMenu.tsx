@@ -31,8 +31,9 @@ function MobileMenu({ isSheetOpen, setIsSheetOpen }: MobileMenuProps) {
             onClick={() => {
               setIsSheetOpen(true);
             }}
+            size={"lg"}
           >
-            <HamburgerMenuIcon />
+            <HamburgerMenuIcon className="" />
           </Button>
         </SheetTrigger>
         <SheetContent className="overflow-y-auto">

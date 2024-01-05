@@ -27,7 +27,7 @@ const Dialog = ({ setIsOpen, isOpen }: MobileMenuProps) => {
     <AlertDialog>
       <AlertDialogTrigger asChild className="w-full">
         <Button
-          className="rounded-3xl  shadow-lg w-16 dark:bg-slate-100 "
+          className="rounded-3xl  sm:shadow-lg sm:w-16 dark:bg-slate-600 "
           variant="ghost"
           onClick={() => {
             setIsOpen(!isOpen);

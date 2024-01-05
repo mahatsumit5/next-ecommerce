@@ -11,13 +11,13 @@ function CartButton({ cart }: { cart: ICartState[] }) {
   return (
     <CartDrawer>
       <Button
-        className="rounded-full  gap-2 relative w-16 shadow-lg dark:bg-slate-200"
+        className="rounded-full   relative w-16 sm:shadow-lg dark:bg-slate-600"
         variant="ghost"
         size={"sm"}
       >
-        <Image src={"/assets/cart.png"} width={25} height={25} alt="logo" />{" "}
+        <Image src={"/assets/cart.png"} width={25} height={25} alt="logo" />
         {cart.length > 0 && (
-          <Badge variant="destructive" className="absolute -top-2 -right-0">
+          <Badge variant="destructive" className="absolute -top-2 -right-0 ">
             {total}
           </Badge>
         )}{" "}

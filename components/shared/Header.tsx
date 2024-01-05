@@ -12,6 +12,8 @@ import CartButton from "../cart/CartButton";
 import { useAppSelector } from "@/hook";
 import { HeaderMenu } from "../menu/HeaderMenu";
 import LoginButton from "../user-login/LoginButton";
+import { Abril_Fatface } from "next/font/google";
+const alerta = Abril_Fatface({ weight: ["400"], subsets: ["latin"] });
 const Header = () => {
   const { cart } = useAppSelector((state: RootState) => state.cart);
   const [isOpen, setIsOpen] = useState(false);
@@ -40,7 +42,12 @@ const Header = () => {
             <HeaderMenu />
           </div>
         </div>
-        <div className=" gap-2  flex">
+        <span
+          className={`block sm:hidden ${alerta.className} text-red-600 text-3xl flex-grow`}
+        >
+          <Link href={"/"}>CFW</Link>
+        </span>
+        <div className=" gap-1 flex">
           <div className="hidden sm:flex mt-2">
             <ThemeChanger />
           </div>
