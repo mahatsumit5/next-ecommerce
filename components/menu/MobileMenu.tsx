@@ -1,6 +1,7 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { Button } from "@/components/ui/button";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 import {
   Sheet,
   SheetClose,
@@ -12,7 +13,6 @@ import {
 import Image from "next/image";
 import { ThemeChanger } from "../theme-provider/ThemeChanger";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
-import { ICartState } from "@/types";
 import { HeaderMenu } from "./HeaderMenu";
 import Link from "next/link";
 import LoginButton from "../user-login/LoginButton";
@@ -25,16 +25,21 @@ function MobileMenu({ isSheetOpen, setIsSheetOpen }: MobileMenuProps) {
     <div className="block lg:hidden">
       <Sheet>
         <SheetTrigger asChild>
-          <Button
+          {/* <Button
             variant="ghost"
-            className="border-none dark:bg-none"
+            className=" dark:bg-none "
             onClick={() => {
               setIsSheetOpen(true);
             }}
             size={"lg"}
-          >
-            <HamburgerMenuIcon className="" />
-          </Button>
+          > */}
+          <FontAwesomeIcon
+            icon={faBars}
+            // bounce
+            style={{ color: "#1056d1" }}
+            size="lg"
+            className="hover:scale-125 transition-all"
+          />
         </SheetTrigger>
         <SheetContent className="overflow-y-auto">
           <SheetHeader className="flex flex-row w-full border-b-4">

@@ -1,10 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Separator } from "../ui/separator";
 import { getAllCategories } from "@/lib/actions/category.actions";
 import Link from "next/link";
 import { ICategory } from "@/types";
 
-function Catagory({ query }: { query: string }) {
+function Catagory({
+  query,
+  setIsOpen,
+}: {
+  query: string;
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
+}) {
   const [categories, setCategories] = useState<ICategory[]>([]);
   useEffect(() => {
     async function getData() {
@@ -27,6 +33,9 @@ function Catagory({ query }: { query: string }) {
           href={`/category/${cat.slug}`}
           key={cat._id}
           className="text-sm hover:underline"
+          onClick={() => {
+            setIsOpen(false);
+          }}
         >
           {cat.title}
         </Link>

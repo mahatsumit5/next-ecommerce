@@ -16,15 +16,12 @@ import Search from "../shared/Search";
 import Catagory from "./Catagory";
 import Products from "./Products";
 
-type MobileMenuProps = {
-  isOpen: boolean;
-  setIsOpen: Dispatch<SetStateAction<boolean>>;
-};
-const Dialog = ({ setIsOpen, isOpen }: MobileMenuProps) => {
+const Dialog = () => {
   const [query, setQuery] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <AlertDialog>
+    <AlertDialog open={isOpen}>
       <AlertDialogTrigger asChild className="w-full">
         <Button
           className="rounded-3xl  sm:shadow-lg sm:w-16 dark:bg-slate-600 "
@@ -43,15 +40,16 @@ const Dialog = ({ setIsOpen, isOpen }: MobileMenuProps) => {
             <Search query={query} setQuery={setQuery} />
           </AlertDialogTitle>
           <AlertDialogDescription className="flex flex-col gap-2  text-slate-100 items-start">
-            <Catagory query={query} />
+            {/* <Catagory query={query} setIsOpen={setIsOpen} /> */}
 
-            {/* <Products query={query} /> */}
+            <Products query={query} />
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel
             onClick={() => {
               setQuery("");
+              setIsOpen(false);
             }}
           >
             Cancel

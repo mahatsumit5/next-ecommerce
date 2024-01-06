@@ -20,7 +20,7 @@ export function countTotalItemsInCart(cart: ICartState[]) {
 }
 
 export function handleError(error: any) {
-  console.log(error);
+  return JSON.stringify(error);
 }
 
 export function countTotalPrice(cart: ICartState[]) {

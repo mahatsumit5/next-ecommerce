@@ -64,7 +64,7 @@ export const checkOutOrder = async ({
             product_data: {
               name: item.title,
               description: item.description,
-              images: item.images,
+              images: [item.thumbnail],
             },
             tax_behavior: "inclusive",
           },
@@ -85,7 +85,7 @@ export const checkOutOrder = async ({
       return;
     }
   } catch (err) {
-    console.log(err);
+    handleError(err);
   }
 };
 

@@ -34,11 +34,7 @@ const productSchema = new mongoose.Schema(
     color: [{ type: String, required: true }],
     size: [{ type: String, required: true }],
 
-    parentCat: {
-      type: mongoose.Types.ObjectId,
-      ref: "categories",
-      required: true,
-    },
+    parentCat: String,
     salesStartDate: {
       type: Date,
     },
@@ -67,5 +63,5 @@ const productSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-const Product = models.products || model("products", productSchema);
+const Product = models?.products || model("products", productSchema);
 export default Product;

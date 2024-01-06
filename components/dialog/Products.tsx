@@ -1,22 +1,30 @@
-import { getAllProducts } from "@/lib/actions/product.actions";
+"use client";
+import {
+  getAllProducts,
+  getSearchedProducts,
+} from "@/lib/actions/product.actions";
 import { IProduct } from "@/types";
-import { Separator } from "@radix-ui/react-separator";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 function Products({ query }: { query: string }) {
   const [products, setProducts] = useState<IProduct[]>([]);
   useEffect(() => {
-    async function getData() {
-      const products = await getAllProducts({ query, limit: 5, page: 1 });
-      setProducts(products?.data);
-    }
-    const debounceFn = setTimeout(() => {
-      getData();
-    }, 800);
+    const fetchData = async () => {
+      try {
+        console.log(query);
+        const result = await getSearchedProducts(query);
+        console.log(result);
+        setProducts(result);
+      } catch (error) {
+        // Handle errors appropriately
+        console.error(error);
+      }
+    };
 
-    return () => clearTimeout(debounceFn);
+    fetchData();
   }, [query]);
+  console.log(products);
 
   return (
     <span className="flex flex-col gap-3 items-start w-full">

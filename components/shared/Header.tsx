@@ -16,12 +16,11 @@ import { Abril_Fatface } from "next/font/google";
 const alerta = Abril_Fatface({ weight: ["400"], subsets: ["latin"] });
 const Header = () => {
   const { cart } = useAppSelector((state: RootState) => state.cart);
-  const [isOpen, setIsOpen] = useState(false);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   return (
     <header className=" w-full  h-[80px] shadow-2xl sticky top-0 z-10 bg-slate-100/55 backdrop-blur-2xl dark:bg-slate-800 pt-1 ">
       <div className="  wrapper flex justify-between h-16 items-center gap-5">
-        <div className="flex gap-2 justify-between items-center">
+        <div className="flex gap-2 justify-between items-center  min-w-[105px]">
           <MobileMenu
             isSheetOpen={isSheetOpen}
             setIsSheetOpen={setIsSheetOpen}
@@ -41,17 +40,19 @@ const Header = () => {
           <div className="hidden lg:flex gap-2 ">
             <HeaderMenu />
           </div>
+
+          <span
+            className={`block sm:hidden ${alerta.className} text-red-600 text-3xl `}
+          >
+            <Link href={"/"}>CFW</Link>
+          </span>
         </div>
-        <span
-          className={`block sm:hidden ${alerta.className} text-red-600 text-3xl flex-grow`}
-        >
-          <Link href={"/"}>CFW</Link>
-        </span>
+
         <div className=" gap-1 flex">
           <div className="hidden sm:flex mt-2">
             <ThemeChanger />
           </div>
-          <Dialog isOpen={isOpen} setIsOpen={setIsOpen} />
+          <Dialog />
 
           <CartButton cart={cart} />
           <div className="hidden sm:block ">
