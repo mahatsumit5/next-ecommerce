@@ -11,16 +11,16 @@ import Link from "next/link";
 
 function MobileMenuAccordian({
   children,
-  newArray,
+  menu,
   index,
-  getcategories,
+  // getcategories,
   id,
   setIsSheetOpen,
 }: {
   children: React.ReactNode;
-  newArray: TMenuStore[];
+  menu: TMenuStore[];
   index: number;
-  getcategories: (id: string, index: number) => void;
+  // getcategories: (id: string, index: number) => void;
   id: string;
   setIsSheetOpen: Dispatch<SetStateAction<boolean>>;
 }) {
@@ -28,16 +28,16 @@ function MobileMenuAccordian({
     <Accordion type="single" collapsible className="w-full">
       <AccordionItem value="item-1">
         <AccordionTrigger
-          onClick={() => {
-            getcategories(id, index);
-          }}
+          // onClick={() => {
+          //   getcategories(id, index);
+          // }}
           className="hover:no-underline"
         >
           {children}
         </AccordionTrigger>
         <AccordionContent>
           <ul className="p-6  flex flex-row justify-between overflow-x-auto  gap-2">
-            {newArray[index]?.category.map((cat, index) => (
+            {menu[index]?.category.map((cat, index) => (
               <Link
                 href={`/category/${cat.slug}`}
                 key={index}
@@ -58,7 +58,7 @@ function MobileMenuAccordian({
                 </li>
               </Link>
             ))}
-            {!newArray[index]?.category.length && (
+            {!menu[index]?.category.length && (
               <li className=" text-2xl">No items</li>
             )}
           </ul>

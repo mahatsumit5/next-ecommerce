@@ -23,7 +23,7 @@ function CustomProductCard({ data, slug }: CardProps) {
   const [color, setColor] = useState(data.color[0]);
   const [size, setSize] = useState("");
   return (
-    <Card className=" w-[300px] xs:w-[150px] sm:w-[300px] hover:shadow-2xl transition-shadow ">
+    <Card className=" w-[300px] sm:w-[300px] hover:shadow-2xl transition-shadow ">
       <CardHeader>
         <CardTitle>
           <div className=" product-card relative  overflow-hidden">
