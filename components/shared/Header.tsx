@@ -16,11 +16,12 @@ import { Abril_Fatface } from "next/font/google";
 const alerta = Abril_Fatface({ weight: ["400"], subsets: ["latin"] });
 const Header = () => {
   const { cart } = useAppSelector((state: RootState) => state.cart);
-  const [isSheetOpen, setIsSheetOpen] = useState(false);
   return (
     <header className=" w-full  h-[80px] shadow-2xl sticky top-0 z-10 bg-slate-300/50 backdrop-blur-2xl dark:bg-slate-800 pt-1 ">
       <div className="  wrapper flex justify-between h-16 items-center gap-5">
         <div className="flex gap-2 justify-between items-center  min-w-[105px]">
+          <MobileMenu />
+
           <div className=" relative w-[150px]  h-[100px] overflow-hidden hidden sm:block">
             <Link href={"/"}>
               <Image
