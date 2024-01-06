@@ -27,14 +27,6 @@ function MobileMenu() {
     <div className="block lg:hidden">
       <Sheet open={isSheetOpen}>
         <SheetTrigger asChild>
-          {/* <Button
-            variant="ghost"
-            className=" dark:bg-none "
-            onClick={() => {
-              setIsSheetOpen(true);
-            }}
-            size={"lg"}
-          > */}
           <FontAwesomeIcon
             icon={faBars}
             // bounce
@@ -46,9 +38,7 @@ function MobileMenu() {
             }}
           />
         </SheetTrigger>
-        <SheetPortal forceMount>
-          <Button>asds</Button>
-        </SheetPortal>
+
         <SheetContent className="overflow-y-auto ">
           <SheetHeader className="flex flex-row w-full border-b-4 relative">
             <div className=" w-full relative h-[80px] ">
