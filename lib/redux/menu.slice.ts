@@ -14,6 +14,11 @@ export const menuSlice = createSlice({
   initialState,
   reducers: {
     setMenu: (state, { payload }: PayloadAction<TMenuStore>) => {
+      if (
+        state.menu.filter((menu) => menu.parentCat === payload.parentCat).length
+      ) {
+        return;
+      }
       state.menu = [...state.menu, payload];
     },
   },

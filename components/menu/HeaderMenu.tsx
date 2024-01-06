@@ -44,15 +44,7 @@ export function HeaderMenu({
     }
     getData();
   }, [dispatch]);
-  // const getcategories = async (id: string, index: number) => {
-  //   if (menu.filter((item) => item.parentCat === id).length) {
-  //     return;
-  //   }
-
-  //   dispatch(getCatgoryAction(id, index));
-  // };
-  const newArray = rearrangeReduxData(parentCat, menu);
-  console.log(newArray);
+  const arrangedData = rearrangeReduxData(parentCat, menu);
   return (
     <>
       {
@@ -72,7 +64,7 @@ export function HeaderMenu({
                     </NavigationMenuTrigger>
                     <NavigationMenuContent className="">
                       <ul className="p-6 md:w-[400px] lg:w-[500px] flex flex-col md:flex-row justify-between ">
-                        {newArray[index]?.category.map((cat, index) => (
+                        {arrangedData[index]?.category.map((cat, index) => (
                           <Link href={`/category/${cat.slug}`} key={index}>
                             <li className=" flex   flex-col justify-between">
                               <span className="menu-page-image  overflow-hidden gap-2 border">
@@ -87,8 +79,8 @@ export function HeaderMenu({
                             </li>
                           </Link>
                         ))}
-                        {!menu[index]?.category.length && (
-                          <li className=" text-2xl">No items</li>
+                        {!arrangedData[index]?.category.length && (
+                          <li className="  text-base text-red-600">No items</li>
                         )}
                       </ul>
                     </NavigationMenuContent>
@@ -104,7 +96,7 @@ export function HeaderMenu({
           {parentCat.map((category, index) => (
             <MobileMenuAccordian
               index={index}
-              menu={menu}
+              menu={arrangedData}
               // getcategories={getcategories}
               id={category._id}
               key={category._id}
