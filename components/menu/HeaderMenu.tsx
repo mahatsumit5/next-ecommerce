@@ -11,9 +11,8 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { useEffect, useState } from "react";
-import { ICategory, IMainCat } from "@/types";
+import { IMainCat } from "@/types";
 import Image from "next/image";
-import { get } from "http";
 import { useAppDispatch, useAppSelector } from "@/hook";
 import { getCatgoryAction } from "@/lib/redux/actions/menu.actions";
 import { RootState } from "@/store";
@@ -37,16 +36,14 @@ export function HeaderMenu({
         const { catalogues } = await res.json();
         if (catalogues) {
           setParentCat(catalogues);
-          catalogues.map((item: IMainCat, index: number) => {
+          catalogues.map(async (item: IMainCat, index: number) => {
             dispatch(getCatgoryAction(item._id, index));
           });
         }
       });
-      // const data = await result.json();
     }
     getData();
-  }, []);
-
+  }, [dispatch]);
   // const getcategories = async (id: string, index: number) => {
   //   if (menu.filter((item) => item.parentCat === id).length) {
   //     return;
@@ -54,7 +51,8 @@ export function HeaderMenu({
 
   //   dispatch(getCatgoryAction(id, index));
   // };
-  // const newArray = rearrangeReduxData(parentCat, menu);
+  const newArray = rearrangeReduxData(parentCat, menu);
+  console.log(newArray);
   return (
     <>
       {
@@ -74,7 +72,7 @@ export function HeaderMenu({
                     </NavigationMenuTrigger>
                     <NavigationMenuContent className="">
                       <ul className="p-6 md:w-[400px] lg:w-[500px] flex flex-col md:flex-row justify-between ">
-                        {menu[index]?.category.map((cat, index) => (
+                        {newArray[index]?.category.map((cat, index) => (
                           <Link href={`/category/${cat.slug}`} key={index}>
                             <li className=" flex   flex-col justify-between">
                               <span className="menu-page-image  overflow-hidden gap-2 border">

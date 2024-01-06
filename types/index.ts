@@ -151,7 +151,7 @@ export type ICateogry = {
 export type TMenuStore = {
   parentCat: string;
   category: ICateogry[];
-  index: number;
+  index?: number;
 };
 
 export type checkoutOrderProps = {
