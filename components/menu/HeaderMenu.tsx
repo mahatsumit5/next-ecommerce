@@ -63,7 +63,7 @@ export function HeaderMenu({
                       {parentCat.title}
                     </NavigationMenuTrigger>
                     <NavigationMenuContent className="">
-                      <ul className="p-6 md:w-[400px] lg:w-[500px] flex flex-col md:flex-row justify-between ">
+                      <ul className="p-6 md:w-[400px] lg:w-[500px] flex flex-col md:flex-row gap-3 justify-between ">
                         {arrangedData[index]?.category.map((cat, index) => (
                           <Link href={`/category/${cat.slug}`} key={index}>
                             <li className=" flex   flex-col justify-between">

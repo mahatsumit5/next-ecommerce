@@ -28,16 +28,19 @@ const Switch = React.forwardRef<
         "block h-5 w-5 rounded-full bg-white shadow-lg ring-0 transition-transform data-[state=checked]:none "
       )}
     >
-      <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+      <Sun
+        className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
+        color="orange"
+      />
     </SwitchPrimitives.Thumb>
     <SwitchPrimitives.Thumb
       className={cn(
-        " relative pointer-events-none block h-5 w-5 rounded-full bg-white shadow-lg ring-0 transition-transform  data-[state=unchecked]:hidden"
+        " relative pointer-events-none block h-5 w-5 rounded-full bg-black shadow-lg ring-0 transition-transform  data-[state=unchecked]:hidden"
       )}
     >
       <Moon
-        className=" absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100 "
-        color="black"
+        className=" absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100   "
+        color="white"
       />
     </SwitchPrimitives.Thumb>
   </SwitchPrimitives.Root>

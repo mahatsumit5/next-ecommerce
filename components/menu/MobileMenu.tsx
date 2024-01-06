@@ -8,6 +8,7 @@ import {
   SheetContent,
   SheetFooter,
   SheetHeader,
+  SheetPortal,
   SheetTrigger,
 } from "@/components/ui/sheet";
 import Image from "next/image";
@@ -20,10 +21,11 @@ type MobileMenuProps = {
   isSheetOpen: boolean;
   setIsSheetOpen: Dispatch<SetStateAction<boolean>>;
 };
-function MobileMenu({ isSheetOpen, setIsSheetOpen }: MobileMenuProps) {
+function MobileMenu() {
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
   return (
     <div className="block lg:hidden">
-      <Sheet>
+      <Sheet open={isSheetOpen}>
         <SheetTrigger asChild>
           {/* <Button
             variant="ghost"
@@ -39,11 +41,17 @@ function MobileMenu({ isSheetOpen, setIsSheetOpen }: MobileMenuProps) {
             style={{ color: "#1056d1" }}
             size="lg"
             className="hover:scale-125 transition-all"
+            onClick={() => {
+              setIsSheetOpen(true);
+            }}
           />
         </SheetTrigger>
-        <SheetContent className="overflow-y-auto">
-          <SheetHeader className="flex flex-row w-full border-b-4">
-            <div className=" w-3/4 relative h-[80px] ">
+        <SheetPortal forceMount>
+          <Button>asds</Button>
+        </SheetPortal>
+        <SheetContent className="overflow-y-auto ">
+          <SheetHeader className="flex flex-row w-full border-b-4 relative">
+            <div className=" w-full relative h-[80px] ">
               <Link
                 href={"/"}
                 onClick={() => {
@@ -58,19 +66,19 @@ function MobileMenu({ isSheetOpen, setIsSheetOpen }: MobileMenuProps) {
                 />
               </Link>
             </div>
-            <div className="grid items-center justify-end  w-1/4">
+            <div className="absolute right-2 -top-5">
+              <ThemeChanger />
+            </div>
+            <div className=" justify-end  w-1/4 absolute z-20 -top-5 -left-3 ">
               <LoginButton />
             </div>
           </SheetHeader>
 
-          <div className="mt-5 flex flex-col gap-3 relative">
-            <div className="absolute right-0 -top-5">
-              <ThemeChanger />
-            </div>
-
+          <div className="mt-5 flex flex-col gap-3 relative ">
             <HeaderMenu setIsSheetOpen={setIsSheetOpen} />
           </div>
-          <SheetFooter className="mt-2 sm:justify-start w-full">
+
+          <SheetFooter className="mt-2 flex justify-start gap-3 ">
             <SheetClose asChild>
               <Link href={"/cart"}>
                 <Button
@@ -84,6 +92,18 @@ function MobileMenu({ isSheetOpen, setIsSheetOpen }: MobileMenuProps) {
                   View Cart
                 </Button>
               </Link>
+            </SheetClose>
+            <SheetClose asChild>
+              <Button
+                size={"lg"}
+                variant={"default"}
+                className="mt-4 rounded-lg"
+                onClick={() => {
+                  setIsSheetOpen(false);
+                }}
+              >
+                Close
+              </Button>
             </SheetClose>
           </SheetFooter>
         </SheetContent>
