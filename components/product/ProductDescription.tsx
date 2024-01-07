@@ -1,5 +1,5 @@
 "use client";
-import { IProduct, review } from "@/types";
+import { IProduct } from "@/types";
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -8,8 +8,15 @@ import AddToCart from "../cart/AddToCart";
 import SelectSize from "./SelectSize";
 import ProductTabs from "./Tabs";
 import SelectQuantity from "./SelectQuantity";
+import { IReview } from "@/lib/database/models/review.model";
 
-function ProductDescription({ product }: { product: IProduct }) {
+function ProductDescription({
+  product,
+  reviews,
+}: {
+  product: IProduct;
+  reviews: IReview[];
+}) {
   const [size, setSize] = useState("");
   const [color, setColor] = useState(product.color[0]);
   const [orderQty, setOrderQty] = useState(0);
@@ -19,7 +26,7 @@ function ProductDescription({ product }: { product: IProduct }) {
         {product.title}
       </h1>
       <p className="mb-6 text-base text-gray-500 dark:text-gray-400 underline uppercase">
-        {product.reviews.length} Reviews
+        {reviews.length} Reviews
       </p>
       <p className="font-extrabold text-3xl text-red-600">${product.price}</p>
       <Separator />
@@ -69,7 +76,7 @@ function ProductDescription({ product }: { product: IProduct }) {
       <ProductTabs
         productId={product._id}
         description={product.description}
-        review={product.reviews as review[]}
+        review={reviews}
       />
     </div>
   );

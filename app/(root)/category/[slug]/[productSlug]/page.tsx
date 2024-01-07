@@ -21,7 +21,7 @@ async function page({ params: { productSlug } }: ProductPageParams) {
       {" "}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <ImageCarousel images={product.images} />
-        <ProductDescription product={product} />
+        <ProductDescription product={product} reviews={reviews} />
       </div>
       <SimilarProducts title="Similar Items" data={similarproduct} />
     </>

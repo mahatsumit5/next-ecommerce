@@ -1,5 +1,21 @@
-import { Schema, model, models } from "mongoose";
+import { Document, Schema, model, models } from "mongoose";
 
+export interface IReview extends Document {
+  _id: string;
+  description: string;
+  rating: number;
+  title: string;
+  userId: {
+    _id: string;
+    userName: string | null;
+    firstName: string;
+    lastName: string;
+  };
+  productId: string;
+  createdAt: Date;
+  updatedAt: Date;
+  __v: number;
+}
 const reviewSchema = new Schema(
   {
     description: { type: String, required: true },

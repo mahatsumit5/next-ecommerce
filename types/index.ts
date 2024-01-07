@@ -1,3 +1,5 @@
+import { IReview } from "@/lib/database/models/review.model";
+
 export interface ICategory {
   _id: string;
   status: string;
@@ -87,16 +89,10 @@ export type AddToCartProps = {
   color: string;
   orderQuantity?: number;
 };
-export type review = {
-  _id: string;
-  rating: number;
-  user: string;
-  description: string;
-  title: string;
-};
+
 export type ProductTabsProps = {
   description: string;
-  review: review[];
+  review: IReview[];
   productId: string;
 };
 export type CreateUserParams = {
