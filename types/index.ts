@@ -92,7 +92,7 @@ export type AddToCartProps = {
 
 export type ProductTabsProps = {
   description: string;
-  review: IReview[];
+  reviews: IReview[];
   productId: string;
 };
 export type CreateUserParams = {

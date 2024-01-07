@@ -30,8 +30,17 @@ export const getReviews = async (productId: string) => {
       model: Customer,
       select: "firstName lastName userName",
     });
-    console.log(reviews);
     return JSON.parse(JSON.stringify(reviews));
+  } catch (error) {
+    handleError(error);
+  }
+};
+
+export const deleteReviewById = async (id: string) => {
+  try {
+    await connectToDatabase();
+    const deletedReview = await Review.findByIdAndDelete(id);
+    return JSON.parse(JSON.stringify(deletedReview));
   } catch (error) {
     handleError(error);
   }

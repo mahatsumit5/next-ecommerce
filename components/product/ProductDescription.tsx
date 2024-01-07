@@ -61,7 +61,7 @@ function ProductDescription({
       <div className="flex gap-3 flex-wrap">
         <AddToCart
           product={product}
-          variant={"destructive"}
+          variant={"primary"}
           size={size}
           color={color}
           orderQuantity={orderQty}
@@ -76,7 +76,7 @@ function ProductDescription({
       <ProductTabs
         productId={product._id}
         description={product.description}
-        review={reviews}
+        reviews={reviews}
       />
     </div>
   );

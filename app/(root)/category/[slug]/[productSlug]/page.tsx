@@ -15,7 +15,6 @@ async function page({ params: { productSlug } }: ProductPageParams) {
     product.parentCat
   );
   const reviews = await getReviews(product._id);
-  console.log(reviews);
   return (
     <>
       {" "}

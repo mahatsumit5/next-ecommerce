@@ -75,6 +75,7 @@ function PostReviewForm({
     e.prevenetDefault;
     await createReview(review);
     setOpen(false);
+    window.location.reload();
     toast.success("Thank you for your review");
   };
   return (

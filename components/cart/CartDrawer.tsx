@@ -21,7 +21,7 @@ function CartDrawer({ children }: { children: React.ReactNode }) {
   return (
     <Sheet>
       <SheetTrigger asChild>{children}</SheetTrigger>
-      <SheetContent className="overflow-y-scroll">
+      <SheetContent className="overflow-y-auto">
         <SheetHeader className="flex flex-row gap-2 justify-between">
           <SheetTitle className="mt-3">Cart</SheetTitle>
         </SheetHeader>
@@ -30,17 +30,21 @@ function CartDrawer({ children }: { children: React.ReactNode }) {
         <SheetFooter className="sm:justify-start">
           <SheetClose asChild>
             {cart.length > 0 ? (
-              <Button
-                size={"lg"}
-                variant={"outline"}
-                className="flex w-full dark:bg-slate-700"
-              >
-                <Link href={"/cart"}>View Cart</Link>
-              </Button>
+              <Link href={"/cart"} className=" w-full">
+                <Button
+                  size={"lg"}
+                  variant={"outline"}
+                  className="flex w-full dark:bg-slate-700"
+                >
+                  View Cart
+                </Button>
+              </Link>
             ) : (
-              <Button variant={"outline"} className="flex w-full">
-                <Link href={"/"}>Continue Shopping</Link>
-              </Button>
+              <Link href={"/"} className="w-full">
+                <Button variant={"outline"} className="flex w-full ">
+                  Continue Shopping
+                </Button>
+              </Link>
             )}
           </SheetClose>
         </SheetFooter>
