@@ -94,7 +94,11 @@ export type review = {
   description: string;
   title: string;
 };
-export type ProductTabsProps = { description: string; review: review[] };
+export type ProductTabsProps = {
+  description: string;
+  review: review[];
+  productId: string;
+};
 export type CreateUserParams = {
   clerkId: string;
   firstName: string;
@@ -207,4 +211,17 @@ export type IOrderItem = {
     postal_code: string;
     state: string;
   };
+};
+
+export type ReviewDialogProps = {
+  children?: React.ReactNode;
+  title: string;
+  productId: string;
+};
+export type ReviewForm = {
+  title: string;
+  description: string;
+  rating: number;
+  userId: string;
+  productId: string;
 };

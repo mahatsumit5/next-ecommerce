@@ -3,10 +3,9 @@ import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ProductTabsProps } from "@/types";
 import { Button } from "../ui/button";
-import ReviewDialog from "../dialog/ReviewDialog";
+import ReviewDialog from "../review/ReviewDialog";
 
-function ProductTabs({ description, review }: ProductTabsProps) {
-  console.log(review[0]);
+function ProductTabs({ description, review, productId }: ProductTabsProps) {
   return (
     <Tabs defaultValue="description" className="w-full min-h-fit">
       <TabsList className="grid w-full grid-cols-2">
@@ -28,10 +27,8 @@ function ProductTabs({ description, review }: ProductTabsProps) {
             </span>
             <span className="font-extralight">{review.description}</span>
           </div>
-        ))}{" "}
-        <ReviewDialog title="Add Review">
-          <Button variant={"outline"}>Add Review</Button>
-        </ReviewDialog>
+        ))}
+        <ReviewDialog title="Add Review" productId={productId} />
       </TabsContent>
     </Tabs>
   );

@@ -5,6 +5,7 @@ import {
   getProductsByCategory,
   getProductsBySlug,
 } from "@/lib/actions/product.actions";
+import { getReviews } from "@/lib/actions/review.actions";
 import { IProduct, ProductPageParams } from "@/types";
 import React from "react";
 async function page({ params: { productSlug } }: ProductPageParams) {
@@ -13,6 +14,8 @@ async function page({ params: { productSlug } }: ProductPageParams) {
     undefined,
     product.parentCat
   );
+  const reviews = await getReviews(product._id);
+  console.log(reviews);
   return (
     <>
       {" "}

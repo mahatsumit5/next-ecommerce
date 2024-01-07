@@ -67,6 +67,7 @@ function ProductDescription({ product }: { product: IProduct }) {
       <span className="font-bold">Product Details</span>
       <Separator />
       <ProductTabs
+        productId={product._id}
         description={product.description}
         review={product.reviews as review[]}
       />
