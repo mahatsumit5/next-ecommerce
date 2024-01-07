@@ -4,6 +4,12 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
+import {
+  dark,
+  neobrutalism,
+  shadesOfPurple,
+  unstable_createTheme,
+} from "@clerk/themes";
 const raleway = Raleway({ weight: ["400"], subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -17,7 +23,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider>
+    <ClerkProvider
+      appearance={{
+        baseTheme: dark,
+      }}
+    >
       <html lang="en" className="scroll-smooth">
         <body className={`${raleway.className}  `}>
           <ThemeProvider

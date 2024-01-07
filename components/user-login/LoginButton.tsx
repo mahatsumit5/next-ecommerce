@@ -8,10 +8,18 @@ function LoginButton() {
   return (
     <>
       <SignedIn>
-        <UserButton afterSignOutUrl="/" />
+        <UserButton
+          afterSignOutUrl="/"
+          appearance={{
+            elements: {
+              card: "dark:bg-slate-600 z-50 border-white ",
+              button: "text-blue-500",
+            },
+          }}
+        />
       </SignedIn>
       <SignedOut>
-        <Button className="rounded-full  " variant="default" size={"sm"}>
+        <Button className="rounded-full " variant="default" size={"sm"}>
           <Link href={"/sign-in"}>Login</Link>
         </Button>
       </SignedOut>
