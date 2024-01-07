@@ -56,7 +56,7 @@ function MobileMenu() {
                 />
               </Link>
             </div>
-            <div className="absolute right-2 -top-5">
+            <div className="absolute -right-2 -top-5">
               <ThemeChanger />
             </div>
             <div className=" justify-end  w-1/4 absolute z-20 -top-5 -left-3 ">
@@ -65,7 +65,7 @@ function MobileMenu() {
           </SheetHeader>
 
           <div className="mt-5 flex flex-col gap-3 relative ">
-            {/* <HeaderMenu setIsSheetOpen={setIsSheetOpen} /> */}
+            <HeaderMenu setIsSheetOpen={setIsSheetOpen} />
           </div>
 
           <SheetFooter className="mt-2 flex justify-start gap-3 ">

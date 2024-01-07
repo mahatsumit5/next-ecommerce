@@ -15,6 +15,9 @@ import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import Search from "../shared/Search";
 import Catagory from "./Catagory";
 import Products from "./Products";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {} from "@fortawesome/free-regular-svg-icons";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 const Dialog = () => {
   const [query, setQuery] = useState("");
@@ -31,7 +34,7 @@ const Dialog = () => {
           }}
           size={"sm"}
         >
-          <MagnifyingGlassIcon className="" color="blue" />{" "}
+          <FontAwesomeIcon icon={faMagnifyingGlass} size="lg" color="blue" />{" "}
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent className=" bg-black/30 backdrop-blur-md   overflow-y-auto ">

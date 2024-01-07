@@ -52,12 +52,12 @@ const orderSchema = new Schema(
         },
         size: {
           type: String,
-          default: false,
+          requiredd: false,
         },
 
         color: {
           type: String,
-          require: true,
+          required: true,
         },
       },
     ],

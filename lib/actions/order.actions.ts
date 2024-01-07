@@ -73,7 +73,7 @@ export const checkOutOrder = async ({
 
       metadata: { uniqueId, ...metadata },
       mode: "payment",
-      success_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/order-confirmation?success=true?id=${uniqueId}`,
+      success_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/order-confirmation?success=true&&id=${uniqueId}`,
       invoice_creation: { enabled: true },
 
       cancel_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/?cancelled=true`,
@@ -101,7 +101,7 @@ export const createOrder = async (order: CreateOrderParams) => {
 export const getOrderByStripeId = async (id: string) => {
   try {
     await connectToDatabase();
-    const order = await Order.findOne({ stripeId: id })
+    const order = await Order.findOne({ uniqueId: id })
       .populate({
         path: "orderItems",
         model: Product,

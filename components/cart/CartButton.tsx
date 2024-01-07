@@ -5,6 +5,8 @@ import Image from "next/image";
 import { Badge } from "../ui/badge";
 import { ICartState } from "@/types";
 import { countTotalItemsInCart } from "@/lib/utils";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
 function CartButton({ cart }: { cart: ICartState[] }) {
   const total = countTotalItemsInCart(cart);
@@ -15,7 +17,12 @@ function CartButton({ cart }: { cart: ICartState[] }) {
         variant="ghost"
         size={"sm"}
       >
-        <Image src={"/assets/cart.png"} width={25} height={25} alt="logo" />
+        <FontAwesomeIcon
+          icon={faCartShopping}
+          size="lg"
+          color="blue"
+          className="hover:scale-125 transition-all"
+        />
         {cart.length > 0 && (
           <Badge variant="destructive" className="absolute -top-2 -right-0 ">
             {total}
