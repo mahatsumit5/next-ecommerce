@@ -1,4 +1,4 @@
-import mongoose, { model, models } from "mongoose";
+import mongoose, { Schema, model, models } from "mongoose";
 const categorySchema = new mongoose.Schema(
   {
     status: {
@@ -22,11 +22,12 @@ const categorySchema = new mongoose.Schema(
       required: true,
     },
     parentCategory: {
-      type: String,
+      type: Schema.Types.ObjectId,
+      ref: "ParentCategory",
       required: true,
     },
   },
   { timestamps: true }
 );
-const Category = models.categories || model("categories", categorySchema);
+const Category = models?.Category || mongoose.model("Category", categorySchema);
 export default Category;

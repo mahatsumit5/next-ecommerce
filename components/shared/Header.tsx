@@ -44,10 +44,9 @@ const Header = () => {
           </span>
         </div>
 
-        <div className=" gap-1 flex">
-          <div className="hidden sm:flex mt-2">
-            <ThemeChanger />
-          </div>
+        <div className=" gap-2 flex">
+          <ThemeChanger />
+
           <Dialog />
 
           <CartButton cart={cart} />

@@ -1,4 +1,3 @@
-import mongoose from "mongoose";
 import { connectToDatabase } from "../database";
 import ParentCatalogue from "../database/models/mainCatalalogues.models";
 import { handleError } from "../utils";

@@ -8,7 +8,7 @@ import { Switch } from "../ui/switch";
 export function ThemeChanger({ className }: { className?: string }) {
   const { setTheme } = useTheme();
   return (
-    <div className={` w-10  rounded-md ${className}`}>
+    <div className={` mt-2 w-10  rounded-md ${className}`}>
       <Switch
         onCheckedChange={(e) => {
           if (e) {

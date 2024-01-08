@@ -1,4 +1,4 @@
-import mongoose, { model, models } from "mongoose";
+import mongoose, { Schema, model, models } from "mongoose";
 const productSchema = new mongoose.Schema(
   {
     status: {
@@ -34,7 +34,11 @@ const productSchema = new mongoose.Schema(
     color: [{ type: String, required: true }],
     size: [{ type: String, required: true }],
 
-    parentCat: String,
+    category: {
+      type: Schema.Types.ObjectId,
+      ref: "Category",
+      required: true,
+    },
     salesStartDate: {
       type: Date,
     },
@@ -52,12 +56,6 @@ const productSchema = new mongoose.Schema(
     images: [
       {
         type: String,
-      },
-    ],
-    reviews: [
-      {
-        type: Object,
-        default: {},
       },
     ],
   },
