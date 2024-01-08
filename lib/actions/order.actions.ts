@@ -27,12 +27,29 @@ export const checkOutOrder = async ({
     metadata[`color${index}`] = item.color;
   });
   try {
+    // create product first
+    // const response = cart.map(
+    //   async (item) =>
+    //     await stripe.products.create({
+    //       name: item.title,
+    //       description: item.description,
+
+    //       images: item.images,
+    //     })
+    // );
+    // const products = await Promise.all(response);
+    // // return response;
+    // console.log(products);
+    // return;
     // Create Checkout Sessions from body params.
+
+    // create payment Method
+
     const session = await stripe.checkout.sessions.create({
       client_reference_id: customerId,
       customer_email: email,
 
-      // payment_method_types: ["card", "au_becs_debit", ],
+      payment_method_types: ["card", "au_becs_debit"],
       currency: "aud",
       billing_address_collection: "required",
       shipping_address_collection: { allowed_countries: ["AU"] },
@@ -85,6 +102,7 @@ export const checkOutOrder = async ({
       return;
     }
   } catch (err) {
+    console.log(err);
     handleError(err);
   }
 };

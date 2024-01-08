@@ -34,8 +34,8 @@ function Checkout({
     } as checkoutOrderProps;
 
     const session = await checkOutOrder(obj);
-    localStorage.setItem("payment_id", session.id);
-    router.push(session.url);
+    // router.push(session.url);
+    // console.log(session);
   };
   return (
     <form action={checkout} className="">
