@@ -11,20 +11,16 @@ function Products({ query }: { query: string }) {
   const [products, setProducts] = useState<IProduct[]>([]);
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        console.log(query);
-        const result = await getSearchedProducts(query);
-        console.log(result);
-        setProducts(result);
-      } catch (error) {
-        // Handle errors appropriately
-        console.error(error);
-      }
-    };
+      const result = await getSearchedProducts("trainers");
+      console.log(result);
 
-    fetchData();
+      setProducts(result);
+    };
+    const debounceFn = setTimeout(() => {
+      fetchData();
+    }, 800);
+    return () => clearTimeout(debounceFn);
   }, [query]);
-  console.log(products);
 
   return (
     <span className="flex flex-col gap-3 items-start w-full">

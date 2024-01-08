@@ -34,7 +34,7 @@ function AddToCart({
     dispatch(
       setCart({
         ...product,
-        orderQty: orderQuantity ? orderQuantity : 1,
+        orderQty: orderQuantity || 1,
         color,
         size,
       })

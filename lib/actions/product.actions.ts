@@ -1,10 +1,9 @@
 import mongoose from "mongoose";
 import { connectToDatabase } from "../database";
-import { ICartState, IProduct, getAllProductProps } from "@/types";
+import { ICartState, getAllProductProps } from "@/types";
 import { handleError } from "../utils";
 import Product from "../database/models/product.models";
 import Category from "../database/models/category.models";
-
 export const getProductsByCategory = async (category?: string, id?: string) => {
   try {
     const _id = new mongoose.Types.ObjectId(id);
@@ -91,14 +90,10 @@ export const updateProductQuantity = async (cart: ICartState[]) => {
 };
 export const getSearchedProducts = async (query: string) => {
   try {
-    const connection = await connectToDatabase();
-    console.log(connection);
+    // await connectToDatabase();
     const condition = query ? { slug: { $regex: query, $options: "i" } } : {};
 
-    const result = await mongoose.connection
-      .collection("products")
-      .find(condition)
-      .toArray();
+    const result = await Product.find(condition);
     console.log(result);
     return JSON.parse(JSON.stringify(result));
   } catch (error) {

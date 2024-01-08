@@ -52,10 +52,18 @@ const orderSchema = new Schema(
         },
         size: {
           type: String,
-          requiredd: false,
+          required: false,
         },
 
         color: {
+          type: String,
+          required: true,
+        },
+        price: {
+          type: Number,
+          required: true,
+        },
+        thumbnail: {
           type: String,
           required: true,
         },
@@ -66,7 +74,7 @@ const orderSchema = new Schema(
       default: "pending",
     },
     totalAmount: {
-      type: Number,
+      type: String,
       required: true,
     },
     buyer: {
@@ -85,5 +93,5 @@ const orderSchema = new Schema(
   { timestamps: true }
 );
 
-const Order = models.NextOrder || model("NextOrder", orderSchema);
+const Order = models.Order || model("Order", orderSchema);
 export default Order;

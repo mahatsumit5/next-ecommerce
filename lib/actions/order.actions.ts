@@ -25,6 +25,8 @@ export const checkOutOrder = async ({
     metadata[`orderQty${index}`] = item.orderQty;
     metadata[`size${index}`] = item.size;
     metadata[`color${index}`] = item.color;
+    metadata[`price${index}`] = item.price;
+    metadata[`thumbnail${index}`] = item.thumbnail;
   });
   try {
     // create product first
@@ -49,7 +51,7 @@ export const checkOutOrder = async ({
       client_reference_id: customerId,
       customer_email: email,
 
-      payment_method_types: ["card", "au_becs_debit"],
+      // payment_method_types: ["card", "au_becs_debit", "paypal"],
       currency: "aud",
       billing_address_collection: "required",
       shipping_address_collection: { allowed_countries: ["AU"] },

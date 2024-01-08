@@ -8,6 +8,7 @@ import {
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import qs from "query-string";
+import { toast } from "sonner";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -20,7 +21,7 @@ export function countTotalItemsInCart(cart: ICartState[]) {
 }
 
 export function handleError(error: any) {
-  return JSON.stringify(error);
+  return JSON.parse(JSON.stringify(error?.message));
 }
 
 export function countTotalPrice(cart: ICartState[]) {

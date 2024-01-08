@@ -16,7 +16,6 @@ import Search from "../shared/Search";
 import Catagory from "./Catagory";
 import Products from "./Products";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {} from "@fortawesome/free-regular-svg-icons";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 const Dialog = () => {
@@ -43,9 +42,9 @@ const Dialog = () => {
             <Search query={query} setQuery={setQuery} />
           </AlertDialogTitle>
           <AlertDialogDescription className="flex flex-col gap-2  text-slate-100 items-start">
-            {/* <Catagory query={query} setIsOpen={setIsOpen} /> */}
+            <Catagory query={query} setIsOpen={setIsOpen} />
 
-            <Products query={query} />
+            {/* <Products query={query} /> */}
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

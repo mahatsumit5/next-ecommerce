@@ -10,10 +10,7 @@ import { IProduct, ProductPageParams } from "@/types";
 import React from "react";
 async function page({ params: { productSlug } }: ProductPageParams) {
   const product: IProduct = await getProductsBySlug(productSlug);
-  const similarproduct = await getProductsByCategory(
-    undefined,
-    product.parentCat
-  );
+  const similarproduct = await getProductsByCategory("", product.category);
   const reviews = await getReviews(product._id);
   return (
     <>

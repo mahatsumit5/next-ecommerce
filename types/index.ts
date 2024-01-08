@@ -18,7 +18,7 @@ export interface IProduct {
   qty: number;
   sku: string;
   salesPrice: number;
-  parentCat: string;
+  category: string;
   description: string;
   thumbnail: string;
   images: string[];
@@ -48,7 +48,7 @@ export interface ICartState {
   qty: number;
   sku: string;
   salesPrice: number;
-  parentCat: string;
+  category: string;
   description: string;
   thumbnail: string;
   images: string[];
@@ -66,7 +66,7 @@ export const defaultValue: ICartState = {
   qty: 0,
   sku: "",
   salesPrice: 0,
-  parentCat: "",
+  category: "",
   description: "",
   images: [""],
   thumbnail: "",

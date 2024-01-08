@@ -34,7 +34,7 @@ function Checkout({
     } as checkoutOrderProps;
 
     const session = await checkOutOrder(obj);
-    // router.push(session.url);
+    router.push(session.url);
     // console.log(session);
   };
   return (

@@ -2,7 +2,6 @@
 
 import { connectToDatabase } from "../database";
 import mongoose from "mongoose";
-import ParentCatalogue from "../database/models/mainCatalalogues.models";
 import Category from "../database/models/category.models";
 
 export const getAllCategories = async (query: string) => {
