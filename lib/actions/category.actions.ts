@@ -3,6 +3,7 @@
 import { connectToDatabase } from "../database";
 import mongoose from "mongoose";
 import Category from "../database/models/category.models";
+import { handleError } from "../utils";
 
 export const getAllCategories = async (query: string) => {
   try {
@@ -13,7 +14,7 @@ export const getAllCategories = async (query: string) => {
 
     return JSON.parse(JSON.stringify(categories));
   } catch (error) {
-    console.log(error);
+    handleError(error);
   }
 };
 
@@ -27,6 +28,6 @@ export const getCatByParentCat = async (parentID: string) => {
 
     return JSON.parse(JSON.stringify(categories));
   } catch (error) {
-    console.log(error);
+    handleError(error);
   }
 };

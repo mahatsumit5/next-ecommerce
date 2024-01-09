@@ -4,6 +4,8 @@ import { Input } from "../ui/input";
 import { formUrlQuery, removeKeysFromQuery } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Search = ({
   query,
@@ -39,12 +41,12 @@ const Search = ({
   return (
     <div className="flex-1">
       <Input
-        placeholder={"search..."}
+        placeholder={"Search products or categories"}
         type={"text"}
         onChange={(e) => {
           setQuery(e.target.value);
         }}
-        className="w-full rounded-full shadow-lg border-none  bg-slate-200 bor"
+        className="w-full rounded-full shadow-lg border-none  dark:bg-blue-400 dark:text-black "
       />
     </div>
   );

@@ -8,6 +8,7 @@ export interface ICategory {
   createdAt: Date;
   updatedAt: Date;
   image: string;
+  thumbnail?: string;
 }
 export interface IProduct {
   _id: string;
@@ -21,6 +22,7 @@ export interface IProduct {
   category: string;
   description: string;
   thumbnail: string;
+  image?: string;
   images: string[];
   reviews: Object[];
   createdAt: Date;

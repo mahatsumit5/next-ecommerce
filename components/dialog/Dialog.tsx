@@ -1,7 +1,6 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   AlertDialog,
-  AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
@@ -11,16 +10,39 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
-import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import Search from "../shared/Search";
-import Catagory from "./Catagory";
-import Products from "./Products";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { ICategory, IProduct } from "@/types";
+import { getAllCategories } from "@/lib/actions/category.actions";
+import { getSearchedProducts } from "@/lib/actions/product.actions";
+import SearchDataComponent from "./SearchDataComponent";
 
 const Dialog = () => {
   const [query, setQuery] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const [categories, setCategories] = useState<ICategory[]>([]);
+  const [products, setProducts] = useState<IProduct[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  useEffect(() => {
+    async function getData() {
+      setLoading(true);
+      getAllCategories(query).then((categories) => {
+        setCategories(categories);
+        setLoading(false);
+      });
+
+      getSearchedProducts(query).then((result) => {
+        setProducts(result);
+        setLoading(false);
+      });
+    }
+    const debounceFn = setTimeout(() => {
+      getData();
+    }, 500);
+
+    return () => clearTimeout(debounceFn);
+  }, [query]);
 
   return (
     <AlertDialog open={isOpen}>
@@ -41,17 +63,28 @@ const Dialog = () => {
           <AlertDialogTitle>
             <Search query={query} setQuery={setQuery} />
           </AlertDialogTitle>
-          <AlertDialogDescription className="flex flex-col gap-3  text-slate-100 items-start max-h-[80svh] overflow-y-auto ">
-            <Products query={query} setIsOpen={setIsOpen} />
-            <Catagory query={query} setIsOpen={setIsOpen} />
+          <AlertDialogDescription className="flex flex-col gap-5  text-slate-100 items-start max-h-[80svh] overflow-y-auto ">
+            <SearchDataComponent
+              data={categories}
+              type="category"
+              setIsOpen={setIsOpen}
+              loading={loading}
+            />
+            <SearchDataComponent
+              data={products}
+              type="product"
+              setIsOpen={setIsOpen}
+              loading={loading}
+            />
           </AlertDialogDescription>
         </AlertDialogHeader>
-        <AlertDialogFooter>
+        <AlertDialogFooter className="w-full">
           <AlertDialogCancel
             onClick={() => {
               setQuery("");
               setIsOpen(false);
             }}
+            className="w-full"
           >
             Close
           </AlertDialogCancel>
