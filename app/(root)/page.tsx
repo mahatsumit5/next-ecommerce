@@ -6,11 +6,12 @@ import { getAllCategories } from "@/lib/actions/category.actions";
 import { getFewProducts } from "@/lib/actions/product.actions";
 import Link from "next/link";
 import React from "react";
-import { Separator } from "@/components/ui/separator";
 import { SearchParamProps } from "@/types";
+import MoreCategoryButton from "@/components/home/MoreCategoryButton";
 async function Home({ searchParams }: SearchParamProps) {
   const query = (searchParams?.query as string) || "";
-  const categories = await getAllCategories(query);
+  const skip = (searchParams?.skip as string) || 0;
+  const categories = await getAllCategories({ query, skip: Number(skip) });
   const products = await getFewProducts(4, query);
   return (
     <>
@@ -21,16 +22,11 @@ async function Home({ searchParams }: SearchParamProps) {
             Browser By Category
           </h3>
           <div className="flex gap-2">
-            <Button variant={"outline"}>
-              <ArrowLeftIcon />
-            </Button>
-            <Button variant={"default"}>
-              <ArrowRightIcon />
-            </Button>
+            <MoreCategoryButton total={categories?.total || 0} />
           </div>
         </span>
         <Collection
-          data={categories}
+          data={categories?.data}
           emptyTitle="No categories available"
           collectiontype="Categories"
           emptyStateSubtext="Please come back later"

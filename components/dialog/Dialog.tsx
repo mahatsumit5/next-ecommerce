@@ -58,12 +58,12 @@ const Dialog = () => {
           <FontAwesomeIcon icon={faMagnifyingGlass} size="lg" color="blue" />{" "}
         </Button>
       </AlertDialogTrigger>
-      <AlertDialogContent className=" bg-black/50 backdrop-blur-2xl h-[100svh]  ">
+      <AlertDialogContent className=" bg-black/50 backdrop-blur-2xl h-[90svh]  ">
         <AlertDialogHeader>
           <AlertDialogTitle>
             <Search query={query} setQuery={setQuery} />
           </AlertDialogTitle>
-          <AlertDialogDescription className="flex flex-col gap-5  text-slate-100 items-start max-h-[80svh] overflow-y-auto ">
+          <AlertDialogDescription className="flex flex-col gap-5  text-slate-100 items-start max-h-[70svh] overflow-y-auto ">
             <SearchDataComponent
               data={categories}
               type="category"
