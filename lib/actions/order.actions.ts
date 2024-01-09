@@ -23,6 +23,7 @@ export const checkOutOrder = async ({
     // Dynamically create properties for each item in the metadata object
     metadata[`_id${index}`] = item._id;
     metadata[`orderQty${index}`] = item.orderQty;
+    metadata[`title${index}`] = item.title;
     metadata[`size${index}`] = item.size;
     metadata[`color${index}`] = item.color;
     metadata[`price${index}`] = item.price;
