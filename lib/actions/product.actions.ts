@@ -1,9 +1,11 @@
+"use server";
 import mongoose from "mongoose";
 import { connectToDatabase } from "../database";
 import { ICartState, getAllProductProps } from "@/types";
 import { handleError } from "../utils";
 import Product from "../database/models/product.models";
 import Category from "../database/models/category.models";
+
 export const getProductsByCategory = async (category?: string, id?: string) => {
   try {
     const _id = new mongoose.Types.ObjectId(id);
@@ -90,13 +92,17 @@ export const updateProductQuantity = async (cart: ICartState[]) => {
 };
 export const getSearchedProducts = async (query: string) => {
   try {
-    // await connectToDatabase();
+    await connectToDatabase();
     const condition = query ? { slug: { $regex: query, $options: "i" } } : {};
-
-    const result = await Product.find(condition);
-    console.log(result);
+    const result = await Product.find(condition).select([
+      "_id",
+      "slug",
+      "title",
+      "thumbnail",
+    ]);
     return JSON.parse(JSON.stringify(result));
   } catch (error) {
+    console.log(error);
     handleError(error);
   }
 };

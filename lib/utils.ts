@@ -9,6 +9,7 @@ import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import qs from "query-string";
 import { toast } from "sonner";
+import { IReview } from "./database/models/review.model";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -29,6 +30,9 @@ export function countTotalPrice(cart: ICartState[]) {
     (totalPrice, num) => totalPrice + num.orderQty * num.price,
     0
   );
+}
+export function countProductRating(review: IReview[]) {
+  return review.reduce((totalRating, rev) => totalRating + rev.rating, 0);
 }
 export function formUrlQuery({ params, key, value }: UrlQueryParams) {
   const currentUrl = qs.parse(params);
@@ -100,4 +104,22 @@ export const changeMetaDataIntoArray = (metadata: Record<string, string>) => {
   }
 
   return orderItems;
+};
+
+export const calculateTypeOfStars = (rating: number | 0) => {
+  let stars = {
+    fullStar: 0,
+    halfStar: 0,
+    emptyStar: 5,
+  };
+  if (Number.isInteger(rating)) {
+    stars.halfStar = 0;
+    stars.fullStar = rating;
+    stars.emptyStar = 5 - rating;
+  } else {
+    stars.fullStar = Math.floor(rating);
+    stars.halfStar = 1;
+    stars.emptyStar = 4 - Math.floor(rating);
+  }
+  return stars;
 };

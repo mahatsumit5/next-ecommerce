@@ -24,7 +24,7 @@ const Dialog = () => {
 
   return (
     <AlertDialog open={isOpen}>
-      <AlertDialogTrigger asChild className="w-full">
+      <AlertDialogTrigger asChild className="w-full rounded-md">
         <Button
           className="rounded-3xl  sm:shadow-lg sm:w-16 dark:bg-slate-600 "
           variant="ghost"
@@ -36,15 +36,14 @@ const Dialog = () => {
           <FontAwesomeIcon icon={faMagnifyingGlass} size="lg" color="blue" />{" "}
         </Button>
       </AlertDialogTrigger>
-      <AlertDialogContent className=" bg-black/30 backdrop-blur-md   overflow-y-auto ">
+      <AlertDialogContent className=" bg-black/50 backdrop-blur-2xl  ">
         <AlertDialogHeader>
           <AlertDialogTitle>
             <Search query={query} setQuery={setQuery} />
           </AlertDialogTitle>
-          <AlertDialogDescription className="flex flex-col gap-2  text-slate-100 items-start">
+          <AlertDialogDescription className="flex flex-col gap-2  text-slate-100 items-start max-h-[50vh] overflow-y-auto ">
+            <Products query={query} setIsOpen={setIsOpen} />
             <Catagory query={query} setIsOpen={setIsOpen} />
-
-            {/* <Products query={query} /> */}
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

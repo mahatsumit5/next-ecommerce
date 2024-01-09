@@ -76,7 +76,7 @@
 }
 @layer utilities {
   .wrapper {
-    @apply max-w-[70rem] lg:mx-auto p-5 md:px-10 xl:px-0 w-full;
+    @apply max-w-[75rem] lg:mx-auto p-5 md:px-10 xl:px-0 w-full;
   }
   .rounded-image {
     @apply rounded-lg;
@@ -92,5 +92,22 @@
   }
   .menu-page-image {
     @apply w-[150px] h-[150px] relative rounded-lg;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #81807c;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #828bd8;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #e7e2e2;
   }
 }

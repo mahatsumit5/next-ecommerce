@@ -1,7 +1,7 @@
 "use server";
 
 import { connectToDatabase } from "../database";
-import Review from "../database/models/review.model";
+import Review, { IReview } from "../database/models/review.model";
 import Customer from "../database/models/user.model";
 import { handleError } from "../utils";
 
@@ -30,7 +30,12 @@ export const getReviews = async (productId: string) => {
       model: Customer,
       select: "firstName lastName userName",
     });
-    return JSON.parse(JSON.stringify(reviews));
+    const reviewsCount = await Review.countDocuments({ productId });
+    return {
+      reviews:
+        (JSON.parse(JSON.stringify(reviews)) as IReview[]) || ([] as IReview[]),
+      count: reviewsCount as number,
+    };
   } catch (error) {
     handleError(error);
   }

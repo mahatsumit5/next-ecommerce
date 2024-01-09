@@ -11,13 +11,13 @@ import React from "react";
 async function page({ params: { productSlug } }: ProductPageParams) {
   const product: IProduct = await getProductsBySlug(productSlug);
   const similarproduct = await getProductsByCategory("", product.category);
-  const reviews = await getReviews(product._id);
+  const data = await getReviews(product._id);
   return (
     <>
       {" "}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <ImageCarousel images={product.images} />
-        <ProductDescription product={product} reviews={reviews} />
+        <ProductDescription product={product} reviews={data?.reviews || []} />
       </div>
       <SimilarProducts title="Similar Items" data={similarproduct} />
     </>

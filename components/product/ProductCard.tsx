@@ -1,27 +1,44 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { StarFilledIcon, StarIcon } from "@radix-ui/react-icons";
+
+import { FaStarHalfAlt, FaStar, FaRegStar } from "react-icons/fa";
 import { IProduct } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import AddToCart from "../cart/AddToCart";
 import SelectSize from "./SelectSize";
+import { getReviews } from "@/lib/actions/review.actions";
+import { IReview } from "@/lib/database/models/review.model";
+import { calculateTypeOfStars, countProductRating } from "@/lib/utils";
+import StarRating from "./StarRating";
 type CardProps = {
   data: IProduct;
   slug?: string;
 };
 function CustomProductCard({ data, slug }: CardProps) {
+  let stars = {
+    fullStar: 0,
+    halfStar: 0,
+    emptyStar: 5,
+  };
   const [color, setColor] = useState(data.color[0]);
   const [size, setSize] = useState("");
+  const [reviews, setReviews] = useState<{ reviews: IReview[]; count: number }>(
+    { count: 0, reviews: [] }
+  );
+  useEffect(() => {
+    async function getData() {
+      const result = await getReviews(data._id);
+      if (result?.count) setReviews(result);
+    }
+    getData();
+  }, [data]);
+  const rating = countProductRating(reviews.reviews) / reviews.count;
+  stars = calculateTypeOfStars(rating || 0);
+
   return (
     <Card className=" w-[300px] sm:w-[300px] hover:shadow-2xl transition-shadow ">
       <CardHeader>
@@ -45,11 +62,11 @@ function CustomProductCard({ data, slug }: CardProps) {
         </p>
         <div className="flex justify-between">
           <span className="flex ">
-            <StarFilledIcon color="orange" />
-            <StarFilledIcon color="orange" />
-            <StarFilledIcon color="orange" />
-            <StarIcon />
-            <StarIcon />
+            <>
+              <StarRating number={stars?.fullStar} type="filled" />
+              <StarRating number={stars?.halfStar} type="half" />
+              <StarRating number={stars?.emptyStar} type="empty" />
+            </>
           </span>
           <span className="flex justify-start gap-2">
             {data.color.map((c, index) => (

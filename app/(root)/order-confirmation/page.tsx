@@ -33,8 +33,8 @@ function page() {
     return <div>Loading....</div>;
   }
   return (
-    <div className="min-h-[30vh] flex flex-col sm:flex-row justify-between gap-2">
-      <div className="w-full sm:w-2/5 flex flex-col gap-3 ">
+    <div className="min-h-[30vh] flex flex-col md:flex-row justify-between gap-2">
+      <div className="w-full  md:w-7/12 flex flex-col gap-3 ">
         <span className="font-bold">
           Thank you {order.buyer.firstName.toUpperCase()}{" "}
           {order.buyer.lastName.toUpperCase()} for you order.
@@ -97,7 +97,7 @@ function page() {
           </Link>{" "}
         </div>
       </div>
-      <div className="w-full sm:w-2/5  flex flex-col gap-2">
+      <div className="w-full  md:w-4/12  flex flex-col gap-2">
         <div className="flex gap-2 justify-start">
           <span>
             <FontAwesomeIcon icon={faBagShopping} />
@@ -120,25 +120,37 @@ function page() {
               />
             </div>
             <div className="w-2/5  flex flex-col gap-2 ">
-              <span className="font-bold text-2xl"> {items.title}</span>
+              <span className="font-bold text-xl "> {items.title}</span>
               <span>Color:{items.color}</span>
               <span className="p-2">x{items.orderQty}</span>
             </div>
             <div className="w-2/5  flex flex-col justify-end items-end font-bold">
-              $ {order.orderItems[0].price}
+              $ {items.price}
             </div>
           </div>
         ))}
+        <span className="flex justify-between  w-full">
+          <p className="font-bold"> Subtotal</p>
 
+          <p className="text-muted-foreground">
+            ${order.total_details.amount_subtotal}
+          </p>
+        </span>
+        <Separator />
         <div>
           <span className="flex justify-between">
-            <p>Subtotal</p>
-            <p>{order.total_details.amount_subtotal}</p>
+            <p className="font-bold">Shipping</p>
+            <p className="text-muted-foreground">
+              {order.total_details.amount_shipping}
+            </p>
           </span>
           <span className="flex justify-between">
-            <p>Shipping</p>
-            <p>{order.total_details.amount_shipping}</p>
+            <p className="font-bold">Total</p>
+            <p className="text-muted-foreground">
+              {order.total_details.amount_total}
+            </p>
           </span>
+
           <Separator />
         </div>
         <div></div>

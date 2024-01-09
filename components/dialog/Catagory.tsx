@@ -3,6 +3,7 @@ import { Separator } from "../ui/separator";
 import { getAllCategories } from "@/lib/actions/category.actions";
 import Link from "next/link";
 import { ICategory } from "@/types";
+import Image from "next/image";
 
 function Catagory({
   query,
@@ -31,12 +32,16 @@ function Catagory({
       {categories.map((cat) => (
         <Link
           href={`/category/${cat.slug}`}
-          key={cat._id}
-          className="text-sm hover:underline"
+          id={cat._id}
           onClick={() => {
             setIsOpen(false);
           }}
+          className="flex gap-2 "
         >
+          <div className="relative w-10 h-10 hover:static hover:z-40 overflow-hidden ">
+            <Image src={cat.image} fill alt="image" className="object-cover" />
+          </div>
+
           {cat.title}
         </Link>
       ))}

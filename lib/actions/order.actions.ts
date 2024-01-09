@@ -30,24 +30,6 @@ export const checkOutOrder = async ({
     metadata[`thumbnail${index}`] = item.thumbnail;
   });
   try {
-    // create product first
-    // const response = cart.map(
-    //   async (item) =>
-    //     await stripe.products.create({
-    //       name: item.title,
-    //       description: item.description,
-
-    //       images: item.images,
-    //     })
-    // );
-    // const products = await Promise.all(response);
-    // // return response;
-    // console.log(products);
-    // return;
-    // Create Checkout Sessions from body params.
-
-    // create payment Method
-
     const session = await stripe.checkout.sessions.create({
       client_reference_id: customerId,
       customer_email: email,

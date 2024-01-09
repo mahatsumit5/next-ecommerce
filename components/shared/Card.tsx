@@ -13,7 +13,7 @@ function CustomCard({ data }: CardProps) {
   return (
     <Link href={`/category/${data.slug}`}>
       <div>
-        <div className="h-[150px] rounded-2xl w-[150px] relative sm:h-[250px] md:w-[250px] overflow-hidden ">
+        <div className="h-[100px] rounded-2xl w-[100px] relative sm:h-[250px] md:w-[250px] overflow-hidden ">
           <Image
             src={data.image}
             fill
@@ -21,7 +21,7 @@ function CustomCard({ data }: CardProps) {
             className=" hover:scale-105 transition-all  object-cover"
           />
         </div>{" "}
-        <p className=" font-semibold  text-xl">{data.title}</p>
+        <p className=" font-semibold  text-md sm:text-xl">{data.title}</p>
       </div>
     </Link>
   );

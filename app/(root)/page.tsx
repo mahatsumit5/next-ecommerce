@@ -36,7 +36,6 @@ async function Home({ searchParams }: SearchParamProps) {
           emptyStateSubtext="Please come back later"
         />
       </section>
-      <Separator />
       <section className=" flex flex-col gap-5 mt-32">
         <span className="flex justify-between">
           <h3 className="scroll-m-20 text-xl font-semibold tracking-tight">
