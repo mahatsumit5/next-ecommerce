@@ -1,6 +1,5 @@
 import { ICategory, IProduct } from "@/types";
 import React from "react";
-import Card from "./Card";
 import CustomCard from "./Card";
 import CustomProductCard from "../product/ProductCard";
 type CollectionProps = {

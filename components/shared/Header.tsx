@@ -1,9 +1,7 @@
 "use client";
 import Image from "next/image";
-import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import React, { useState } from "react";
-import { Button } from "../ui/button";
 import { ThemeChanger } from "../theme-provider/ThemeChanger";
 import MobileMenu from "../menu/MobileMenu";
 import Dialog from "../dialog/Dialog";
@@ -17,18 +15,6 @@ const alerta = Abril_Fatface({ weight: ["400"], subsets: ["latin"] });
 const Header = () => {
   const { cart } = useAppSelector((state: RootState) => state.cart);
 
-  const [scrollY, setScrollY] = React.useState(0);
-
-  React.useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-  console.log(scrollY);
   return (
     <header className=" w-full  h-[80px] shadow-2xl sticky top-0 z-10 bg-slate-300/50 backdrop-blur-2xl dark:bg-slate-800 pt-1 ">
       <div className="  wrapper flex justify-between h-16 items-center gap-5 relative">

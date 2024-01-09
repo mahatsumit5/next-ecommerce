@@ -1,7 +1,6 @@
 import Hero from "@/components/hero/Hero";
 import Collection from "@/components/shared/Collection";
 import { Button } from "@/components/ui/button";
-import { ArrowRightIcon, ArrowLeftIcon } from "@radix-ui/react-icons";
 import { getAllCategories } from "@/lib/actions/category.actions";
 import { getFewProducts } from "@/lib/actions/product.actions";
 import Link from "next/link";
@@ -11,11 +10,14 @@ import MoreCategoryButton from "@/components/home/MoreCategoryButton";
 async function Home({ searchParams }: SearchParamProps) {
   const query = (searchParams?.query as string) || "";
   const skip = (searchParams?.skip as string) || 0;
-  const categories = await getAllCategories({
+
+  const pending = getAllCategories({
     query,
     skip: Number(skip),
     limit: 4,
   });
+  const categories = await pending;
+
   const products = await getFewProducts(4, query);
   return (
     <>
@@ -47,7 +49,7 @@ async function Home({ searchParams }: SearchParamProps) {
         </span>
         <Collection
           data={products}
-          emptyTitle="No categories available"
+          emptyTitle="No products available"
           collectiontype="Products"
           emptyStateSubtext="Please come back later"
         />

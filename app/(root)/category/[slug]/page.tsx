@@ -4,7 +4,7 @@ import { IProduct, SearchParamProps } from "@/types";
 import React from "react";
 
 async function page({ params: { slug } }: SearchParamProps) {
-  const products: IProduct[] = await getProductsByCategory(slug, undefined);
+  const products: IProduct[] = await getProductsByCategory(slug);
   return (
     <div className="flex flex-col gap-10">
       <Collection

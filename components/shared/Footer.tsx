@@ -31,6 +31,7 @@ const Footer = () => {
                   alt="logo"
                   fill
                   className="object-cover"
+                  loading="lazy"
                 />
               </Link>
             </div>

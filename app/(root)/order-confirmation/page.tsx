@@ -30,7 +30,7 @@ function page() {
     }
   }, []);
   if (!order) {
-    return <div>Loading....</div>;
+    return;
   }
   return (
     <div className="min-h-[30vh] flex flex-col md:flex-row justify-between gap-2">

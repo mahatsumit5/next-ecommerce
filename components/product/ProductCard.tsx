@@ -49,6 +49,7 @@ function CustomProductCard({ data, slug }: CardProps) {
               fill
               alt="category-image"
               className="rounded-lg hover:scale-105 transition-all product-card object-cover "
+              loading="lazy"
             />{" "}
           </div>
         </CardTitle>
