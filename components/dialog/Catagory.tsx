@@ -20,14 +20,14 @@ function Catagory({
     }
     const debounceFn = setTimeout(() => {
       getData();
-    }, 800);
+    }, 300);
 
     return () => clearTimeout(debounceFn);
   }, [query]);
 
   return (
     <span className="flex flex-col gap-3 items-start w-full">
-      <span className="text-2xl">Categories</span>
+      <span className="text-xl sm:text-2xl">Categories</span>
 
       {categories.map((cat) => (
         <Link

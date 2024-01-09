@@ -36,12 +36,12 @@ const Dialog = () => {
           <FontAwesomeIcon icon={faMagnifyingGlass} size="lg" color="blue" />{" "}
         </Button>
       </AlertDialogTrigger>
-      <AlertDialogContent className=" bg-black/50 backdrop-blur-2xl  ">
+      <AlertDialogContent className=" bg-black/50 backdrop-blur-2xl h-[100svh]  ">
         <AlertDialogHeader>
           <AlertDialogTitle>
             <Search query={query} setQuery={setQuery} />
           </AlertDialogTitle>
-          <AlertDialogDescription className="flex flex-col gap-2  text-slate-100 items-start max-h-[50vh] overflow-y-auto ">
+          <AlertDialogDescription className="flex flex-col gap-3  text-slate-100 items-start max-h-[80svh] overflow-y-auto ">
             <Products query={query} setIsOpen={setIsOpen} />
             <Catagory query={query} setIsOpen={setIsOpen} />
           </AlertDialogDescription>
@@ -53,9 +53,8 @@ const Dialog = () => {
               setIsOpen(false);
             }}
           >
-            Cancel
+            Close
           </AlertDialogCancel>
-          {/* <AlertDialogAction>Continue</AlertDialogAction> */}
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
