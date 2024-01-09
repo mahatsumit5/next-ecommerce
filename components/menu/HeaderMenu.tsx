@@ -18,6 +18,8 @@ import { getCatgoryAction } from "@/lib/redux/actions/menu.actions";
 import { RootState } from "@/store";
 import Link from "next/link";
 import MobileMenuAccordian from "./MobileMenuAccordian";
+import { faL } from "@fortawesome/free-solid-svg-icons";
+import HeaderMenuLoading from "./HeaderMenuLoading";
 
 export function HeaderMenu({
   setIsSheetOpen,
@@ -27,8 +29,9 @@ export function HeaderMenu({
   const dispatch = useAppDispatch();
   const { menu } = useAppSelector((store: RootState) => store.menu);
   const [parentCat, setParentCat] = useState<IMainCat[]>([]);
-
+  const [loading, setLoading] = useState<boolean>(false);
   useEffect(() => {
+    setLoading(true);
     function getData() {
       fetch("/api/catalogue", {
         method: "GET",
@@ -40,11 +43,15 @@ export function HeaderMenu({
             dispatch(getCatgoryAction(item._id, index));
           });
         }
+        setLoading(false);
       });
     }
     getData();
   }, [dispatch]);
   const arrangedData = rearrangeReduxData(parentCat, menu);
+  if (loading) {
+    return <HeaderMenuLoading />;
+  }
   return (
     <>
       {
@@ -53,12 +60,7 @@ export function HeaderMenu({
             <NavigationMenuList className="flex gap-5 flex-col justify-start lg:flex-row">
               {parentCat.map((parentCat, index) => {
                 return (
-                  <NavigationMenuItem
-                    key={parentCat._id}
-                    // onMouseEnter={() => {
-                    //   getcategories(parentCat._id, index);
-                    // }}
-                  >
+                  <NavigationMenuItem key={parentCat._id}>
                     <NavigationMenuTrigger className="">
                       {parentCat.title}
                     </NavigationMenuTrigger>
@@ -73,6 +75,7 @@ export function HeaderMenu({
                                   alt="category"
                                   fill
                                   className="object-cover"
+                                  loading="lazy"
                                 />
                               </span>
                               <p className="text-md font-bold ">{cat.title}</p>

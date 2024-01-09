@@ -11,12 +11,11 @@ async function Home({ searchParams }: SearchParamProps) {
   const query = (searchParams?.query as string) || "";
   const skip = (searchParams?.skip as string) || 0;
 
-  const pending = getAllCategories({
+  const categories = await getAllCategories({
     query,
     skip: Number(skip),
     limit: 4,
   });
-  const categories = await pending;
 
   const products = await getFewProducts(4, query);
   return (
