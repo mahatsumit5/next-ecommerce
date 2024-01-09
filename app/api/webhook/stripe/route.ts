@@ -46,17 +46,20 @@ export async function POST(request: Request) {
       buyer: client_reference_id!,
       stripeId: id,
       total_details: {
-        amount_discount: total_details?.amount_discount! / 100 || 0,
-        amount_shipping: total_details?.amount_shipping! / 100 || 0,
-        amount_tax: total_details?.amount_tax! / 100 || 0,
-        amount_subtotal: amount_subtotal! / 100,
-        amount_total: amount_total! / 100,
+        amount_discount: Number(total_details?.amount_discount!) / 100 || 0,
+        amount_shipping: Number(total_details?.amount_shipping!) / 100 || 0,
+        amount_tax: Number(total_details?.amount_tax!) / 100 || 0,
+        amount_subtotal: Number(amount_subtotal!) / 100,
+        amount_total: Number(amount_total!) / 100,
       },
       orderItems: orderItems,
       uniqueId,
     };
     const newOrder = await createOrder(obj);
-
-    return NextResponse.json({ message: "OK", order: newOrder });
+    if (newOrder) {
+      return NextResponse.json({ message: "OK", order: newOrder });
+    } else {
+      return NextResponse.json({ message: "failed" });
+    }
   }
 }
