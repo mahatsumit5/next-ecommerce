@@ -2,23 +2,39 @@
 
 import * as React from "react";
 import { useTheme } from "next-themes";
-
-import { Switch } from "../ui/switch";
-
+import { HiSun } from "react-icons/hi";
+import { Button } from "../ui/button";
+import { BsMoonStarsFill } from "react-icons/bs";
 export function ThemeChanger({ className }: { className?: string }) {
-  const { setTheme } = useTheme();
+  const { setTheme, theme } = useTheme();
+
   return (
-    <div className={` mt-2 w-10  rounded-md ${className}`}>
-      <Switch
-        onCheckedChange={(e) => {
-          if (e) {
+    <div
+      className={` mt-2 w-10  rounded-md ${className}   absolute top-20 right-2 `}
+    >
+      {theme === "light" ? (
+        <Button
+          variant={"link"}
+          className="text-3xl animate-spin hover:animate-ping"
+          onClick={() => {
             setTheme("dark");
-            return;
-          }
-          setTheme("light");
-        }}
-        className="w-full h-6 dark:bg-slate-500 bg-yellow-400"
-      />
+          }}
+        >
+          <HiSun color="orange" />
+        </Button>
+      ) : (
+        <Button
+          variant={"link"}
+          className={`text-2xl animate-bounce hover:animate-ping ${
+            theme === "light" && "animate-ping"
+          }`}
+          onClick={() => {
+            setTheme("light");
+          }}
+        >
+          <BsMoonStarsFill color="skyblue" />
+        </Button>
+      )}
     </div>
   );
 }

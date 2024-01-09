@@ -8,15 +8,19 @@ import { handleError } from "../utils";
 export const getAllCategories = async ({
   query,
   skip,
+  limit,
 }: {
   query: string;
   skip: number;
+  limit?: number;
 }) => {
   try {
     const condition = query ? { slug: { $regex: query, $options: "i" } } : {};
 
     await connectToDatabase();
-    const categories = await Category.find(condition).limit(4).skip(skip);
+    const categories = await Category.find(condition)
+      .limit(limit ? limit : 0)
+      .skip(skip);
     const documentCount = await Category.countDocuments();
     return {
       data: JSON.parse(JSON.stringify(categories)),

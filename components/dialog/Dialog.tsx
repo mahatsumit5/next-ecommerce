@@ -27,8 +27,8 @@ const Dialog = () => {
   useEffect(() => {
     async function getData() {
       setLoading(true);
-      getAllCategories(query).then((categories) => {
-        setCategories(categories);
+      getAllCategories({ query, skip: 0 }).then((categories) => {
+        setCategories(categories?.data as ICategory[]);
         setLoading(false);
       });
 
@@ -48,14 +48,18 @@ const Dialog = () => {
     <AlertDialog open={isOpen}>
       <AlertDialogTrigger asChild className="w-full rounded-md">
         <Button
-          className="rounded-3xl  sm:shadow-lg sm:w-16 dark:bg-slate-600 "
-          variant="ghost"
+          className="rounded-3xl  w-4  sm:w-16  sm:shadow-lg sm:dark:bg-slate-600 hover:scale-125 transition-all "
+          variant="link"
           onClick={() => {
             setIsOpen(!isOpen);
           }}
           size={"sm"}
         >
-          <FontAwesomeIcon icon={faMagnifyingGlass} size="lg" color="blue" />{" "}
+          <FontAwesomeIcon
+            icon={faMagnifyingGlass}
+            color="blue"
+            className="dark:text-cyan-400 text-md"
+          />
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent className=" bg-black/50 backdrop-blur-2xl h-[90svh]  ">

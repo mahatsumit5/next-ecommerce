@@ -13,15 +13,15 @@ function CartButton({ cart }: { cart: ICartState[] }) {
   return (
     <CartDrawer>
       <Button
-        className="rounded-full   relative w-16 sm:shadow-lg dark:bg-slate-600"
-        variant="ghost"
+        className="rounded-full   relative w-4 sm:w-16 sm:shadow-lg sm:dark:bg-slate-600 hover:scale-125 transition-all"
+        variant="link"
         size={"sm"}
       >
         <FontAwesomeIcon
           icon={faCartShopping}
-          size="lg"
+          size="xl"
           color="blue"
-          className="hover:scale-125 transition-all"
+          className="  dark:text-cyan-400"
         />
         {cart.length > 0 && (
           <Badge variant="destructive" className="absolute -top-2 -right-0 ">

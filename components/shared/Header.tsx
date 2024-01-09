@@ -16,9 +16,22 @@ import { Abril_Fatface } from "next/font/google";
 const alerta = Abril_Fatface({ weight: ["400"], subsets: ["latin"] });
 const Header = () => {
   const { cart } = useAppSelector((state: RootState) => state.cart);
+
+  const [scrollY, setScrollY] = React.useState(0);
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+  console.log(scrollY);
   return (
     <header className=" w-full  h-[80px] shadow-2xl sticky top-0 z-10 bg-slate-300/50 backdrop-blur-2xl dark:bg-slate-800 pt-1 ">
-      <div className="  wrapper flex justify-between h-16 items-center gap-5">
+      <div className="  wrapper flex justify-between h-16 items-center gap-5 relative">
         <div className="flex gap-2 justify-between items-center  min-w-[105px]">
           <MobileMenu />
 
@@ -44,16 +57,13 @@ const Header = () => {
           </span>
         </div>
 
-        <div className=" gap-2 flex">
-          <ThemeChanger />
-
+        <div className="flex gap-3 sm:gap-5">
           <Dialog />
 
           <CartButton cart={cart} />
-          <div className="hidden sm:block ">
-            <LoginButton />
-          </div>
+          <LoginButton />
         </div>
+        <ThemeChanger />
       </div>
     </header>
   );

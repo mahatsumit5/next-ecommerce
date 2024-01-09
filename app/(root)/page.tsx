@@ -11,7 +11,11 @@ import MoreCategoryButton from "@/components/home/MoreCategoryButton";
 async function Home({ searchParams }: SearchParamProps) {
   const query = (searchParams?.query as string) || "";
   const skip = (searchParams?.skip as string) || 0;
-  const categories = await getAllCategories({ query, skip: Number(skip) });
+  const categories = await getAllCategories({
+    query,
+    skip: Number(skip),
+    limit: 4,
+  });
   const products = await getFewProducts(4, query);
   return (
     <>

@@ -41,7 +41,7 @@ function MobileMenu() {
 
         <SheetContent className="overflow-y-auto ">
           <SheetHeader className="flex flex-row w-full border-b-4 relative">
-            <div className=" w-full relative h-[80px] ">
+            <div className=" w-full  h-[80px] ">
               <Link
                 href={"/"}
                 onClick={() => {
@@ -55,12 +55,6 @@ function MobileMenu() {
                   className="object-cover"
                 />
               </Link>
-            </div>
-            <div className="absolute -right-2 -top-5">
-              <ThemeChanger />
-            </div>
-            <div className=" justify-end  w-1/4 absolute z-20 -top-5 -left-3 ">
-              <LoginButton />
             </div>
           </SheetHeader>
 
