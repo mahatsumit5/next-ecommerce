@@ -173,6 +173,7 @@ export type CreateOrderParams = {
       orderQty: string;
       size: string;
       color: string;
+      thumbnail: string;
     }
   ];
   address: {
@@ -195,8 +196,11 @@ export type IOrderItem = {
     {
       _id: string;
       orderQty: string;
+      title: string;
       size: string;
       color: string;
+      thumbnail: string;
+      price: string;
     }
   ];
   address: {

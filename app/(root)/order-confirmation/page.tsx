@@ -6,6 +6,9 @@ import { useAppDispatch } from "@/hook";
 import { getOrderByStripeId } from "@/lib/actions/order.actions";
 import { resetCart } from "@/lib/redux/cart.slice";
 import { IOrderItem } from "@/types";
+import { faBagShopping } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -30,7 +33,7 @@ function page() {
     return <div>Loading....</div>;
   }
   return (
-    <div className="min-h-[30vh] flex flex-col sm:flex-row justify-between">
+    <div className="min-h-[30vh] flex flex-col sm:flex-row justify-between gap-2">
       <div className="w-full sm:w-2/5 flex flex-col gap-3 ">
         <span className="font-bold">
           Thank you {order.buyer.firstName.toUpperCase()}{" "}
@@ -94,7 +97,52 @@ function page() {
           </Link>{" "}
         </div>
       </div>
-      <div className="w-full sm:w-2/5 border">2</div>
+      <div className="w-full sm:w-2/5  flex flex-col gap-2">
+        <div className="flex gap-2 justify-start">
+          <span>
+            <FontAwesomeIcon icon={faBagShopping} />
+          </span>
+          <span className="font-bold">Your order</span>
+
+          <span className="rounded-full border bg-black text-white w-5 h-5 font-extrabold text-sm ps-1">
+            {order.orderItems.length}
+          </span>
+        </div>
+        <Separator />
+        {order.orderItems.map((items) => (
+          <div className="flex flex-row gap-3 " key={items._id}>
+            <div className="w-24  rounded-md relative h-24 overflow-hidden">
+              <Image
+                src={items.thumbnail}
+                alt="sss"
+                fill
+                className="object-cover "
+              />
+            </div>
+            <div className="w-2/5  flex flex-col gap-2 ">
+              <span className="font-bold text-2xl"> {items.title}</span>
+              <span>Color:{items.color}</span>
+              <span className="p-2">x{items.orderQty}</span>
+            </div>
+            <div className="w-2/5  flex flex-col justify-end items-end font-bold">
+              $ {order.orderItems[0].price}
+            </div>
+          </div>
+        ))}
+
+        <div>
+          <span className="flex justify-between">
+            <p>Subtotal</p>
+            <p>{order.totalAmount}</p>
+          </span>
+          <span className="flex justify-between">
+            <p>Shipping</p>
+            <p></p>
+          </span>
+          <Separator />
+        </div>
+        <div></div>
+      </div>
     </div>
   );
 }

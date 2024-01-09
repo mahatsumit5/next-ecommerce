@@ -45,6 +45,10 @@ const orderSchema = new Schema(
           required: true,
           ref: "products",
         },
+        title: {
+          type: String,
+          required: true,
+        },
 
         orderQty: {
           type: String,
