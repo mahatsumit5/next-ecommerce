@@ -45,7 +45,7 @@ export async function POST(request: Request) {
       },
       buyer: client_reference_id!,
       stripeId: id,
-      totalAmount: {
+      total_details: {
         amount_discount: total_details?.amount_discount! / 100 || 0,
         amount_shipping: total_details?.amount_shipping! / 100 || 0,
         amount_tax: total_details?.amount_tax! / 100 || 0,

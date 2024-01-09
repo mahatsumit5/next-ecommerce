@@ -165,7 +165,7 @@ export type checkoutOrderProps = {
 export type CreateOrderParams = {
   uniqueId: string;
   stripeId: string;
-  totalAmount: {
+  total_details: {
     amount_discount: number;
     amount_shipping: number;
     amount_tax: number;
@@ -198,7 +198,7 @@ export type IOrderItem = {
   _id: string;
   stripeId: string;
   status: string;
-  totalAmount: {
+  total_details: {
     amount_discount: number;
     amount_shipping: number;
     amount_tax: number;

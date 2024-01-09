@@ -133,11 +133,11 @@ function page() {
         <div>
           <span className="flex justify-between">
             <p>Subtotal</p>
-            <p>{order.totalAmount}</p>
+            <p>{order.total_details.amount_subtotal}</p>
           </span>
           <span className="flex justify-between">
             <p>Shipping</p>
-            <p></p>
+            <p>{order.total_details.amount_shipping}</p>
           </span>
           <Separator />
         </div>
