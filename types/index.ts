@@ -165,14 +165,22 @@ export type checkoutOrderProps = {
 export type CreateOrderParams = {
   uniqueId: string;
   stripeId: string;
-  totalAmount: number;
+  totalAmount: {
+    amount_discount: number;
+    amount_shipping: number;
+    amount_tax: number;
+    amount_subtotal: number;
+    amount_total: number;
+  };
   buyer: string;
   orderItems: [
     {
       _id: string;
+      title: string;
       orderQty: string;
       size: string;
       color: string;
+      price: number;
       thumbnail: string;
     }
   ];
@@ -190,7 +198,13 @@ export type IOrderItem = {
   _id: string;
   stripeId: string;
   status: string;
-  totalAmount: number;
+  totalAmount: {
+    amount_discount: number;
+    amount_shipping: number;
+    amount_tax: number;
+    amount_subtotal: number;
+    amount_total: number;
+  };
   buyer: { _id: string; email: string; firstName: string; lastName: string };
   orderItems: [
     {

@@ -77,9 +77,12 @@ const orderSchema = new Schema(
       type: String,
       default: "pending",
     },
-    totalAmount: {
-      type: String,
-      required: true,
+    total_details: {
+      amount_discount: Number,
+      amount_shipping: Number,
+      amount_tax: Number,
+      amount_subtotal: Number,
+      amount_total: Number,
     },
     buyer: {
       type: Schema.Types.ObjectId,

@@ -27,7 +27,9 @@ export async function POST(request: Request) {
       client_reference_id,
       id,
       amount_total,
+      amount_subtotal,
       metadata,
+      total_details,
     } = event.data.object;
     const { uniqueId, ...rest }: any = metadata;
     const orderItems = changeMetaDataIntoArray(rest!);
@@ -43,7 +45,13 @@ export async function POST(request: Request) {
       },
       buyer: client_reference_id!,
       stripeId: id,
-      totalAmount: amount_total! / 100,
+      totalAmount: {
+        amount_discount: total_details?.amount_discount! / 100 || 0,
+        amount_shipping: total_details?.amount_shipping! / 100 || 0,
+        amount_tax: total_details?.amount_tax! / 100 || 0,
+        amount_subtotal: amount_subtotal! / 100,
+        amount_total: amount_total! / 100,
+      },
       orderItems: orderItems,
       uniqueId,
     };
