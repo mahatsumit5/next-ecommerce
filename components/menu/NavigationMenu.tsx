@@ -1,0 +1,80 @@
+import { Raleway } from "next/font/google";
+import Link from "next/link";
+import React, { Dispatch, SetStateAction } from "react";
+import { TiHomeOutline } from "react-icons/ti";
+import { FaOpencart } from "react-icons/fa";
+import { BsPerson } from "react-icons/bs";
+import { PiInfoThin } from "react-icons/pi";
+import { MdOutlineWorkHistory } from "react-icons/md";
+import { GoListUnordered } from "react-icons/go";
+const navigationFont = Raleway({ weight: ["400"], subsets: ["latin"] });
+
+export const menu = [
+  {
+    name: "Home",
+    path: "/",
+    icon: <TiHomeOutline color="" />,
+  },
+  {
+    name: "About",
+    path: "/about",
+    icon: <PiInfoThin />,
+  },
+
+  {
+    name: "Careers",
+    path: "/careers",
+    icon: <MdOutlineWorkHistory />,
+  },
+  {
+    name: "Cart",
+    path: "/cart",
+    icon: <FaOpencart />,
+  },
+  {
+    name: "Profile",
+    path: "/profile",
+    icon: <BsPerson />,
+  },
+];
+
+function NavigationMenu({
+  setIsSheetOpen,
+  setDisplayContent,
+}: {
+  setIsSheetOpen?: Dispatch<SetStateAction<boolean>>;
+  setDisplayContent?: Dispatch<SetStateAction<"navigation" | "category">>;
+}) {
+  return (
+    <ul
+      className={`flex gap-4 text-md   flex-col lg:flex-row  ${navigationFont.className}`}
+    >
+      {menu.map((item) => (
+        <Link
+          href={item.path}
+          onClick={() => {
+            setIsSheetOpen && setIsSheetOpen(false);
+          }}
+        >
+          <li className="p-3 lg:p-2 flex gap-1 rounded-md bg-slate-400/10 hover:bg-slate-200 transition-all dark:hover:bg-slate-700 dark:bg-slate-800 dark:text-blue-400 hover:scale-110 ">
+            <p className="mt-1">{item.icon}</p>
+            <p>{item.name}</p>
+          </li>
+        </Link>
+      ))}
+      <li
+        className="p-3 flex hover:cursor-pointer lg:hidden  gap-1 lg:p-2 rounded-md bg-slate-400/10 hover:bg-slate-200 transition-all dark:hover:bg-slate-700 dark:bg-slate-800 dark:text-blue-400 hover:scale-110 "
+        onClick={() => {
+          setDisplayContent && setDisplayContent("category");
+        }}
+      >
+        <p className="mt-1">
+          <GoListUnordered />
+        </p>
+        Category
+      </li>
+    </ul>
+  );
+}
+
+export default NavigationMenu;

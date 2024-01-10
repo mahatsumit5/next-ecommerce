@@ -27,12 +27,7 @@ function MobileMenuAccordian({
   return (
     <Accordion type="single" collapsible className="w-full">
       <AccordionItem value="item-1">
-        <AccordionTrigger
-          // onClick={() => {
-          //   getcategories(id, index);
-          // }}
-          className="hover:no-underline"
-        >
+        <AccordionTrigger className="hover:no-underline dark:text-blue-300">
           {children}
         </AccordionTrigger>
         <AccordionContent>
@@ -45,7 +40,7 @@ function MobileMenuAccordian({
                   setIsSheetOpen(false);
                 }}
               >
-                <li className=" flex   flex-col justify-between">
+                <li className=" flex   flex-col justify-between ">
                   <span className="w-[100px] h-[100px] relative rounded-lg  overflow-hidden gap-2 ">
                     <Image
                       src={cat.image}

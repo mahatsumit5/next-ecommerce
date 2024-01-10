@@ -55,9 +55,9 @@ export function HeaderMenu({
   return (
     <>
       {
-        <div className="hidden lg:block">
+        <div className="hidden lg:block wrapper">
           <NavigationMenu>
-            <NavigationMenuList className="flex gap-5 flex-col justify-start lg:flex-row">
+            <NavigationMenuList className="flex gap-5 justify-start flex-row">
               {parentCat.map((parentCat, index) => {
                 return (
                   <NavigationMenuItem key={parentCat._id}>
@@ -100,7 +100,6 @@ export function HeaderMenu({
             <MobileMenuAccordian
               index={index}
               menu={arrangedData}
-              // getcategories={getcategories}
               id={category._id}
               key={category._id}
               setIsSheetOpen={setIsSheetOpen!}

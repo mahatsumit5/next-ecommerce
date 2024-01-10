@@ -1,14 +1,13 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faL } from "@fortawesome/free-solid-svg-icons";
 import {
   Sheet,
   SheetClose,
   SheetContent,
   SheetFooter,
   SheetHeader,
-  SheetPortal,
   SheetTrigger,
 } from "@/components/ui/sheet";
 import Image from "next/image";
@@ -17,31 +16,55 @@ import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { HeaderMenu } from "./HeaderMenu";
 import Link from "next/link";
 import LoginButton from "../user-login/LoginButton";
-type MobileMenuProps = {
-  isSheetOpen: boolean;
-  setIsSheetOpen: Dispatch<SetStateAction<boolean>>;
-};
+import NavigationMenu from "./NavigationMenu";
+import { IoIosArrowDropleft } from "react-icons/io";
 function MobileMenu() {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const [displayContent, setDisplayContent] = useState<
+    "navigation" | "category"
+  >("navigation");
+  const [width, setWidth] = useState(window.innerWidth);
+  const components = {
+    navigation: (
+      <NavigationMenu
+        setIsSheetOpen={setIsSheetOpen}
+        setDisplayContent={setDisplayContent}
+      />
+    ),
+    category: <HeaderMenu setIsSheetOpen={setIsSheetOpen} />,
+  };
+  useEffect(() => {
+    const getWidth = () => {
+      setWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", getWidth);
+    return () => window.removeEventListener("resize", getWidth);
+  }, []);
+
+  useEffect(() => {
+    if (width > 1023) {
+      setIsSheetOpen(false);
+    }
+  }, [width]);
   return (
     <div className="block lg:hidden">
       <Sheet open={isSheetOpen}>
         <SheetTrigger asChild>
           <FontAwesomeIcon
             icon={faBars}
-            // bounce
             style={{ color: "#1056d1" }}
-            size="lg"
-            className="hover:scale-125 transition-all"
+            size="xl"
+            className="hover:animate-bounce transition-all"
             onClick={() => {
               setIsSheetOpen(true);
             }}
           />
         </SheetTrigger>
 
-        <SheetContent className="overflow-y-auto ">
-          <SheetHeader className="flex flex-row w-full border-b-4 relative">
-            <div className=" w-full  h-[80px] ">
+        <SheetContent className="overflow-y-auto  ">
+          <SheetHeader className="flex flex-row w-full  relative">
+            <div className=" w-full  h-[80px] absolute -top-10 ">
               <Link
                 href={"/"}
                 onClick={() => {
@@ -56,40 +79,41 @@ function MobileMenu() {
                 />
               </Link>
             </div>
-          </SheetHeader>
-
-          <div className="mt-5 flex flex-col gap-3 relative ">
-            <HeaderMenu setIsSheetOpen={setIsSheetOpen} />
-          </div>
-
-          <SheetFooter className="mt-2 flex justify-start gap-3 ">
-            <SheetClose asChild>
-              <Link href={"/cart"}>
+            {displayContent === "category" && (
+              <div className="absolute -top-5 -left-5">
                 <Button
-                  size={"lg"}
-                  variant={"default"}
-                  className="mt-4 rounded-lg"
+                  variant={"ghost"}
+                  size={"sm"}
+                  className="text-xl animate-pulse shadow-sm"
                   onClick={() => {
-                    setIsSheetOpen(false);
+                    setDisplayContent("navigation");
                   }}
                 >
-                  View Cart
+                  <IoIosArrowDropleft />
                 </Button>
-              </Link>
-            </SheetClose>
-            <SheetClose asChild>
-              <Button
-                size={"lg"}
-                variant={"default"}
-                className="mt-4 rounded-lg"
-                onClick={() => {
-                  setIsSheetOpen(false);
-                }}
-              >
-                Close
-              </Button>
-            </SheetClose>
-          </SheetFooter>
+              </div>
+            )}
+          </SheetHeader>
+
+          <div className="mt-14 flex  flex-col gap-3  ">
+            {components[displayContent]}
+          </div>
+
+          <SheetClose
+            asChild
+            className="absolute top-2 right-2 bg-slate-100 z-40"
+          >
+            <Button
+              size={"icon"}
+              variant={"link"}
+              className=" rounded-md text-muted-foreground hover:no-underline hover:text-slate-700 hover:shadow-lg transition-all dark:bg-slate-800"
+              onClick={() => {
+                setIsSheetOpen(false);
+              }}
+            >
+              x
+            </Button>
+          </SheetClose>
         </SheetContent>
       </Sheet>
     </div>

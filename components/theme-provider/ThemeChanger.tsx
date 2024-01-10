@@ -10,7 +10,7 @@ export function ThemeChanger({ className }: { className?: string }) {
 
   return (
     <div
-      className={` mt-2 w-10  rounded-md ${className}   absolute top-20 right-2 `}
+      className={`   w-10  rounded-md ${className}  absolute  top-20 right-10 `}
     >
       {theme === "light" ? (
         <Button

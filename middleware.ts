@@ -8,7 +8,8 @@ export default authMiddleware({
     "/",
     "/cart",
     "/product",
-
+    "/about",
+    "/careers",
     "/category/:slug",
     "/category/:slug/:productSlug",
     "/api/catalogue",

@@ -3,7 +3,7 @@ import { Skeleton } from "../ui/skeleton";
 
 function HeaderMenuLoading() {
   return (
-    <div className="flex gap-5 flex-col justify-start lg:flex-row">
+    <div className="wrapper flex gap-5 flex-col justify-start lg:flex-row">
       {Array(5)
         .fill("")
         .map(() => (
