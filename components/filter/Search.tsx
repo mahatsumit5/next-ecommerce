@@ -20,6 +20,7 @@ const Search = ({
           onChange={(e) => {
             setQuery(e.target.value);
           }}
+          value={query}
           className="w-full rounded-md shadow-lg border-none filter-components dark:bg-slate-700/25"
         />
       </div>

@@ -26,6 +26,7 @@ const Limit = ({
           onValueChange={(e) => {
             setLimit(e);
           }}
+          value={limit}
         >
           <SelectTrigger className="w-full border-none shadow-md filter-components dark:bg-slate-700/25">
             <SelectValue placeholder="Limit" />

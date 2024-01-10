@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { formUrlQuery, removeKeysFromQuery } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
-
+import _debounce from "lodash/debounce";
 const ReuseableFilter = ({
   query,
   children,
@@ -15,27 +15,28 @@ const ReuseableFilter = ({
 }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
+
+  const delayDebounceFn = _debounce(() => {
+    let newUrl = "";
+
+    if (query) {
+      newUrl = formUrlQuery({
+        params: searchParams.toString(),
+        key: name,
+        value: query,
+      });
+    } else {
+      newUrl = removeKeysFromQuery({
+        params: searchParams.toString(),
+        keysToRemove: [`${name}`],
+      });
+    }
+
+    router.push(newUrl, { scroll: false });
+  }, 300);
   useEffect(() => {
-    const delayDebounceFn = setTimeout(() => {
-      let newUrl = "";
-
-      if (query) {
-        newUrl = formUrlQuery({
-          params: searchParams.toString(),
-          key: name,
-          value: query,
-        });
-      } else {
-        newUrl = removeKeysFromQuery({
-          params: searchParams.toString(),
-          keysToRemove: [`${name}`],
-        });
-      }
-
-      router.push(newUrl, { scroll: false });
-    }, 0);
-
-    return () => clearTimeout(delayDebounceFn);
+    delayDebounceFn();
+    return delayDebounceFn.cancel;
   }, [query, searchParams, router]);
   return children;
 };

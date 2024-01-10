@@ -29,7 +29,7 @@ export const getAllProducts = async ({
   size,
 }: getAllProductProps) => {
   try {
-    console.log(size);
+    return;
     await connectToDatabase();
     const searchedCategory = await Category.findOne({ slug: category }).select([
       "_id",

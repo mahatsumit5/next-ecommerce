@@ -36,6 +36,7 @@ export function CategoryDropdown({
           onValueChange={(e) => {
             setSelectedCategory(e);
           }}
+          value={selectedCategory}
         >
           <SelectTrigger className="w-full border-none shadow-md filter-components dark:bg-slate-700/25 ">
             <SelectValue placeholder="Select a category" />
