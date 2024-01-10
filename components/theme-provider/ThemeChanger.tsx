@@ -13,7 +13,7 @@ export function ThemeChanger({ className }: { className?: string }) {
       {theme === "light" ? (
         <Button
           variant={"link"}
-          className="text-3xl animate-spin hover:animate-ping"
+          className="text-3xl  hover:animate-ping"
           onClick={() => {
             setTheme("dark");
           }}
@@ -23,7 +23,7 @@ export function ThemeChanger({ className }: { className?: string }) {
       ) : (
         <Button
           variant={"link"}
-          className={`text-2xl animate-bounce hover:animate-ping ${
+          className={`text-2xl  hover:animate-ping ${
             theme === "light" && "animate-ping"
           }`}
           onClick={() => {

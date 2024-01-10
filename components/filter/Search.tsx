@@ -1,60 +1,26 @@
 "use client";
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { Input } from "../ui/input";
 
 import ReuseableFilter from "./ReusableFilterComponent";
-import { getAllCategories } from "@/lib/actions/category.actions";
-import { getSearchedProducts } from "@/lib/actions/product.actions";
-import { ICategory, IProduct } from "@/types";
 
 const Search = ({
-  classname,
-  setCategories,
-  setProducts,
-  setLoading,
-  type,
+  query,
+  setQuery,
 }: {
-  classname: string;
-  setCategories?: Dispatch<SetStateAction<ICategory[]>>;
-  setProducts?: Dispatch<SetStateAction<IProduct[]>>;
-  setLoading?: Dispatch<SetStateAction<boolean>>;
-  type: "searchModal" | "productPage";
+  query: string;
+  setQuery: Dispatch<SetStateAction<string>>;
 }) => {
-  const [query, setQuery] = useState<string>("");
-
-  useEffect(() => {
-    if (type === "productPage") {
-      return;
-    }
-    async function getData() {
-      setLoading && setLoading(true);
-      getAllCategories({ query, skip: 0 }).then((categories) => {
-        setCategories && setCategories(categories?.data as ICategory[]);
-        setLoading && setLoading(false);
-      });
-
-      getSearchedProducts(query).then((result) => {
-        setProducts && setProducts(result);
-        setLoading && setLoading(false);
-      });
-    }
-    const debounceFn = setTimeout(() => {
-      getData();
-    }, 500);
-
-    return () => clearTimeout(debounceFn);
-  }, [query]);
-
   return (
-    <ReuseableFilter name="query" query={query}>
-      <div className={classname}>
+    <ReuseableFilter name="slug" query={query} key={"query"}>
+      <div className={"w-full"}>
         <Input
           placeholder={"Search products or categories"}
           type={"text"}
           onChange={(e) => {
             setQuery(e.target.value);
           }}
-          className="w-full rounded-md shadow-lg border-none filter-components "
+          className="w-full rounded-md shadow-lg border-none filter-components dark:bg-slate-700/25"
         />
       </div>
     </ReuseableFilter>

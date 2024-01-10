@@ -13,9 +13,14 @@ import {
 } from "@/components/ui/select";
 import ReuseableFilter from "./ReusableFilterComponent";
 
-export function CategoryDropdown() {
+export function CategoryDropdown({
+  selectedCategory,
+  setSelectedCategory,
+}: {
+  setSelectedCategory: React.Dispatch<React.SetStateAction<string>>;
+  selectedCategory: string;
+}) {
   const [categories, setCategoreis] = useState<ICategory[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState<string>("");
   useEffect(() => {
     async function getData() {
       const result = await getAllCategories({ query: "", skip: 0 });
@@ -25,18 +30,14 @@ export function CategoryDropdown() {
   }, []);
 
   return (
-    <ReuseableFilter
-      query={selectedCategory}
-      name="category"
-      key={selectedCategory}
-    >
+    <ReuseableFilter query={selectedCategory} name="category" key={"category"}>
       <div id="search" className="w-full ">
         <Select
           onValueChange={(e) => {
             setSelectedCategory(e);
           }}
         >
-          <SelectTrigger className="w-full border-none shadow-md filter-components ">
+          <SelectTrigger className="w-full border-none shadow-md filter-components dark:bg-slate-700/25 ">
             <SelectValue placeholder="Select a category" />
           </SelectTrigger>
           <SelectContent>

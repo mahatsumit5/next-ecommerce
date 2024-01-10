@@ -20,15 +20,15 @@ const Search = ({
 
   useEffect(() => {
     async function getData() {
-      setLoading && setLoading(true);
+      setLoading(true);
       getAllCategories({ query, skip: 0 }).then((categories) => {
-        setCategories && setCategories(categories?.data as ICategory[]);
-        setLoading && setLoading(false);
+        setCategories(categories?.data as ICategory[]);
+        setLoading(false);
       });
 
       getSearchedProducts(query).then((result) => {
-        setProducts && setProducts(result);
-        setLoading && setLoading(false);
+        setProducts(result);
+        setLoading(false);
       });
     }
     const debounceFn = setTimeout(() => {

@@ -2,21 +2,29 @@ import Filter from "@/components/filter/Filter";
 import Collection from "@/components/shared/Collection";
 import { ProductPagination } from "@/components/shared/Pagination";
 import { getAllProducts } from "@/lib/actions/product.actions";
-import { IProduct, SearchParamProps } from "@/types";
+import { IProduct, SearchParamProps, SizeArray } from "@/types";
 import React from "react";
 
 async function page({ searchParams }: SearchParamProps) {
-  const query = (searchParams?.query as string) || "";
+  const query = (searchParams?.slug as string) || "";
   const page = (searchParams?.page as string) || 1;
-  const sort = (searchParams?.sort as string) || "asc";
+  const sort = (searchParams?.sort as "asc" | "desc") || "asc";
   const category = (searchParams?.category as string) || "";
   const limit = (searchParams?.limit as string) || 4;
+  const size = (searchParams?.size as string)?.split(",") || [
+    "xs",
+    "lg",
+    "md",
+    "sm",
+    "xl",
+  ];
   const data = await getAllProducts({
     limit: Number(limit),
     query,
     page: Number(page),
     sort: sort,
     category,
+    size: size as SizeArray,
   });
 
   return (

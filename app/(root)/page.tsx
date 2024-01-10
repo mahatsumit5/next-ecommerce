@@ -26,10 +26,6 @@ async function Home({ searchParams }: SearchParamProps) {
         <div className="hidden md:block">
           <HeaderMenu />
         </div>
-
-        <div className="w-full flex justify-end fixed md:static top-20 right-0 ">
-          <ThemeChanger />
-        </div>
       </div>
       <Hero />
       <section className=" mt-10 flex flex-col gap-5" id="category">

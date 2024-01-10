@@ -21,3 +21,5 @@ export const menu = [
     path: "/profile",
   },
 ];
+
+export const size = [];

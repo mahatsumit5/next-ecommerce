@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import ReuseableFilter from "./ReusableFilterComponent";
 import {
   Select,
@@ -9,18 +9,25 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-const Limit = ({ total }: { total: number }) => {
-  const [limit, setLimit] = useState<string>("");
+const Limit = ({
+  total,
+  limit,
+  setLimit,
+}: {
+  total: number;
+  limit: string;
+  setLimit: Dispatch<SetStateAction<string>>;
+}) => {
   return (
-    <ReuseableFilter name="limit" query={limit}>
-      <div className="w-full filter-components">
+    <ReuseableFilter name="limit" query={limit} key={"limit"}>
+      <div className="w-full  rounded-md">
         {" "}
         <Select
           onValueChange={(e) => {
             setLimit(e);
           }}
         >
-          <SelectTrigger className="w-full border-none shadow-md">
+          <SelectTrigger className="w-full border-none shadow-md filter-components dark:bg-slate-700/25">
             <SelectValue placeholder="Limit" />
           </SelectTrigger>
           <SelectContent>

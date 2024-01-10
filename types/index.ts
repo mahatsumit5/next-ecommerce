@@ -123,13 +123,15 @@ export type RemoveUrlQueryParams = {
   params: string;
   keysToRemove: string[];
 };
-
+type size = "xs" | "sm" | "md" | "lg" | "xl";
+export type SizeArray = size[];
 export type getAllProductProps = {
   query: string;
   limit: number;
   page: number;
-  sort: string;
+  sort: "asc" | "desc";
   category: string;
+  size: SizeArray;
 };
 export type IMainCat = {
   _id: string;

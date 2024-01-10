@@ -45,6 +45,9 @@ const Header = () => {
           </div>
 
           <div className="flex gap-3 sm:gap-5">
+            <div className="hidden sm:block">
+              <ThemeChanger />
+            </div>
             <Dialog />
 
             <CartButton cart={cart} />

@@ -1,6 +1,5 @@
 "use client";
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { Input } from "../ui/input";
+import React, { useEffect } from "react";
 import { formUrlQuery, removeKeysFromQuery } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
@@ -34,7 +33,7 @@ const ReuseableFilter = ({
       }
 
       router.push(newUrl, { scroll: false });
-    }, 50);
+    }, 0);
 
     return () => clearTimeout(delayDebounceFn);
   }, [query, searchParams, router]);

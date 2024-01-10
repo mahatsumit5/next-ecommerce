@@ -66,7 +66,7 @@ export function removeKeysFromQuery({
 }
 
 export const resetFilter = (params: string) => {
-  const queryKeys = ["query", "sort", "search", "category", "limit"];
+  const queryKeys = ["slug", "sort", "search", "category", "limit", "size"];
   return removeKeysFromQuery({ params, keysToRemove: queryKeys });
 };
 

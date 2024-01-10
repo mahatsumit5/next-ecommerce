@@ -15,6 +15,7 @@ const raleway = Raleway({ weight: ["400"], subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Classic Fashion Wears",
   description: "Online store for classic fashion wears",
+  icons: "",
 };
 
 export default function RootLayout({
