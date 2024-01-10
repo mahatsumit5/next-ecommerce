@@ -27,19 +27,20 @@ export const getAllProducts = async ({
   sort,
   category,
   size,
+  gte,
+  lte,
 }: getAllProductProps) => {
   try {
-    return;
     await connectToDatabase();
     const searchedCategory = await Category.findOne({ slug: category }).select([
       "_id",
     ]);
-    const condition = query
+    const slugConn = query
       ? {
           slug: { $regex: query, $options: "i" },
         }
       : {};
-    const condition2 = searchedCategory
+    const categoryConn = searchedCategory
       ? {
           $or: [
             {
@@ -48,15 +49,19 @@ export const getAllProducts = async ({
           ],
         }
       : {};
-    const condition3 = {
+    const sizeConn = {
       size: { $in: size },
+    };
+    const priceConn = {
+      price: { $gte: gte, $lte: lte },
     };
 
     const skipAmount = (Number(page) - 1) * limit;
     const products = await Product.find({
-      ...condition3,
-      ...condition2,
-      ...condition,
+      ...sizeConn,
+      ...categoryConn,
+      ...slugConn,
+      ...priceConn,
     })
 
       .limit(limit)
@@ -65,7 +70,7 @@ export const getAllProducts = async ({
 
     const totalProducts = await mongoose.connection.db
       .collection("products")
-      .countDocuments(condition2);
+      .countDocuments({ ...sizeConn, ...categoryConn, ...slugConn });
     return {
       data: JSON.parse(JSON.stringify(products)),
       count: Math.ceil(totalProducts / limit),

@@ -56,7 +56,7 @@ const Size = ({
     <div>
       <Select>
         <SelectTrigger className="w-full border-none shadow-md filter-components dark:bg-slate-700/25 ">
-          <SelectValue placeholder={size || "size"} />
+          <SelectValue placeholder={"size"} />
         </SelectTrigger>
         <SelectContent>
           {avialbleSizes.map((s) => {

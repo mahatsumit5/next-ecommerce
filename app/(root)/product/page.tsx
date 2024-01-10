@@ -8,6 +8,8 @@ import React from "react";
 async function page({ searchParams }: SearchParamProps) {
   const query = (searchParams?.slug as string) || "";
   const page = (searchParams?.page as string) || 1;
+  const priceRange = (searchParams?.price_range as string) || "0-Infinity";
+  const rangeAray = priceRange.split("-");
   const sort = (searchParams?.sort as "asc" | "desc") || "asc";
   const category = (searchParams?.category as string) || "";
   const limit = (searchParams?.limit as string) || 4;
@@ -25,6 +27,8 @@ async function page({ searchParams }: SearchParamProps) {
     sort: sort,
     category,
     size: size as SizeArray,
+    gte: Number(rangeAray[0]),
+    lte: Number(rangeAray[1]),
   });
 
   return (

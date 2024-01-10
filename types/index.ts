@@ -132,6 +132,8 @@ export type getAllProductProps = {
   sort: "asc" | "desc";
   category: string;
   size: SizeArray;
+  gte: number;
+  lte: number;
 };
 export type IMainCat = {
   _id: string;
