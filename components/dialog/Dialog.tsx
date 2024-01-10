@@ -62,27 +62,27 @@ const Dialog = () => {
           />
         </Button>
       </AlertDialogTrigger>
-      <AlertDialogContent className=" bg-black/50 backdrop-blur-2xl h-[90svh]  w-[95svw] ">
-        <AlertDialogHeader className="">
+      <AlertDialogContent className=" bg-black/50 backdrop-blur-2xl h-[100svh]  w-[97svw] ">
+        <AlertDialogHeader className=" h-1/7">
           <AlertDialogTitle>
             <Search query={query} setQuery={setQuery} />
           </AlertDialogTitle>
-          <AlertDialogDescription className="flex flex-col gap-5  text-slate-100 items-start h-[70svh] overflow-y-auto ">
-            <SearchDataComponent
-              data={categories}
-              type="category"
-              setIsOpen={setIsOpen}
-              loading={loading}
-            />
-            <SearchDataComponent
-              data={products}
-              type="product"
-              setIsOpen={setIsOpen}
-              loading={loading}
-            />
-          </AlertDialogDescription>
         </AlertDialogHeader>
-        <AlertDialogFooter className="w-full ">
+        <AlertDialogDescription className="flex flex-col gap-5  text-slate-100 items-start h-5/7 overflow-y-auto ">
+          <SearchDataComponent
+            data={categories}
+            type="category"
+            setIsOpen={setIsOpen}
+            loading={loading}
+          />
+          <SearchDataComponent
+            data={products}
+            type="product"
+            setIsOpen={setIsOpen}
+            loading={loading}
+          />
+        </AlertDialogDescription>
+        <AlertDialogFooter className="w-full h-1/7  ">
           <AlertDialogCancel
             onClick={() => {
               setQuery("");
