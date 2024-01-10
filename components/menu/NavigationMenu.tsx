@@ -7,6 +7,7 @@ import { BsPerson } from "react-icons/bs";
 import { PiInfoThin } from "react-icons/pi";
 import { MdOutlineWorkHistory } from "react-icons/md";
 import { GoListUnordered } from "react-icons/go";
+import { GiClothes } from "react-icons/gi";
 import { usePathname, useRouter } from "next/navigation";
 const navigationFont = Raleway({ weight: ["400"], subsets: ["latin"] });
 
@@ -15,6 +16,11 @@ export const menu = [
     name: "Home",
     path: "/",
     icon: <TiHomeOutline color="" />,
+  },
+  {
+    name: "Products",
+    path: "/products",
+    icon: <GiClothes color="" />,
   },
   {
     name: "About",

@@ -18,27 +18,33 @@ const Header = () => {
 
   return (
     <>
-      <header className=" w-full  h-[70px] shadow-2xl sticky top-0 z-30 bg-slate-300/50 backdrop-blur-2xl dark:bg-slate-800 pt-1 ">
+      <header className=" w-full  h-[80px] shadow-2xl sticky top-0 z-30 bg-slate-300/50 backdrop-blur-2xl dark:bg-slate-800 pt-1 ">
         <div className="  wrapper flex justify-between h-16 items-center gap-5 relative">
           <div className="flex gap-5 justify-between items-center   ">
             <MobileMenu />
 
-            <div className=" relative w-[250px]  h-[100px] overflow-hidden hidden sm:block ">
-              <Link href={"/"}>
+            <div className=" relative mt-2 h-[50px] w-[50px] md:h-[64px] md:w-[65px]   rounded-full ">
+              <Link href={"/"} className="">
                 <Image
-                  src={"/assets/logo.svg"}
+                  src={"/assets/logo-light.png"}
                   fill
                   alt="logo"
-                  className="object-fill absolute -left-5"
+                  className="object-fill rounded-full dark:hidden"
+                />
+                <Image
+                  src={"/assets/logo-dark.png"}
+                  fill
+                  alt="logo"
+                  className="object-fill rounded-full hidden dark:block"
                 />
               </Link>
             </div>
 
-            <span
+            {/* <span
               className={`block sm:hidden ${alerta.className} text-red-600 text-3xl `}
             >
               <Link href={"/"}>CFW</Link>
-            </span>
+            </span> */}
             <div className="hidden lg:block     ">
               <NavigationMenu />{" "}
             </div>

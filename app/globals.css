@@ -101,6 +101,10 @@
   .filter-components {
     @apply dark:text-slate-300 hover:dark:bg-slate-600/45 hover:scale-105 transition-all;
   }
+
+  .footer-icons {
+    @apply h-12 w-12 border p-3 rounded-full bg-blue-200 text-blue-700 text-2xl shadow-lg hover:scale-110 transition-all hover:bg-blue-400;
+  }
   ::-webkit-scrollbar {
     width: 10px;
   }

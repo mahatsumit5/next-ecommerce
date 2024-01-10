@@ -11,6 +11,7 @@ import { getReviews } from "@/lib/actions/review.actions";
 import { IReview } from "@/lib/database/models/review.model";
 import { calculateTypeOfStars, countProductRating } from "@/lib/utils";
 import StarRating from "./StarRating";
+import { Skeleton } from "../ui/skeleton";
 
 type CardProps = {
   data: IProduct;
@@ -25,13 +26,17 @@ function CustomProductCard({ data, slug }: CardProps) {
   };
   const [color, setColor] = useState(data.color[0]);
   const [size, setSize] = useState("");
+  const [loading, setLoading] = useState(false);
   const [reviews, setReviews] = useState<{ reviews: IReview[]; count: number }>(
     { count: 0, reviews: [] }
   );
   useEffect(() => {
     async function getData() {
-      const result = await getReviews(data._id);
+      setLoading(true);
+      const pending = getReviews(data._id);
+      const result = await pending;
       if (result?.count) setReviews(result);
+      setLoading(false);
     }
     getData();
   }, [data]);
@@ -61,13 +66,24 @@ function CustomProductCard({ data, slug }: CardProps) {
           {data.description}
         </p>
         <div className="flex justify-between">
-          <span className="flex ">
-            <>
-              <StarRating number={stars?.fullStar} type="filled" />
-              <StarRating number={stars?.halfStar} type="half" />
-              <StarRating number={stars?.emptyStar} type="empty" />
-            </>
-          </span>
+          {loading ? (
+            <span className="flex gap-1">
+              <Skeleton className="w-[20px] rounded-full" />
+              <Skeleton className="w-[20px] rounded-full" />
+              <Skeleton className="w-[20px] rounded-full" />
+              <Skeleton className="w-[20px] rounded-full" />
+              <Skeleton className="w-[20px] rounded-full" />
+            </span>
+          ) : (
+            <span className="flex ">
+              <>
+                <StarRating number={stars?.fullStar} type="filled" />
+                <StarRating number={stars?.halfStar} type="half" />
+                <StarRating number={stars?.emptyStar} type="empty" />
+              </>
+            </span>
+          )}
+
           <span className="flex justify-start gap-2">
             {data.color.map((c, index) => (
               <button

@@ -6,11 +6,11 @@ import { Button } from "../ui/button";
 import { IoCallOutline } from "react-icons/io5";
 import { FaInstagram } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
-import { Raleway, Dosis } from "next/font/google";
+import { Raleway, Dosis, Dancing_Script, Pacifico } from "next/font/google";
 import { FaQuestion } from "react-icons/fa";
 import { CiMail } from "react-icons/ci";
 const adlam = Raleway({ weight: ["400"], subsets: ["cyrillic-ext"] });
-
+const pacifico = Pacifico({ weight: ["400"], subsets: ["latin"] });
 const Footer = () => {
   return (
     <footer
@@ -19,20 +19,15 @@ const Footer = () => {
       <div className="wrapper flex flex-col">
         <div className="w-full flex-col md:flex-row flex border-b pb-4 gap-5 ">
           <div className="flex-1  flex flex-col gap-5">
-            <div className="relative w-full h-32">
+            <div className=" w-full  h-32 flex items-center justify-center text-6xl text-cyan-700 dark:text-cyan-400">
               <Link
                 href={"/"}
                 onClick={() => {
                   window.scrollTo(0, 0);
                 }}
+                className={pacifico.className}
               >
-                <Image
-                  src={"/assets/logo.svg"}
-                  alt="logo"
-                  fill
-                  className="object-cover"
-                  loading="lazy"
-                />
+                Classic fashion wears
               </Link>
             </div>
             <span className="text-justify  text-muted-foreground text-md">
@@ -43,7 +38,7 @@ const Footer = () => {
             </span>
             <div className=" w-full flex-col gap-5 sm:flex-row flex justify-between">
               <span className="flex gap-2">
-                <span className="h-12 w-12 border p-3 rounded-full bg-blue-200 text-blue-500 text-2xl shadow-lg">
+                <span className="footer-icons ">
                   <FaQuestion />
                 </span>
                 <span>
@@ -54,7 +49,7 @@ const Footer = () => {
                 </span>
               </span>
               <span className="flex gap-2">
-                <span className="h-12 w-12 border p-3 rounded-full bg-blue-200 text-blue-500 text-2xl shadow-lg">
+                <span className="footer-icons ">
                   <CiMail />
                 </span>
                 <span>
@@ -100,13 +95,13 @@ const Footer = () => {
 
           <div className="w-full flex justify-between flex-col gap-5 md:flex-row h-full ">
             <div className="flex gap-3">
-              <span className="h-12 w-12 border p-3 rounded-full bg-blue-200 text-blue-500 text-2xl shadow-lg">
+              <span className="footer-icons ">
                 <IoCallOutline />
               </span>
-              <span className="h-12 w-12 border p-3 rounded-full bg-blue-200 text-blue-500 text-2xl shadow-lg">
+              <span className="footer-icons ">
                 <FaInstagram />
               </span>
-              <span className="h-12 w-12 border p-3 rounded-full bg-blue-200 text-blue-500 text-2xl shadow-lg">
+              <span className="footer-icons ">
                 <FaFacebook />
               </span>
             </div>
