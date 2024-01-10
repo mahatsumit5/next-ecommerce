@@ -17,7 +17,7 @@ export function ProductPagination({ count }: { count: number }) {
   for (let i = 1; i <= count; i++) {
     array.push(i + "");
   }
-  const [page, setPage] = useState("1");
+  const [page, setPage] = useState("");
 
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -43,6 +43,8 @@ export function ProductPagination({ count }: { count: number }) {
 
     return () => clearTimeout(delayDebounceFn);
   }, [page, searchParams, router]);
+
+  console.log(count);
   return (
     <Pagination>
       <PaginationContent>

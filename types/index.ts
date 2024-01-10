@@ -128,6 +128,8 @@ export type getAllProductProps = {
   query: string;
   limit: number;
   page: number;
+  sort: string;
+  category: string;
 };
 export type IMainCat = {
   _id: string;

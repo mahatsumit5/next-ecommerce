@@ -7,6 +7,8 @@ import Link from "next/link";
 import React from "react";
 import { SearchParamProps } from "@/types";
 import MoreCategoryButton from "@/components/home/MoreCategoryButton";
+import { HeaderMenu } from "@/components/menu/HeaderMenu";
+import { ThemeChanger } from "@/components/theme-provider/ThemeChanger";
 async function Home({ searchParams }: SearchParamProps) {
   const query = (searchParams?.query as string) || "";
   const skip = (searchParams?.skip as string) || 0;
@@ -20,6 +22,15 @@ async function Home({ searchParams }: SearchParamProps) {
   const products = await getFewProducts(4, query);
   return (
     <>
+      <div className="flex justify-between ">
+        <div className="hidden md:block">
+          <HeaderMenu />
+        </div>
+
+        <div className="w-full flex justify-end fixed md:static top-20 right-0 ">
+          <ThemeChanger />
+        </div>
+      </div>
       <Hero />
       <section className=" mt-10 flex flex-col gap-5" id="category">
         <span className="flex justify-between">

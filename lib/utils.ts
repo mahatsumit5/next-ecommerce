@@ -65,6 +65,11 @@ export function removeKeysFromQuery({
   );
 }
 
+export const resetFilter = (params: string) => {
+  const queryKeys = ["query", "sort", "search", "category", "limit"];
+  return removeKeysFromQuery({ params, keysToRemove: queryKeys });
+};
+
 export const rearrangeReduxData = (
   parentCat: IMainCat[],
   menuItems: TMenuStore[]

@@ -55,7 +55,7 @@ export function HeaderMenu({
   return (
     <>
       {
-        <div className="hidden md:block wrapper">
+        <div className="hidden md:block ">
           <NavigationMenu>
             <NavigationMenuList className="flex gap-5 justify-start flex-row overflow-x-auto">
               {parentCat.map((parentCat, index) => {

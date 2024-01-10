@@ -9,9 +9,7 @@ export function ThemeChanger({ className }: { className?: string }) {
   const { setTheme, theme } = useTheme();
 
   return (
-    <div
-      className={`   w-10  rounded-md ${className}  absolute  top-20 right-10 `}
-    >
+    <div className="">
       {theme === "light" ? (
         <Button
           variant={"link"}

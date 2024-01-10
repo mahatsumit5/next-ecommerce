@@ -50,12 +50,8 @@ const Header = () => {
             <CartButton cart={cart} />
             <LoginButton />
           </div>
-          <ThemeChanger />
         </div>
       </header>
-      <div className="hidden md:block">
-        <HeaderMenu />
-      </div>
     </>
   );
 };

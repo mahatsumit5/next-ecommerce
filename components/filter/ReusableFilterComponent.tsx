@@ -4,15 +4,15 @@ import { Input } from "../ui/input";
 import { formUrlQuery, removeKeysFromQuery } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Search = ({
+const ReuseableFilter = ({
   query,
-  setQuery,
+  children,
+  name,
 }: {
   query: string;
-  setQuery: Dispatch<SetStateAction<string>>;
+  children: React.ReactNode;
+  name: string;
 }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -23,33 +23,22 @@ const Search = ({
       if (query) {
         newUrl = formUrlQuery({
           params: searchParams.toString(),
-          key: "query",
+          key: name,
           value: query,
         });
       } else {
         newUrl = removeKeysFromQuery({
           params: searchParams.toString(),
-          keysToRemove: ["query"],
+          keysToRemove: [`${name}`],
         });
       }
 
       router.push(newUrl, { scroll: false });
-    }, 300);
+    }, 50);
 
     return () => clearTimeout(delayDebounceFn);
   }, [query, searchParams, router]);
-  return (
-    <div className="flex-1">
-      <Input
-        placeholder={"Search products or categories"}
-        type={"text"}
-        onChange={(e) => {
-          setQuery(e.target.value);
-        }}
-        className="w-full rounded-full shadow-lg border-none  dark:bg-blue-200 dark:text-slate-800 "
-      />
-    </div>
-  );
+  return children;
 };
 
-export default Search;
+export default ReuseableFilter;

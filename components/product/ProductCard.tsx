@@ -2,9 +2,6 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { StarFilledIcon, StarIcon } from "@radix-ui/react-icons";
-
-import { FaStarHalfAlt, FaStar, FaRegStar } from "react-icons/fa";
 import { IProduct } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,10 +11,12 @@ import { getReviews } from "@/lib/actions/review.actions";
 import { IReview } from "@/lib/database/models/review.model";
 import { calculateTypeOfStars, countProductRating } from "@/lib/utils";
 import StarRating from "./StarRating";
+
 type CardProps = {
   data: IProduct;
   slug?: string;
 };
+
 function CustomProductCard({ data, slug }: CardProps) {
   let stars = {
     fullStar: 0,

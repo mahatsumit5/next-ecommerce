@@ -10,39 +10,18 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
-import Search from "../shared/Search";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { ICategory, IProduct } from "@/types";
-import { getAllCategories } from "@/lib/actions/category.actions";
-import { getSearchedProducts } from "@/lib/actions/product.actions";
+
 import SearchDataComponent from "./SearchDataComponent";
+import Search from "./Search";
 
 const Dialog = () => {
-  const [query, setQuery] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [categories, setCategories] = useState<ICategory[]>([]);
   const [products, setProducts] = useState<IProduct[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
-  useEffect(() => {
-    async function getData() {
-      setLoading(true);
-      getAllCategories({ query, skip: 0 }).then((categories) => {
-        setCategories(categories?.data as ICategory[]);
-        setLoading(false);
-      });
-
-      getSearchedProducts(query).then((result) => {
-        setProducts(result);
-        setLoading(false);
-      });
-    }
-    const debounceFn = setTimeout(() => {
-      getData();
-    }, 500);
-
-    return () => clearTimeout(debounceFn);
-  }, [query]);
 
   return (
     <AlertDialog open={isOpen}>
@@ -65,7 +44,12 @@ const Dialog = () => {
       <AlertDialogContent className=" bg-black/50 backdrop-blur-2xl h-[100svh]  w-[97svw] ">
         <AlertDialogHeader className=" h-1/7">
           <AlertDialogTitle>
-            <Search query={query} setQuery={setQuery} />
+            <Search
+              classname="flex"
+              setCategories={setCategories}
+              setLoading={setLoading}
+              setProducts={setProducts}
+            />
           </AlertDialogTitle>
         </AlertDialogHeader>
         <AlertDialogDescription className="flex flex-col gap-5  text-slate-100 items-start h-5/7 overflow-y-auto ">
@@ -84,11 +68,10 @@ const Dialog = () => {
         </AlertDialogDescription>
         <AlertDialogFooter className="w-full h-1/7  ">
           <AlertDialogCancel
+            className="w-full"
             onClick={() => {
-              setQuery("");
               setIsOpen(false);
             }}
-            className="w-full"
           >
             Close
           </AlertDialogCancel>

@@ -24,21 +24,44 @@ export const getAllProducts = async ({
   query,
   limit,
   page,
+  sort,
+  category,
 }: getAllProductProps) => {
   try {
     await connectToDatabase();
-    const condition = query ? { slug: { $regex: query, $options: "i" } } : {};
+    const searchedCategory = await Category.findOne({ slug: category }).select([
+      "_id",
+    ]);
+    const condition = query
+      ? {
+          slug: { $regex: query, $options: "i" },
+        }
+      : {};
+    const condition2 = searchedCategory
+      ? {
+          $or: [
+            {
+              category: searchedCategory._id,
+              slug: { $regex: query, $options: "i" },
+            },
+          ],
+        }
+      : condition;
+
     const skipAmount = (Number(page) - 1) * limit;
-    const products = await Product.find(condition)
+    const products = await Product.find(condition2)
+
       .limit(limit)
-      .skip(skipAmount);
+      .skip(skipAmount)
+      .sort({ price: "asc" });
 
     const totalProducts = await mongoose.connection.db
       .collection("products")
-      .countDocuments(condition);
+      .countDocuments(condition2);
     return {
       data: JSON.parse(JSON.stringify(products)),
       count: Math.ceil(totalProducts / limit),
+      totalProducts,
     };
   } catch (error) {
     handleError(error);
