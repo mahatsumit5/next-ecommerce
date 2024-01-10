@@ -55,14 +55,14 @@ function MobileMenu() {
             icon={faBars}
             style={{ color: "#1056d1" }}
             size="xl"
-            className="hover:animate-bounce transition-all"
+            className="hover:animate-spin transition-all"
             onClick={() => {
               setIsSheetOpen(true);
             }}
           />
         </SheetTrigger>
 
-        <SheetContent className="overflow-y-auto  ">
+        <SheetContent className="overflow-y-auto flex flex-col ">
           <SheetHeader className="flex flex-row w-full  relative">
             <div className=" w-full  h-[80px] absolute -top-10 ">
               <Link
@@ -95,8 +95,12 @@ function MobileMenu() {
             )}
           </SheetHeader>
 
-          <div className="mt-14 flex  flex-col gap-3  ">
+          <div className="mt-14 flex  flex-col gap-3 flex-1   ">
             {components[displayContent]}
+          </div>
+
+          <div className="h-14 border-t pt-3">
+            <LoginButton />
           </div>
 
           <SheetClose

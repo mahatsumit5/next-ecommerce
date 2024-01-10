@@ -48,7 +48,7 @@ const Dialog = () => {
     <AlertDialog open={isOpen}>
       <AlertDialogTrigger asChild className="w-full rounded-md">
         <Button
-          className="rounded-3xl  w-4  sm:w-16  sm:shadow-lg sm:dark:bg-slate-600 hover:scale-125 transition-all "
+          className="rounded-3xl  w-8  sm:w-16  sm:shadow-lg sm:dark:bg-slate-600 hover:scale-125 transition-all "
           variant="link"
           onClick={() => {
             setIsOpen(!isOpen);
@@ -62,12 +62,12 @@ const Dialog = () => {
           />
         </Button>
       </AlertDialogTrigger>
-      <AlertDialogContent className=" bg-black/50 backdrop-blur-2xl h-[90svh]  ">
-        <AlertDialogHeader>
+      <AlertDialogContent className=" bg-black/50 backdrop-blur-2xl h-[90svh]  w-[95svw] ">
+        <AlertDialogHeader className="">
           <AlertDialogTitle>
             <Search query={query} setQuery={setQuery} />
           </AlertDialogTitle>
-          <AlertDialogDescription className="flex flex-col gap-5  text-slate-100 items-start max-h-[70svh] overflow-y-auto ">
+          <AlertDialogDescription className="flex flex-col gap-5  text-slate-100 items-start h-[70svh] overflow-y-auto ">
             <SearchDataComponent
               data={categories}
               type="category"
@@ -82,7 +82,7 @@ const Dialog = () => {
             />
           </AlertDialogDescription>
         </AlertDialogHeader>
-        <AlertDialogFooter className="w-full">
+        <AlertDialogFooter className="w-full ">
           <AlertDialogCancel
             onClick={() => {
               setQuery("");

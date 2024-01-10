@@ -55,9 +55,9 @@ export function HeaderMenu({
   return (
     <>
       {
-        <div className="hidden lg:block wrapper">
+        <div className="hidden md:block wrapper">
           <NavigationMenu>
-            <NavigationMenuList className="flex gap-5 justify-start flex-row">
+            <NavigationMenuList className="flex gap-5 justify-start flex-row overflow-x-auto">
               {parentCat.map((parentCat, index) => {
                 return (
                   <NavigationMenuItem key={parentCat._id}>
@@ -65,7 +65,7 @@ export function HeaderMenu({
                       {parentCat.title}
                     </NavigationMenuTrigger>
                     <NavigationMenuContent className="">
-                      <ul className="p-6 md:w-[400px] lg:w-[500px] flex flex-col md:flex-row gap-3 justify-between ">
+                      <ul className="p-6 w-[400px] grid grid-cols-2 gap-3  ">
                         {arrangedData[index]?.category.map((cat, index) => (
                           <Link href={`/category/${cat.slug}`} key={index}>
                             <li className=" flex   flex-col justify-between">
@@ -94,7 +94,7 @@ export function HeaderMenu({
           </NavigationMenu>
         </div>
       }
-      <div className="block lg:hidden">
+      <div className="block md:hidden">
         <div className="flex flex-col gap-2">
           {parentCat.map((category, index) => (
             <MobileMenuAccordian

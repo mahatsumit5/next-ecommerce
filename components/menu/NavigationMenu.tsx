@@ -7,6 +7,7 @@ import { BsPerson } from "react-icons/bs";
 import { PiInfoThin } from "react-icons/pi";
 import { MdOutlineWorkHistory } from "react-icons/md";
 import { GoListUnordered } from "react-icons/go";
+import { usePathname, useRouter } from "next/navigation";
 const navigationFont = Raleway({ weight: ["400"], subsets: ["latin"] });
 
 export const menu = [
@@ -45,6 +46,7 @@ function NavigationMenu({
   setIsSheetOpen?: Dispatch<SetStateAction<boolean>>;
   setDisplayContent?: Dispatch<SetStateAction<"navigation" | "category">>;
 }) {
+  const pathname = usePathname();
   return (
     <ul
       className={`flex gap-4 text-md   flex-col lg:flex-row  ${navigationFont.className}`}
@@ -52,18 +54,25 @@ function NavigationMenu({
       {menu.map((item) => (
         <Link
           href={item.path}
+          key={item.name}
           onClick={() => {
             setIsSheetOpen && setIsSheetOpen(false);
           }}
         >
-          <li className="p-3 lg:p-2 flex gap-1 rounded-md bg-slate-400/10 hover:bg-slate-200 transition-all dark:hover:bg-slate-700 dark:bg-slate-800 dark:text-blue-400 hover:scale-110 ">
+          <li
+            className={`header-menu-navigation ${
+              pathname === item.path
+                ? " bg-slate-200 dark:bg-slate-600"
+                : " bg-slate-500/10"
+            } `}
+          >
             <p className="mt-1">{item.icon}</p>
             <p>{item.name}</p>
           </li>
         </Link>
       ))}
       <li
-        className="p-3 flex hover:cursor-pointer lg:hidden  gap-1 lg:p-2 rounded-md bg-slate-400/10 hover:bg-slate-200 transition-all dark:hover:bg-slate-700 dark:bg-slate-800 dark:text-blue-400 hover:scale-110 "
+        className="p-3 flex hover:cursor-pointer md:hidden  gap-1 lg:p-2 rounded-md bg-slate-400/10 hover:bg-slate-200 transition-all dark:hover:bg-slate-700 dark:bg-slate-800 dark:text-blue-400 hover:scale-110 "
         onClick={() => {
           setDisplayContent && setDisplayContent("category");
         }}

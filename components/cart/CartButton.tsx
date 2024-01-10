@@ -13,7 +13,7 @@ function CartButton({ cart }: { cart: ICartState[] }) {
   return (
     <CartDrawer>
       <Button
-        className="rounded-full   relative w-4 sm:w-16 sm:shadow-lg sm:dark:bg-slate-600 hover:scale-125 transition-all"
+        className="rounded-full   relative w-8 sm:w-16 sm:shadow-lg sm:dark:bg-slate-600 hover:scale-125 transition-all"
         variant="link"
         size={"sm"}
       >

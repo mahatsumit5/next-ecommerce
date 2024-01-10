@@ -12,10 +12,11 @@ function LoginButton() {
           afterSignOutUrl="/"
           appearance={{
             elements: {
-              card: "dark:bg-slate-600 z-50 border-white ",
+              card: "dark:bg-slate-400/90  dark:text-white z-50 ",
               button: "text-blue-500",
             },
           }}
+          userProfileUrl="fgdfg"
         />
       </SignedIn>
       <SignedOut>

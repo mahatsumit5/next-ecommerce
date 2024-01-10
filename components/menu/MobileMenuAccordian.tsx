@@ -31,7 +31,7 @@ function MobileMenuAccordian({
           {children}
         </AccordionTrigger>
         <AccordionContent>
-          <ul className="p-6  flex flex-row justify-between overflow-x-auto  gap-2">
+          <ul className="p-6  grid grid-cols-2 gap-2">
             {menu[index]?.category.map((cat, index) => (
               <Link
                 href={`/category/${cat.slug}`}
@@ -41,12 +41,12 @@ function MobileMenuAccordian({
                 }}
               >
                 <li className=" flex   flex-col justify-between ">
-                  <span className="w-[100px] h-[100px] relative rounded-lg  overflow-hidden gap-2 ">
+                  <span className="w-[80px] h-[80px] relative rounded-lg  shadow-md overflow-hidden gap-2 ">
                     <Image
                       src={cat.image}
                       alt="category"
                       fill
-                      className="object-cover"
+                      className="object-center object-cover"
                     />
                   </span>
                   <p className="text-md font-bold ">{cat.title}</p>

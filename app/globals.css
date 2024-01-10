@@ -93,6 +93,10 @@
   .menu-page-image {
     @apply w-[150px] h-[150px] relative rounded-lg;
   }
+
+  .header-menu-navigation {
+    @apply p-3 lg:p-2 flex gap-1 rounded-md  hover:bg-slate-200 transition-all dark:hover:bg-slate-700 dark:bg-slate-800 dark:text-blue-400 hover:scale-110;
+  }
   ::-webkit-scrollbar {
     width: 10px;
   }

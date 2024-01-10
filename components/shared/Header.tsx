@@ -53,7 +53,7 @@ const Header = () => {
           <ThemeChanger />
         </div>
       </header>
-      <div className="hidden sm:block">
+      <div className="hidden md:block">
         <HeaderMenu />
       </div>
     </>
