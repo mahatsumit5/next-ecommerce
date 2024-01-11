@@ -24,6 +24,10 @@ const Limit = ({
         {" "}
         <Select
           onValueChange={(e) => {
+            if (e === "all") {
+              setLimit("");
+              return;
+            }
             setLimit(e);
           }}
           value={limit}
@@ -33,6 +37,7 @@ const Limit = ({
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
+              <SelectItem value={"all"}>All</SelectItem>
               {Array(total > 8 ? 8 : total)
                 .fill("")
                 .map((item, index) => (

@@ -31,17 +31,17 @@ const Filter = ({ total }: { total: number }) => {
     setIsReset(false);
   }, [reset]);
   return (
-    <div className="wrapper grid gap-5 grid-cols-2 md:grid-cols-3 lg:grid-cols-7 xl:grid-cols-7 ">
+    <div className=" grid gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-7 ">
       <Search query={query} setQuery={setQuery} key={"search"} />
       <CategoryDropdown
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
         key={"category"}
       />
-      <Price range={range} setRange={setRange} key={"price"} />
-      <SortByPrice setSort={setSort} sort={sort} key={"sort"} />
       <Limit total={total} limit={limit} setLimit={setLimit} key={"limit"} />
       <Size setSize={setSize} size={size} key={"size"} />
+      <Price range={range} setRange={setRange} key={"price"} />
+      <SortByPrice setSort={setSort} sort={sort} key={"sort"} />
 
       <ResetButton setIsReset={setIsReset} />
     </div>

@@ -12,12 +12,11 @@ function ResetButton({
   const searchParams = useSearchParams();
   const router = useRouter();
   const handleReset = () => {
-    // const url = removeKeysFromQuery({
-    //   params: searchParams.toString(),
-    //   keysToRemove: queryKeys,
-    // });
-    // router.push(url, { scroll: false });
-    setIsReset(true);
+    const url = removeKeysFromQuery({
+      params: searchParams.toString(),
+      keysToRemove: queryKeys,
+    });
+    router.push(url, { scroll: false });
   };
 
   return (

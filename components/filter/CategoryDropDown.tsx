@@ -34,6 +34,10 @@ export function CategoryDropdown({
       <div id="search" className="w-full ">
         <Select
           onValueChange={(e) => {
+            if (e === "all") {
+              setSelectedCategory("");
+              return;
+            }
             setSelectedCategory(e);
           }}
           value={selectedCategory}
@@ -44,6 +48,7 @@ export function CategoryDropdown({
           <SelectContent>
             <SelectGroup>
               <SelectLabel>Available Categories</SelectLabel>
+              <SelectItem value={"all"}>All</SelectItem>
               {categories.map((cat) => (
                 <SelectItem value={cat.slug} key={cat._id}>
                   {cat.title}

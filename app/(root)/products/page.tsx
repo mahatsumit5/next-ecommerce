@@ -1,4 +1,5 @@
 import Filter from "@/components/filter/Filter";
+import MobileFilterAccordian from "@/components/filter/MobileFilterAccordian";
 import Collection from "@/components/shared/Collection";
 import { ProductPagination } from "@/components/shared/Pagination";
 import { getAllProducts } from "@/lib/actions/product.actions";
@@ -33,7 +34,14 @@ async function page({ searchParams }: SearchParamProps) {
 
   return (
     <div className="flex flex-col gap-5">
-      <Filter total={data?.totalProducts as number} />
+      <div className="hidden sm:block">
+        <Filter total={data?.totalProducts as number} />
+      </div>
+      <div className="block sm:hidden">
+        <MobileFilterAccordian>
+          <Filter total={data?.totalProducts as number} />
+        </MobileFilterAccordian>
+      </div>
       <Collection
         data={data?.data}
         emptyTitle={

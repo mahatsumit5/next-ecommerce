@@ -33,7 +33,7 @@ const ReuseableFilter = ({
     }
 
     router.push(newUrl, { scroll: false });
-  }, 300);
+  }, 500);
   useEffect(() => {
     delayDebounceFn();
     return delayDebounceFn.cancel;

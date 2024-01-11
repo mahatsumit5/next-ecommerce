@@ -71,8 +71,13 @@ const Price = ({
     <div>
       <Select
         onValueChange={(e) => {
+          if (e === "clear") {
+            setRange("");
+            return;
+          }
           setRange(e);
         }}
+        value={range}
       >
         <SelectTrigger className="w-full border-none shadow-md filter-components dark:bg-slate-700/25 ">
           <SelectValue placeholder="Select Price range" />
@@ -85,6 +90,7 @@ const Price = ({
                 {item.label}
               </SelectItem>
             ))}
+            <SelectItem value={"clear"}>Clear</SelectItem>
           </SelectGroup>
         </SelectContent>
       </Select>

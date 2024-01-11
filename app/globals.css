@@ -76,13 +76,13 @@
 }
 @layer utilities {
   .wrapper {
-    @apply max-w-[85rem] lg:mx-auto p-5 md:px-10 xl:px-0 w-full;
+    @apply max-w-full md:max-w-[90rem] lg:mx-auto p-5 md:px-10 xl:px-0 w-full;
   }
   .rounded-image {
     @apply rounded-lg;
   }
   .product-card {
-    @apply h-[150px]  sm:h-[150px] md:h-[200px];
+    @apply h-[220px]  sm:h-[250px] md:h-[300px];
   }
   .drawer-cart-image {
     @apply w-[150px] h-[150px] relative rounded-lg;

@@ -1,18 +1,16 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { IProduct } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
-import AddToCart from "../cart/AddToCart";
-import SelectSize from "./SelectSize";
 import { getReviews } from "@/lib/actions/review.actions";
 import { IReview } from "@/lib/database/models/review.model";
 import { calculateTypeOfStars, countProductRating } from "@/lib/utils";
 import StarRating from "./StarRating";
 import { Skeleton } from "../ui/skeleton";
-
+import { CiHeart } from "react-icons/ci";
+import { BiLinkExternal } from "react-icons/bi";
 type CardProps = {
   data: IProduct;
   slug?: string;
@@ -24,8 +22,7 @@ function CustomProductCard({ data, slug }: CardProps) {
     halfStar: 0,
     emptyStar: 5,
   };
-  const [color, setColor] = useState(data.color[0]);
-  const [size, setSize] = useState("");
+
   const [loading, setLoading] = useState(false);
   const [reviews, setReviews] = useState<{ reviews: IReview[]; count: number }>(
     { count: 0, reviews: [] }
@@ -44,82 +41,63 @@ function CustomProductCard({ data, slug }: CardProps) {
   stars = calculateTypeOfStars(rating || 0);
 
   return (
-    <Card className=" w-[300px] sm:w-[300px] hover:shadow-2xl transition-shadow ">
-      <CardHeader>
-        <CardTitle>
-          <div className=" product-card relative  overflow-hidden">
+    <Link href={`/category/${slug}/${data.slug}`}>
+      <div className=" w-[180px] sm:w-[200px] md:w-[280px]  ">
+        <div className="flex flex-col gap-2  hover:underline relative ">
+          <div className=" product-card relative  w-full ">
             <Image
               src={data.images[0]}
               fill
               alt="category-image"
-              className="rounded-lg hover:scale-105 transition-all product-card object-cover "
+              className="  transition-all product-card object-cover object-center "
               loading="lazy"
             />{" "}
           </div>
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="flex flex-col gap-3 ">
-        <h5 className="scroll-m-20 text-sm sm:text-xl md:text-2xl font-semibold tracking-tight line-clamp-1">
-          {data.title}
-        </h5>
-        <p className="text-sm text-muted-foreground line-clamp-2 h-10">
-          {data.description}
-        </p>
-        <div className="flex justify-between">
-          {loading ? (
-            <span className="flex gap-1">
-              <Skeleton className="w-[20px] rounded-full" />
-              <Skeleton className="w-[20px] rounded-full" />
-              <Skeleton className="w-[20px] rounded-full" />
-              <Skeleton className="w-[20px] rounded-full" />
-              <Skeleton className="w-[20px] rounded-full" />
-            </span>
-          ) : (
-            <span className="flex ">
-              <>
-                <StarRating number={stars?.fullStar} type="filled" />
-                <StarRating number={stars?.halfStar} type="half" />
-                <StarRating number={stars?.emptyStar} type="empty" />
-              </>
-            </span>
-          )}
+          <Button
+            type="button"
+            variant={"outline"}
+            size={"icon"}
+            className="absolute right-2 top-1 bg-slate-50/10 border-none text-3xl dark:bg-slate-50/10 text-red-500 rounded-full dark:hover:bg-red-700
+            "
+          >
+            <CiHeart />
+          </Button>
+          <h5 className="scroll-m-20 text-sm sm:text-lg  font-semibold tracking-tight line-clamp-1">
+            {data.title}
+          </h5>
+          <h5 className="scroll-m-20 text-sm   font-semibold   text-muted-foreground">
+            {data.category.title}
+          </h5>
 
-          <span className="flex justify-start gap-2">
-            {data.color.map((c, index) => (
-              <button
-                key={index}
-                className={`w-5 rounded-full h-5 ${
-                  color === c && "scale-125 shadow-xl border-solid"
-                }`}
-                style={{
-                  backgroundColor: c,
-                }}
-                onClick={() => {
-                  setColor(c);
-                }}
-              />
-            ))}
+          <div className="flex justify-between">
+            {loading ? (
+              <span className="flex gap-1">
+                <Skeleton className="w-[20px] rounded-full" />
+                <Skeleton className="w-[20px] rounded-full" />
+                <Skeleton className="w-[20px] rounded-full" />
+                <Skeleton className="w-[20px] rounded-full" />
+                <Skeleton className="w-[20px] rounded-full" />
+              </span>
+            ) : (
+              <span className="flex ">
+                <>
+                  <StarRating number={stars?.fullStar} type="filled" />
+                  <StarRating number={stars?.halfStar} type="half" />
+                  <StarRating number={stars?.emptyStar} type="empty" />
+                </>
+              </span>
+            )}
+          </div>
+          <span className="font-bold flex justify-between">
+            <p>${data.price}</p>
+
+            <Link href={`/category/${slug}/${data.slug}`} className="text-xl">
+              <BiLinkExternal />
+            </Link>
           </span>
         </div>
-        <span className="flex justify-between">
-          <p className=" text font-bold text-red-600">${data.price}</p>
-          <SelectSize sizes={data.size} setSize={setSize} width="w-[150px]" />
-        </span>
-        <div className="flex flex-wrap justify-between gap-2">
-          <AddToCart
-            variant="primary"
-            product={data}
-            color={color}
-            size={size}
-          />
-          <Link href={`/category/${slug}/${data.slug}`}>
-            <Button size={"lg"} variant={"outline"} className="w-25">
-              View
-            </Button>
-          </Link>
-        </div>
-      </CardContent>
-    </Card>
+      </div>
+    </Link>
   );
 }
 

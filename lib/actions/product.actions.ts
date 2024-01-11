@@ -66,7 +66,12 @@ export const getAllProducts = async ({
 
       .limit(limit)
       .skip(skipAmount)
-      .sort({ price: sort });
+      .sort({ price: sort })
+      .populate({
+        path: "category",
+        model: Category,
+        select: "title",
+      });
 
     const totalProducts = await mongoose.connection.db
       .collection("products")
@@ -84,7 +89,14 @@ export const getFewProducts = async (limit: number, query: string) => {
   try {
     await connectToDatabase();
     const condition = query ? { slug: { $regex: query, $options: "i" } } : {};
-    const products = await Product.find(condition).limit(limit).skip(0);
+    const products = await Product.find(condition)
+      .limit(limit)
+      .skip(0)
+      .populate({
+        path: "category",
+        model: Category,
+        select: "title",
+      });
 
     return JSON.parse(JSON.stringify(products));
   } catch (error) {

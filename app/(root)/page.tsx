@@ -8,7 +8,6 @@ import React from "react";
 import { SearchParamProps } from "@/types";
 import MoreCategoryButton from "@/components/home/MoreCategoryButton";
 import { HeaderMenu } from "@/components/menu/HeaderMenu";
-import { ThemeChanger } from "@/components/theme-provider/ThemeChanger";
 async function Home({ searchParams }: SearchParamProps) {
   const query = (searchParams?.query as string) || "";
   const skip = (searchParams?.skip as string) || 0;
@@ -20,6 +19,7 @@ async function Home({ searchParams }: SearchParamProps) {
   });
 
   const products = await getFewProducts(4, query);
+  console.log(products);
   return (
     <>
       <div className="flex justify-between ">
@@ -49,7 +49,7 @@ async function Home({ searchParams }: SearchParamProps) {
           <h3 className="scroll-m-20 text-xl font-semibold tracking-tight">
             Featured products
           </h3>
-          <Link href={"/product"}>
+          <Link href={"/products"}>
             <Button variant={"primary"}>View All Products</Button>
           </Link>
         </span>

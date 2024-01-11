@@ -9,6 +9,8 @@ import { FaFacebook } from "react-icons/fa";
 import { Raleway, Dosis, Dancing_Script, Pacifico } from "next/font/google";
 import { FaQuestion } from "react-icons/fa";
 import { CiMail } from "react-icons/ci";
+import { LuChrome } from "react-icons/lu";
+import { menu } from "../menu/NavigationMenu";
 const adlam = Raleway({ weight: ["400"], subsets: ["cyrillic-ext"] });
 const pacifico = Pacifico({ weight: ["400"], subsets: ["latin"] });
 const Footer = () => {
@@ -19,7 +21,7 @@ const Footer = () => {
       <div className="wrapper flex flex-col">
         <div className="w-full flex-col md:flex-row flex border-b pb-4 gap-5 ">
           <div className="flex-1  flex flex-col gap-5">
-            <div className=" w-full  h-32 flex items-center justify-center text-6xl text-cyan-700 dark:text-cyan-400">
+            <div className=" w-full  h-32 flex items-center justify-center text-4xl sm:text-6xl text-cyan-700 dark:text-cyan-400">
               <Link
                 href={"/"}
                 onClick={() => {
@@ -84,17 +86,18 @@ const Footer = () => {
         <div className="pt-5 flex flex-col gap-5">
           <div className="">
             <ul className="flex flex-wrap justify-start gap-10 text-muted-foreground">
-              <li>Home</li>
-              <li>About</li>
-              <li>Contact</li>
-              <li>Terms of Use</li>
+              {menu.map((item) => (
+                <Link href={item.path} key={item.name}>
+                  <li>{item.name}</li>
+                </Link>
+              ))}
+
               <li>Privacy Policy</li>
-              <li>Careers</li>
             </ul>
           </div>
 
           <div className="w-full flex justify-between flex-col gap-5 md:flex-row h-full ">
-            <div className="flex gap-3">
+            <div className="flex gap-3 flex-1">
               <span className="footer-icons ">
                 <IoCallOutline />
               </span>
@@ -105,8 +108,14 @@ const Footer = () => {
                 <FaFacebook />
               </span>
             </div>
-            <div className="text-muted-foreground">
-              @2018-{new Date().getFullYear()}-Copyright. All right reserved
+            <div className="text-muted-foreground flex-1">
+              @2018-{new Date().getFullYear()}-Copyright. All right reserved.
+            </div>
+            <div className="text-muted-foreground flex justify-between w-full  md:w-[300px]">
+              <p>Made by Sumit Mahat.</p>
+              <span className="footer-icons  ">
+                <LuChrome />
+              </span>
             </div>
           </div>
         </div>

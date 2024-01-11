@@ -54,11 +54,20 @@ const Size = ({
   }
   return (
     <div>
-      <Select>
+      <Select
+        onValueChange={(e) => {
+          if (e === "all") {
+            setSize([]);
+          }
+        }}
+        value={size.toString()}
+      >
         <SelectTrigger className="w-full border-none shadow-md filter-components dark:bg-slate-700/25 ">
           <SelectValue placeholder={"size"} />
         </SelectTrigger>
         <SelectContent>
+          <SelectItem value={"all"}>All</SelectItem>
+
           {avialbleSizes.map((s) => {
             return (
               <span className="flex items-center gap-5 mt-2" key={s}>

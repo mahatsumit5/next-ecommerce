@@ -24,8 +24,8 @@ function Collection({
             className={`grid  ${
               collectiontype === "Categories"
                 ? "gap-10 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 "
-                : "gap-10  grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 "
-            }   justify-items-center   sm:gap-10 md:gap-16 `}
+                : "gap-5  grid-cols-2 sm:grid-cols-3 lg:grid-cols-4   "
+            }   justify-items-center    `}
           >
             {data.map((data) => {
               if (collectiontype === "Products") {

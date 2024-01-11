@@ -19,7 +19,10 @@ export interface IProduct {
   qty: number;
   sku: string;
   salesPrice: number;
-  category: string;
+  category: {
+    _id: string;
+    title: string;
+  };
   description: string;
   thumbnail: string;
   image?: string;
