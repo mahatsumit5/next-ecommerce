@@ -21,6 +21,8 @@ function CustomCard({ data }: CardProps) {
               alt="category-image"
               className=" hover:scale-105 transition-all  object-cover"
               loading="lazy"
+              quality={50}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </div>{" "}
           <p className=" font-semibold  text-md sm:text-xl">{data.title}</p>

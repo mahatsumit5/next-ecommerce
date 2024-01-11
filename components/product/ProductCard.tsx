@@ -15,9 +15,10 @@ import { InterfaceProduct } from "@/lib/database/models/product.models";
 type CardProps = {
   data: InterfaceProduct;
   slug?: string;
+  key: string;
 };
 
-function CustomProductCard({ data, slug }: CardProps) {
+function CustomProductCard({ data, slug, key }: CardProps) {
   let stars = {
     fullStar: 0,
     halfStar: 0,
@@ -42,63 +43,66 @@ function CustomProductCard({ data, slug }: CardProps) {
   stars = calculateTypeOfStars(rating || 0);
 
   return (
-    <Link href={`/category/${slug}/${data.slug}`}>
-      <div className=" w-[180px] sm:w-[200px] md:w-[280px]  ">
-        <div className="flex flex-col gap-2  hover:underline relative ">
-          <div className=" product-card relative  w-full ">
-            <Image
-              src={data.images[0]}
-              fill
-              alt="category-image"
-              className="  transition-all product-card object-cover object-center "
-              loading="lazy"
-            />{" "}
-          </div>
-          <Button
-            type="button"
-            variant={"outline"}
-            size={"icon"}
-            className="absolute right-2 top-1 bg-slate-50/10 border-none text-3xl dark:bg-slate-50/10 text-red-500 rounded-full dark:hover:bg-red-700
-            "
-          >
-            <CiHeart />
-          </Button>
-          <h5 className="scroll-m-20 text-sm sm:text-lg  font-semibold tracking-tight line-clamp-1">
-            {data.title}
-          </h5>
-          <h5 className="scroll-m-20 text-sm   font-semibold   text-muted-foreground">
-            {data.category.title}
-          </h5>
-
-          <div className="flex justify-between">
-            {loading ? (
-              <span className="flex gap-1">
-                <Skeleton className="w-[20px] rounded-full" />
-                <Skeleton className="w-[20px] rounded-full" />
-                <Skeleton className="w-[20px] rounded-full" />
-                <Skeleton className="w-[20px] rounded-full" />
-                <Skeleton className="w-[20px] rounded-full" />
-              </span>
-            ) : (
-              <span className="flex ">
-                <>
-                  <StarRating number={stars?.fullStar} type="filled" />
-                  <StarRating number={stars?.halfStar} type="half" />
-                  <StarRating number={stars?.emptyStar} type="empty" />
-                </>
-              </span>
-            )}
-          </div>
-          <span className="font-bold flex justify-between">
-            <p>${data.price}</p>
-
-            <Link href={`/category/${slug}/${data.slug}`} className="text-xl">
-              <BiLinkExternal />
-            </Link>
-          </span>
+    <div className=" w-[180px] sm:w-[200px] md:w-[280px] " key={key}>
+      <div className="flex flex-col gap-2  hover:underline relative ">
+        <div className=" product-card relative  w-full ">
+          <Image
+            src={data.images[0]}
+            fill
+            alt="category-image"
+            className="  transition-all product-card object-cover object-center "
+            loading={
+              data._id !== "659c6bbea9d92e9d4e7ead1d" ? "lazy" : undefined
+            }
+            quality={50}
+            priority={data._id === "659c6bbea9d92e9d4e7ead1d"}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />{" "}
         </div>
+        <Button
+          type="button"
+          variant={"outline"}
+          size={"icon"}
+          className="absolute right-2 top-1 bg-slate-50/10 border-none text-3xl dark:bg-slate-50/10 text-red-500 rounded-full dark:hover:bg-red-700
+            "
+        >
+          <CiHeart />
+        </Button>
+        <h5 className="scroll-m-20 text-sm sm:text-lg  font-semibold tracking-tight line-clamp-1">
+          {data.title}
+        </h5>
+        <h5 className="scroll-m-20 text-sm   font-semibold   text-muted-foreground">
+          {data.category.title}
+        </h5>
+
+        <div className="flex justify-between">
+          {loading ? (
+            <span className="flex gap-1">
+              <Skeleton className="w-[20px] rounded-full" />
+              <Skeleton className="w-[20px] rounded-full" />
+              <Skeleton className="w-[20px] rounded-full" />
+              <Skeleton className="w-[20px] rounded-full" />
+              <Skeleton className="w-[20px] rounded-full" />
+            </span>
+          ) : (
+            <span className="flex ">
+              <>
+                <StarRating number={stars?.fullStar} type="filled" />
+                <StarRating number={stars?.halfStar} type="half" />
+                <StarRating number={stars?.emptyStar} type="empty" />
+              </>
+            </span>
+          )}
+        </div>
+        <span className="font-bold flex justify-between">
+          <p>${data.price}</p>
+
+          <Link href={`/category/${slug}/${data.slug}`} className="text-xl">
+            <BiLinkExternal />
+          </Link>
+        </span>
       </div>
-    </Link>
+    </div>
   );
 }
 

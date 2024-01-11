@@ -12,13 +12,15 @@ import {
 } from "../ui/select";
 import { Checkbox } from "../ui/checkbox";
 import { Label } from "../ui/label";
+import { ReducerDispatch } from "@/types";
+import { ACTIONS } from "@/lib/constants";
 const avialbleSizes = ["xs", "sm", "md", "lg", "xl"];
 const Size = ({
   size,
-  setSize,
+  dispatch,
 }: {
   size: string[];
-  setSize: Dispatch<SetStateAction<string[]>>;
+  dispatch: Dispatch<ReducerDispatch>;
 }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -47,9 +49,12 @@ const Size = ({
 
   function handleSetSize(selected: string, e: boolean) {
     if (e) {
-      setSize([...size, selected]);
+      dispatch({ type: ACTIONS.SIZE, payload: [...size, selected] });
     } else {
-      setSize(size.filter((s) => s !== selected));
+      dispatch({
+        type: ACTIONS.SIZE,
+        payload: size.filter((s) => s !== selected),
+      });
     }
   }
   return (
@@ -57,7 +62,7 @@ const Size = ({
       <Select
         onValueChange={(e) => {
           if (e === "all") {
-            setSize([]);
+            dispatch({ type: ACTIONS.SIZE, payload: [] });
           }
         }}
         value={size.toString()}
@@ -76,7 +81,7 @@ const Size = ({
                   onCheckedChange={(e) => {
                     handleSetSize(s, e as boolean);
                   }}
-                  checked={size.includes(s)}
+                  // checked={size.includes(s)}
                   value={s}
                 />
                 <Label htmlFor={s} className="w-full">

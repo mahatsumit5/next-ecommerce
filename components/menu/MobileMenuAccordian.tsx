@@ -47,6 +47,7 @@ function MobileMenuAccordian({
                       alt="category"
                       fill
                       className="object-center object-cover"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                   </span>
                   <p className="text-md font-bold ">{cat.title}</p>

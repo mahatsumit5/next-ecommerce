@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
-import { ICategory } from "@/types";
+import { ICategory, ReducerDispatch } from "@/types";
 import { getAllCategories } from "@/lib/actions/category.actions";
 import {
   Select,
@@ -12,13 +12,14 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import ReuseableFilter from "./ReusableFilterComponent";
+import { ACTIONS } from "@/lib/constants";
 
 export function CategoryDropdown({
-  selectedCategory,
-  setSelectedCategory,
+  category,
+  dispatch,
 }: {
-  setSelectedCategory: React.Dispatch<React.SetStateAction<string>>;
-  selectedCategory: string;
+  category: string;
+  dispatch: React.Dispatch<ReducerDispatch>;
 }) {
   const [categories, setCategoreis] = useState<ICategory[]>([]);
   useEffect(() => {
@@ -30,17 +31,17 @@ export function CategoryDropdown({
   }, []);
 
   return (
-    <ReuseableFilter query={selectedCategory} name="category" key={"category"}>
+    <ReuseableFilter query={category} name="category" key={"category"}>
       <div id="search" className="w-full ">
         <Select
           onValueChange={(e) => {
             if (e === "all") {
-              setSelectedCategory("");
+              dispatch({ payload: "", type: ACTIONS.CATEGORY });
               return;
             }
-            setSelectedCategory(e);
+            dispatch({ payload: e, type: ACTIONS.CATEGORY });
           }}
-          value={selectedCategory}
+          value={category}
         >
           <SelectTrigger className="w-full border-none shadow-md filter-components dark:bg-slate-700/25 ">
             <SelectValue placeholder="Select a category" />

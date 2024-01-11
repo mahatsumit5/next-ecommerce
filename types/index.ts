@@ -248,3 +248,8 @@ export type ReviewForm = {
   userId: string;
   productId: string;
 };
+
+export type ReducerDispatch = {
+  payload: string | string[] | "asc" | "desc";
+  type: string;
+};

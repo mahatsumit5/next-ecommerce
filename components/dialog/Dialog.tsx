@@ -54,14 +54,14 @@ const Dialog = () => {
         </AlertDialogHeader>
         <AlertDialogDescription className="flex flex-col gap-5  text-slate-100 items-start h-5/7 overflow-y-auto ">
           <SearchDataComponent
-            data={categories}
-            type="category"
-            setIsOpen={setIsOpen}
-            loading={loading}
-          />
-          <SearchDataComponent
             data={products}
             type="product"
+            setIsOpen={setIsOpen}
+            loading={loading}
+          />{" "}
+          <SearchDataComponent
+            data={categories}
+            type="category"
             setIsOpen={setIsOpen}
             loading={loading}
           />

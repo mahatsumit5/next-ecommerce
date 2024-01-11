@@ -9,14 +9,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { ReducerDispatch } from "@/types";
+import { ACTIONS } from "@/lib/constants";
 const Limit = ({
   total,
   limit,
-  setLimit,
+  dispatch,
 }: {
   total: number;
   limit: string;
-  setLimit: Dispatch<SetStateAction<string>>;
+  dispatch: Dispatch<ReducerDispatch>;
 }) => {
   return (
     <ReuseableFilter name="limit" query={limit} key={"limit"}>
@@ -25,10 +27,10 @@ const Limit = ({
         <Select
           onValueChange={(e) => {
             if (e === "all") {
-              setLimit("");
+              dispatch({ payload: "", type: ACTIONS.LIMIT });
               return;
             }
-            setLimit(e);
+            dispatch({ payload: e, type: ACTIONS.LIMIT });
           }}
           value={limit}
         >

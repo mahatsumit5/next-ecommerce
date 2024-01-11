@@ -1,49 +1,40 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useReducer } from "react";
 import Search from "./Search";
 import { CategoryDropdown } from "./CategoryDropDown";
 import SortByPrice from "./SortByPrice";
 import ResetButton from "./ResetButton";
 import Limit from "./Limit";
 import Size from "./Size";
-import { Button } from "../ui/button";
 import Price from "./Price";
 
+import {
+  reducerHandler,
+  reducerInitialState,
+} from "@/lib/reducer/filterReducer.handler";
+
 const Filter = ({ total }: { total: number }) => {
-  const [size, setSize] = useState<string[]>([]);
-  const [limit, setLimit] = useState<string>("");
-  const [sort, setSort] = useState<"asc" | "desc" | "">("");
-  const [selectedCategory, setSelectedCategory] = useState<string>("");
-  const [query, setQuery] = useState<string>("");
-  const [range, setRange] = useState<string>("");
-  const [reset, setIsReset] = useState<boolean>(false);
-  useEffect(() => {
-    if (!reset) {
-      return;
-    }
-    setLimit("");
-    setSize([]);
-    setSort("");
-    setQuery("");
-    setSelectedCategory("");
-    setRange("");
-    setIsReset(false);
-  }, [reset]);
+  const [state, dispatch] = useReducer(reducerHandler, reducerInitialState);
+
   return (
     <div className=" grid gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-7 ">
-      <Search query={query} setQuery={setQuery} key={"search"} />
+      <Search query={state.query} dispatch={dispatch} key={"search"} />
       <CategoryDropdown
-        selectedCategory={selectedCategory}
-        setSelectedCategory={setSelectedCategory}
+        category={state.category}
         key={"category"}
+        dispatch={dispatch}
       />
-      <Limit total={total} limit={limit} setLimit={setLimit} key={"limit"} />
-      <Size setSize={setSize} size={size} key={"size"} />
-      <Price range={range} setRange={setRange} key={"price"} />
-      <SortByPrice setSort={setSort} sort={sort} key={"sort"} />
-
-      <ResetButton setIsReset={setIsReset} />
+      <Limit
+        total={total}
+        limit={state.limit}
+        dispatch={dispatch}
+        key={"limit"}
+      />
+      <Size size={state.size} dispatch={dispatch} key={"size"} />
+      <Price range={state.range} dispatch={dispatch} key={"price"} />
+      <SortByPrice dispatch={dispatch} sort={state.sort} key={"sort"} />
+      <ResetButton dispatch={dispatch} />
     </div>
   );
 };

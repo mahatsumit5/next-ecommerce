@@ -29,7 +29,7 @@ export default function RootLayout({
         baseTheme: neobrutalism,
       }}
     >
-      <html lang="en" className="scroll-smooth">
+      <html>
         <body className={`${raleway.className}  `}>
           <ThemeProvider
             attribute="class"

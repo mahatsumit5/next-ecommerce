@@ -10,6 +10,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
+import { ReducerDispatch } from "@/types";
+import { ACTIONS } from "@/lib/constants";
 
 const priceFilter = [
   {
@@ -37,10 +39,10 @@ const priceFilter = [
 ];
 const Price = ({
   range,
-  setRange,
+  dispatch,
 }: {
   range: string;
-  setRange: Dispatch<SetStateAction<string>>;
+  dispatch: Dispatch<ReducerDispatch>;
 }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -72,10 +74,10 @@ const Price = ({
       <Select
         onValueChange={(e) => {
           if (e === "clear") {
-            setRange("");
+            dispatch({ payload: "", type: ACTIONS.RANGE });
             return;
           }
-          setRange(e);
+          dispatch({ payload: e, type: ACTIONS.RANGE });
         }}
         value={range}
       >

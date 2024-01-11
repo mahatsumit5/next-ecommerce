@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ICategory, IProduct } from "@/types";
 import Image from "next/image";
 import LoadingSkeleton from "./LoadingSkeleton";
+import { usePathname } from "next/navigation";
 
 function SearchDataComponent({
   type,
@@ -15,6 +16,15 @@ function SearchDataComponent({
   setIsOpen: Dispatch<SetStateAction<boolean>>;
   loading: boolean;
 }) {
+  const [currentPath, setPathname] = useState("");
+  const pathname = usePathname();
+  useEffect(() => {
+    setPathname(pathname);
+    if (!currentPath) {
+      return;
+    }
+    setIsOpen(false);
+  }, [pathname]);
   if (loading) {
     return <LoadingSkeleton />;
   } else {
@@ -30,17 +40,15 @@ function SearchDataComponent({
                 : `/category/item/${item.slug}`
             }
             id={item._id}
-            onClick={() => {
-              setIsOpen(false);
-            }}
             className="flex gap-2 "
           >
-            <div className="relative w-10 h-10 hover:static hover:z-40 overflow-hidden ">
+            <div className="relative w-16 h-16 hover:static hover:z-40 overflow-hidden ">
               <Image
                 src={(type === "category" ? item.image : item.thumbnail) || ""}
                 fill
                 alt="image"
                 className="object-cover"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             </div>
 

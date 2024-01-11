@@ -23,28 +23,28 @@ const Header = () => {
           <div className="flex gap-5 justify-between items-center   ">
             <MobileMenu />
 
-            <div className=" relative mt-2 h-[50px] w-[50px] md:h-[64px] md:w-[65px]   rounded-full ">
-              <Link href={"/"} className="">
-                <Image
-                  src={"/assets/logo-light.png"}
-                  fill
-                  alt="logo"
-                  className="object-fill rounded-full dark:hidden"
-                />
-                <Image
-                  src={"/assets/logo-dark.png"}
-                  fill
-                  alt="logo"
-                  className="object-fill rounded-full hidden dark:block"
-                />
-              </Link>
-            </div>
-
-            {/* <span
-              className={`block sm:hidden ${alerta.className} text-red-600 text-3xl `}
+            <Link
+              href={"/"}
+              className="relative mt-2 h-[50px] w-[50px] md:h-[64px] md:w-[65px]   rounded-full"
             >
-              <Link href={"/"}>CFW</Link>
-            </span> */}
+              <Image
+                src={"/assets/logo-light.png"}
+                fill
+                alt="logo"
+                className="object-fill rounded-full dark:hidden"
+                quality={50}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              />
+              <Image
+                src={"/assets/logo-dark.png"}
+                fill
+                alt="logo"
+                className="object-fill rounded-full hidden dark:block"
+                quality={50}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              />
+            </Link>
+
             <div className="hidden lg:block     ">
               <NavigationMenu />{" "}
             </div>

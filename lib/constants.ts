@@ -22,4 +22,12 @@ export const menu = [
   },
 ];
 
-export const size = [];
+export const ACTIONS = {
+  CATEGORY: "CATEGORY",
+  SIZE: "SIZE",
+  LIMIT: "LIMIT",
+  SORT: "SORT",
+  QUERY: "QUERY",
+  RANGE: "RANGE",
+  RESET: "RESET",
+};

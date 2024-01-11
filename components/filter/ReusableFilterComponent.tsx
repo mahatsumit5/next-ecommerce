@@ -8,14 +8,15 @@ const ReuseableFilter = ({
   query,
   children,
   name,
+  key,
 }: {
+  key: string;
   query: string;
   children: React.ReactNode;
   name: string;
 }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
-
   const delayDebounceFn = _debounce(() => {
     let newUrl = "";
 
@@ -38,7 +39,7 @@ const ReuseableFilter = ({
     delayDebounceFn();
     return delayDebounceFn.cancel;
   }, [query, searchParams, router]);
-  return children;
+  return <div key={key}>{children}</div>;
 };
 
 export default ReuseableFilter;

@@ -3,12 +3,14 @@ import { Button } from "../ui/button";
 import { IoMdArrowDropup } from "react-icons/io";
 import { IoMdArrowDropdown } from "react-icons/io";
 import ReuseableFilter from "./ReusableFilterComponent";
+import { ReducerDispatch } from "@/types";
+import { ACTIONS } from "@/lib/constants";
 const SortByPrice = ({
   sort,
-  setSort,
+  dispatch,
 }: {
   sort: string;
-  setSort: Dispatch<React.SetStateAction<"asc" | "desc" | "">>;
+  dispatch: Dispatch<ReducerDispatch>;
 }) => {
   return (
     <ReuseableFilter name="sort" query={sort} key={"sort"}>
@@ -20,14 +22,22 @@ const SortByPrice = ({
           className="w-full border-none shadow-md  filter-components  dark:bg-slate-700/25"
           variant={"outline"}
           onClick={() => {
-            if (sort === "desc") {
-              setSort("asc");
-            } else {
-              setSort("desc");
+            dispatch({ payload: "desc", type: ACTIONS.SORT });
+
+            switch (sort) {
+              case "asc": {
+                return dispatch({ payload: "desc", type: ACTIONS.SORT });
+              }
+              case "desc": {
+                return dispatch({ payload: "asc", type: ACTIONS.SORT });
+              }
+              default: {
+                dispatch({ payload: "asc", type: ACTIONS.SORT });
+              }
             }
           }}
         >
-          <p className="text-md">{sort || "Price"}</p>
+          <p className="text-md">{sort || "Sort by price"}</p>
           <p className="text-xl">
             {sort === "asc" ? <IoMdArrowDropup /> : <IoMdArrowDropdown />}
           </p>

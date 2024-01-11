@@ -44,20 +44,17 @@ export function ProductPagination({ count }: { count: number }) {
     return () => clearTimeout(delayDebounceFn);
   }, [page, searchParams, router]);
 
-  console.log(count);
   return (
     <Pagination>
       <PaginationContent>
-        <PaginationItem
+        <PaginationPrevious
           onClick={() => {
             if (page === array[0]) {
               return;
             }
             setPage(Number(page) - 1 + "");
           }}
-        >
-          <PaginationPrevious />
-        </PaginationItem>
+        />
         {array.map((value) => (
           <PaginationItem
             value={value}
@@ -70,16 +67,14 @@ export function ProductPagination({ count }: { count: number }) {
           </PaginationItem>
         ))}
 
-        <PaginationItem
+        <PaginationNext
           onClick={() => {
             if (page === array[array.length - 1]) {
               return;
             }
             setPage(Number(page) + 1 + "");
           }}
-        >
-          <PaginationNext />
-        </PaginationItem>
+        />
       </PaginationContent>
     </Pagination>
   );
