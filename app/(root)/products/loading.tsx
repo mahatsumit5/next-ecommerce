@@ -3,11 +3,14 @@ import React from "react";
 
 function loading() {
   return (
-    <div className="gap-10  grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 grid justify-items-center   sm:gap-10 md:gap-16">
+    <div className="gap-5  grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 grid justify-items-center ">
       {Array(5)
         .fill("")
         .map((item, index) => (
-          <Skeleton className="w-[300px] h-[500px]" key={index} />
+          <Skeleton
+            className="w-[150px] h-[280px] sm:w-[180px] sm:h-[280px] md:w-[250px]"
+            key={index}
+          />
         ))}
     </div>
   );
