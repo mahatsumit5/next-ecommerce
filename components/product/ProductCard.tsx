@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import { getReviews } from "@/lib/actions/review.actions";
@@ -10,13 +9,7 @@ import StarRating from "./StarRating";
 import { Skeleton } from "../ui/skeleton";
 import { BiLinkExternal } from "react-icons/bi";
 import { InterfaceProduct } from "@/lib/database/models/product.models";
-import {
-  addToFavourite,
-  getFavouriteByUser,
-} from "@/lib/actions/favourite.actions";
-import { toast } from "sonner";
-import { useUser } from "@clerk/nextjs";
-import { useRouter } from "next/navigation";
+
 import Heart from "./product-card-components/Heart";
 
 type CardProps = {
