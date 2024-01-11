@@ -3,7 +3,15 @@ import { Button } from "../ui/button";
 import { removeKeysFromQuery, resetFilter } from "@/lib/utils";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-const queryKeys = ["slug", "sort", "search", "category", "limit", "size"];
+const queryKeys = [
+  "slug",
+  "sort",
+  "search",
+  "category",
+  "limit",
+  "size",
+  "price_range",
+];
 function ResetButton({
   setIsReset,
 }: {
