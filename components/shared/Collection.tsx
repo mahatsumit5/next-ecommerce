@@ -1,10 +1,10 @@
-import { ICategory } from "@/types";
+import { ICategory, IProduct } from "@/types";
 import React from "react";
 import CustomCard from "./Card";
 import CustomProductCard from "../product/ProductCard";
 import { InterfaceProduct } from "@/lib/database/models/product.models";
 type CollectionProps = {
-  data: ICategory[] | InterfaceProduct[];
+  data: ICategory[] | InterfaceProduct[] | IProduct[];
   emptyTitle: string;
   emptyStateSubtext: string;
   collectiontype: "Categories" | "Products";
