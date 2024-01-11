@@ -19,7 +19,6 @@ async function Home({ searchParams }: SearchParamProps) {
   });
 
   const products = await getFewProducts(4, query);
-  console.log(products);
   return (
     <>
       <div className="flex justify-between ">

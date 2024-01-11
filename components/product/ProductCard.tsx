@@ -11,8 +11,9 @@ import StarRating from "./StarRating";
 import { Skeleton } from "../ui/skeleton";
 import { CiHeart } from "react-icons/ci";
 import { BiLinkExternal } from "react-icons/bi";
+import { InterfaceProduct } from "@/lib/database/models/product.models";
 type CardProps = {
-  data: IProduct;
+  data: InterfaceProduct;
   slug?: string;
 };
 

@@ -6,18 +6,17 @@ import {
   Sheet,
   SheetClose,
   SheetContent,
-  SheetFooter,
   SheetHeader,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import Image from "next/image";
-import { ThemeChanger } from "../theme-provider/ThemeChanger";
-import { HamburgerMenuIcon } from "@radix-ui/react-icons";
+
 import { HeaderMenu } from "./HeaderMenu";
 import Link from "next/link";
 import LoginButton from "../user-login/LoginButton";
 import NavigationMenu from "./NavigationMenu";
 import { IoIosArrowDropleft } from "react-icons/io";
+import { Pacifico } from "next/font/google";
+const pacifico = Pacifico({ weight: ["400"], subsets: ["latin"] });
 function MobileMenu() {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [displayContent, setDisplayContent] = useState<
@@ -65,19 +64,17 @@ function MobileMenu() {
         <SheetContent className="overflow-y-auto flex flex-col ">
           <SheetHeader className="flex flex-row w-full  relative">
             <div className=" w-full  h-[80px] absolute -top-10 ">
-              <Link
-                href={"/"}
-                onClick={() => {
-                  setIsSheetOpen(false);
-                }}
-              >
-                <Image
-                  src={"/assets/logo.svg"}
-                  fill
-                  alt="logo"
-                  className="object-cover"
-                />
-              </Link>
+              <div className=" w-full h-24   flex items-center justify-start text-xl  text-cyan-700 dark:text-cyan-400">
+                <Link
+                  href={"/"}
+                  onClick={() => {
+                    window.scrollTo(0, 0);
+                  }}
+                  className={pacifico.className}
+                >
+                  Classic fashion wears
+                </Link>
+              </div>
             </div>
             {displayContent === "category" && (
               <div className="absolute -top-5 -left-5">
@@ -95,7 +92,7 @@ function MobileMenu() {
             )}
           </SheetHeader>
 
-          <div className="mt-14 flex  flex-col gap-3 flex-1   ">
+          <div className="mt-6 border-t pt-4 flex  flex-col gap-3 flex-1   ">
             {components[displayContent]}
           </div>
 

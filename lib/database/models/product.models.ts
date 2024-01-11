@@ -1,4 +1,32 @@
-import mongoose, { Schema, model, models } from "mongoose";
+import mongoose, { Document, Schema, model, models } from "mongoose";
+
+export interface InterfaceProduct extends Document {
+  _id: string;
+  status: string;
+  title: string;
+  slug: string;
+  price: number;
+  qty: number;
+  sku: string;
+  salesPrice: number;
+  category: {
+    _id: string;
+    title: string;
+  };
+  description: string;
+  thumbnail: string;
+  image?: string;
+  images: string[];
+  reviews: Object[];
+  createdAt: Date;
+  updatedAt: Date;
+  __v: number;
+  salesEndDate: Date | null;
+  salesStartDate: Date | null;
+  color: string[];
+  size: string[];
+}
+
 const productSchema = new mongoose.Schema(
   {
     status: {
