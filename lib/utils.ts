@@ -22,7 +22,15 @@ export function countTotalItemsInCart(cart: ICartState[]) {
 }
 
 export function handleError(error: any) {
-  return JSON.parse(JSON.stringify(error?.message));
+  if (error.message.includes("E11000 duplicate key error collection:")) {
+    return {
+      message: "Item already exist in your list",
+    };
+  }
+  return {
+    status: "error",
+    message: JSON.parse(JSON.stringify(error?.message)) as string,
+  };
 }
 
 export function countTotalPrice(cart: ICartState[]) {

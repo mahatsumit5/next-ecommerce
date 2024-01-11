@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { IProduct } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import { getReviews } from "@/lib/actions/review.actions";
@@ -9,9 +8,17 @@ import { IReview } from "@/lib/database/models/review.model";
 import { calculateTypeOfStars, countProductRating } from "@/lib/utils";
 import StarRating from "./StarRating";
 import { Skeleton } from "../ui/skeleton";
-import { CiHeart } from "react-icons/ci";
 import { BiLinkExternal } from "react-icons/bi";
 import { InterfaceProduct } from "@/lib/database/models/product.models";
+import {
+  addToFavourite,
+  getFavouriteByUser,
+} from "@/lib/actions/favourite.actions";
+import { toast } from "sonner";
+import { useUser } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
+import Heart from "./product-card-components/Heart";
+
 type CardProps = {
   data: InterfaceProduct;
   slug?: string;
@@ -24,11 +31,11 @@ function CustomProductCard({ data, slug, key }: CardProps) {
     halfStar: 0,
     emptyStar: 5,
   };
-
   const [loading, setLoading] = useState(false);
   const [reviews, setReviews] = useState<{ reviews: IReview[]; count: number }>(
     { count: 0, reviews: [] }
   );
+
   useEffect(() => {
     async function getData() {
       setLoading(true);
@@ -39,6 +46,7 @@ function CustomProductCard({ data, slug, key }: CardProps) {
     }
     getData();
   }, [data]);
+
   const rating = countProductRating(reviews.reviews) / reviews.count;
   stars = calculateTypeOfStars(rating || 0);
 
@@ -59,15 +67,7 @@ function CustomProductCard({ data, slug, key }: CardProps) {
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />{" "}
         </div>
-        <Button
-          type="button"
-          variant={"outline"}
-          size={"icon"}
-          className="absolute right-2 top-1 bg-slate-50/10 border-none text-3xl dark:bg-slate-50/10 text-red-500 rounded-full dark:hover:bg-red-700
-            "
-        >
-          <CiHeart />
-        </Button>
+        <Heart data={data} key={data._id} />
         <h5 className="scroll-m-20 text-sm sm:text-lg  font-semibold tracking-tight line-clamp-1">
           {data.title}
         </h5>
