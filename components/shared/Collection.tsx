@@ -1,22 +1,24 @@
-import { ICategory, IProduct } from "@/types";
+import { CollectionProps, FavouriteItems, ICategory } from "@/types";
 import React from "react";
 import CustomCard from "./Card";
 import CustomProductCard from "../product/ProductCard";
 import { InterfaceProduct } from "@/lib/database/models/product.models";
-type CollectionProps = {
-  data: ICategory[] | InterfaceProduct[] | IProduct[];
-  emptyTitle: string;
-  emptyStateSubtext: string;
-  collectiontype: "Categories" | "Products";
-  slug?: string;
-};
-function Collection({
+
+import { getFavouriteByUser } from "@/lib/actions/favourite.actions";
+import { currentUser } from "@clerk/nextjs/server";
+
+async function Collection({
   data,
   emptyTitle,
   emptyStateSubtext,
   slug,
   collectiontype,
 }: CollectionProps) {
+  const user = await currentUser();
+
+  const wishlist = await getFavouriteByUser(
+    (user?.publicMetadata.userId as string) || ""
+  );
   return (
     <>
       {data?.length > 0 ? (
@@ -35,6 +37,11 @@ function Collection({
                     key={data._id}
                     data={data as InterfaceProduct}
                     slug={slug}
+                    heart={Boolean(
+                      wishlist.items.product.filter(
+                        (item: FavouriteItems) => item._id === data._id
+                      ).length
+                    )}
                   />
                 );
               }

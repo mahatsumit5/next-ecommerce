@@ -1,3 +1,4 @@
+import { InterfaceProduct } from "@/lib/database/models/product.models";
 import { IReview } from "@/lib/database/models/review.model";
 
 export interface ICategory {
@@ -252,4 +253,25 @@ export type ReviewForm = {
 export type ReducerDispatch = {
   payload: string | string[] | "asc" | "desc";
   type: string;
+};
+export type FavouriteItems = {
+  _id: string;
+
+  title: string;
+
+  price: number;
+  slug: string;
+  salesPrice: number;
+
+  description: string;
+  thumbnail: string;
+  images: string[];
+};
+
+export type CollectionProps = {
+  data: ICategory[] | InterfaceProduct[] | IProduct[];
+  emptyTitle: string;
+  emptyStateSubtext: string;
+  collectiontype: "Categories" | "Products" | "Orders" | "Wishlist";
+  slug?: string;
 };

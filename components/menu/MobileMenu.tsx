@@ -63,7 +63,7 @@ function MobileMenu() {
 
         <SheetContent className="overflow-y-auto flex flex-col ">
           <SheetHeader className="flex flex-row w-full  relative">
-            <div className=" w-full  h-[80px] absolute -top-10 ">
+            <div className=" w-full  h-[80px] absolute -top-10 left-16">
               <div className=" w-full h-24   flex items-center justify-start text-xl  text-cyan-700 dark:text-cyan-400">
                 <Link
                   href={"/"}

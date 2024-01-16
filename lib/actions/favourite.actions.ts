@@ -2,7 +2,9 @@
 
 import mongoose, { Schema } from "mongoose";
 import { connectToDatabase } from "../database";
-import Favourite from "../database/models/favourites.models";
+import Favourite, {
+  InterfaceFavourite,
+} from "../database/models/favourites.models";
 import Product from "../database/models/product.models";
 import { handleError } from "../utils";
 
@@ -13,8 +15,20 @@ type AddToFavProps = {
 
 export const addToFavourite = async ({ productId, userId }: AddToFavProps) => {
   try {
+    const userObjId = new mongoose.Types.ObjectId(userId);
     await connectToDatabase();
+    const result = await Favourite.findOne({ user: userObjId });
 
+    if (result) {
+      const favouriteItems = await Favourite.findByIdAndUpdate(result._id, {
+        product: [...result.product, productId],
+      });
+      return {
+        status: "success",
+        message: "Added to your favourite list",
+        result: JSON.parse(JSON.stringify(favouriteItems)) as Object,
+      };
+    }
     const favouriteItems = await Favourite.create({
       user: userId,
       product: productId,
@@ -25,21 +39,17 @@ export const addToFavourite = async ({ productId, userId }: AddToFavProps) => {
       result: JSON.parse(JSON.stringify(favouriteItems)) as Object,
     };
   } catch (error) {
+    console.log(error);
     return handleError(error);
   }
 };
 
-export const getFavouriteByUserAndProduct = async (
-  user: string,
-  product: string
-) => {
+export const getFavouriteByUserAndProduct = async (user: string) => {
   try {
     await connectToDatabase();
     const userId = new mongoose.Types.ObjectId(user);
-    const productId = new mongoose.Types.ObjectId(product);
     const condition = {
       user: userId,
-      product: productId,
     };
     const favouriteItems = await Favourite.findOne(condition).populate({
       path: "product",
@@ -70,7 +80,7 @@ export const getFavouriteByUser = async (user: string) => {
   try {
     await connectToDatabase();
     const id = new mongoose.Types.ObjectId(user);
-    const favouriteItems = await Favourite.find({ user: id }).populate({
+    const favouriteItems = await Favourite.findOne({ user: id }).populate({
       path: "product",
       model: Product,
       select: [
@@ -80,6 +90,7 @@ export const getFavouriteByUser = async (user: string) => {
         "images",
         "thumbnail",
         "salesPrice",
+        "slug",
       ],
     });
     return {

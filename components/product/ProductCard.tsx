@@ -11,14 +11,19 @@ import { BiLinkExternal } from "react-icons/bi";
 import { InterfaceProduct } from "@/lib/database/models/product.models";
 
 import Heart from "./product-card-components/Heart";
+import {
+  Ifavourite,
+  InterfaceFavourite,
+} from "@/lib/database/models/favourites.models";
 
 type CardProps = {
   data: InterfaceProduct;
   slug?: string;
   key: string;
+  heart: boolean;
 };
 
-function CustomProductCard({ data, slug, key }: CardProps) {
+function CustomProductCard({ data, slug, key, heart }: CardProps) {
   let stars = {
     fullStar: 0,
     halfStar: 0,
@@ -42,7 +47,6 @@ function CustomProductCard({ data, slug, key }: CardProps) {
 
   const rating = countProductRating(reviews.reviews) / reviews.count;
   stars = calculateTypeOfStars(rating || 0);
-
   return (
     <div className=" w-[180px] sm:w-[200px] md:w-[280px] " key={key}>
       <div className="flex flex-col gap-2  hover:underline relative ">
@@ -60,7 +64,7 @@ function CustomProductCard({ data, slug, key }: CardProps) {
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />{" "}
         </div>
-        <Heart data={data} key={data._id} />
+        <Heart productId={data._id} itemExist={heart} />
         <h5 className="scroll-m-20 text-sm sm:text-lg  font-semibold tracking-tight line-clamp-1">
           {data.title}
         </h5>

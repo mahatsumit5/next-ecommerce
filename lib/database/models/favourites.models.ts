@@ -9,15 +9,34 @@ export interface InterfaceFavourite extends Document {
     lName: string;
     email: string;
   };
-  product: {
-    _id: string;
-    title: string;
-    price: number;
-    description: string;
-    images?: Array<string>;
-    thumbnail: string;
-    salesPrice: number;
-  };
+  product: [
+    {
+      _id: string;
+      title: string;
+      price: number;
+      description: string;
+      images: Array<string>;
+      thumbnail: string;
+      salesPrice: number;
+    }
+  ];
+  createdAt: Date;
+  updatedAt: Date;
+}
+export interface Ifavourite {
+  _id: string;
+  user: string;
+  product: [
+    {
+      _id: string;
+      title: string;
+      price: number;
+      description: string;
+      images: Array<string>;
+      thumbnail: string;
+      salesPrice: number;
+    }
+  ];
   createdAt: Date;
   updatedAt: Date;
 }
@@ -27,16 +46,20 @@ const favouriteSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "Customer",
       required: true,
+      unique: true,
+      index: 1,
     },
-    product: {
-      type: Schema.Types.ObjectId,
-      ref: "products",
-      required: true,
-    },
+    product: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "products",
+        required: true,
+      },
+    ],
   },
   { timestamps: true }
   // Create a compound index to make the combination of user and product unique
-).index({ user: 1, product: 1 }, { unique: true });
+);
 
 const Favourite = models.Favourite || model("Favourite", favouriteSchema);
 export default Favourite;

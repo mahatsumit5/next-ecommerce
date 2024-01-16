@@ -6,6 +6,7 @@ import { connectToDatabase } from "../database";
 import Order from "../database/models/order.models";
 import Product from "../database/models/product.models";
 import Customer from "../database/models/user.model";
+import mongoose from "mongoose";
 
 export const checkOutOrder = async ({
   cart,
@@ -104,6 +105,7 @@ export const createOrder = async (order: CreateOrderParams) => {
 export const getOrderByStripeId = async (id: string) => {
   try {
     await connectToDatabase();
+
     const order = await Order.findOne({ uniqueId: id })
       .populate({
         path: "orderItems",
@@ -116,6 +118,23 @@ export const getOrderByStripeId = async (id: string) => {
         select: "_id email firstName lastName",
       });
     return JSON.parse(JSON.stringify(order));
+  } catch (error) {
+    handleError(error);
+  }
+};
+
+export const getOrderByUser = async (user: string) => {
+  try {
+    await connectToDatabase();
+    const userId = new mongoose.Types.ObjectId(user);
+    const orders = await Order.find({
+      buyer: userId,
+    }).populate({
+      path: "orderItems",
+      model: Product,
+      select: "title",
+    });
+    return JSON.parse(JSON.stringify(orders));
   } catch (error) {
     handleError(error);
   }

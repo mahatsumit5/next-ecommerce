@@ -10,6 +10,7 @@ import { Autoplay, Pagination } from "swiper/modules";
 import { ICategory } from "@/types";
 import CustomCard from "../shared/Card";
 import { useEffect, useState } from "react";
+
 export function CategoryCarousel({ categories }: { categories: ICategory[] }) {
   const [slides, setSlides] = useState<number>(4);
   const [width, setWidth] = useState(window.innerWidth);

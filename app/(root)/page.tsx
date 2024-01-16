@@ -9,6 +9,8 @@ import { ICategory, SearchParamProps } from "@/types";
 import MoreCategoryButton from "@/components/home/MoreCategoryButton";
 import { HeaderMenu } from "@/components/menu/HeaderMenu";
 import { CategoryCarousel } from "@/components/category/CategoryCarousel";
+import { currentUser } from "@clerk/nextjs";
+import { getFavouriteByUser } from "@/lib/actions/favourite.actions";
 async function Home({ searchParams }: SearchParamProps) {
   const query = (searchParams?.query as string) || "";
   const skip = (searchParams?.skip as string) || 0;
@@ -16,8 +18,8 @@ async function Home({ searchParams }: SearchParamProps) {
   const categories = await getAllCategories({
     query,
   });
-
   const products = await getFewProducts(4, query);
+
   return (
     <>
       <div className="flex justify-between ">
