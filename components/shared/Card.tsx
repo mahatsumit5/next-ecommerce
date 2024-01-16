@@ -1,7 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 
 import { ICategory, IProduct } from "@/types";
 import Image from "next/image";
@@ -14,7 +12,7 @@ function CustomCard({ data }: CardProps) {
     return (
       <Link href={`/category/${data.slug}`}>
         <div>
-          <div className="h-[100px] rounded-2xl w-[100px] relative sm:h-[250px] md:w-[250px] overflow-hidden ">
+          <div className="rounded-sm  relative w-full h-[350px] sm:w-[300px] overflow-hidden ">
             <Image
               src={data.image}
               fill
@@ -24,8 +22,10 @@ function CustomCard({ data }: CardProps) {
               quality={50}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
-          </div>{" "}
-          <p className=" font-semibold  text-md sm:text-xl">{data.title}</p>
+            <span className="flex items-center justify-center text-7xl absolute  bg-black/35 h-full w-full text-slate-200 ">
+              <p className=" font-semibold  ">{data.title}</p>
+            </span>
+          </div>
         </div>
       </Link>
     );

@@ -5,22 +5,13 @@ import mongoose from "mongoose";
 import Category from "../database/models/category.models";
 import { handleError } from "../utils";
 
-export const getAllCategories = async ({
-  query,
-  skip,
-  limit,
-}: {
-  query: string;
-  skip: number;
-  limit?: number;
-}) => {
+export const getAllCategories = async ({ query }: { query: string }) => {
   try {
     const condition = query ? { slug: { $regex: query, $options: "i" } } : {};
 
     await connectToDatabase();
-    const categories = await Category.find(condition)
-      .limit(limit ? limit : 0)
-      .skip(skip);
+    const categories = await Category.find(condition);
+
     const documentCount = await Category.countDocuments();
     return {
       data: JSON.parse(JSON.stringify(categories)),

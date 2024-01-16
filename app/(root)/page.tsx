@@ -5,17 +5,16 @@ import { getAllCategories } from "@/lib/actions/category.actions";
 import { getFewProducts } from "@/lib/actions/product.actions";
 import Link from "next/link";
 import React from "react";
-import { SearchParamProps } from "@/types";
+import { ICategory, SearchParamProps } from "@/types";
 import MoreCategoryButton from "@/components/home/MoreCategoryButton";
 import { HeaderMenu } from "@/components/menu/HeaderMenu";
+import { CategoryCarousel } from "@/components/category/CategoryCarousel";
 async function Home({ searchParams }: SearchParamProps) {
   const query = (searchParams?.query as string) || "";
   const skip = (searchParams?.skip as string) || 0;
 
   const categories = await getAllCategories({
     query,
-    skip: Number(skip),
-    limit: 4,
   });
 
   const products = await getFewProducts(4, query);
@@ -32,16 +31,14 @@ async function Home({ searchParams }: SearchParamProps) {
           <h3 className="scroll-m-20 text-xl font-semibold tracking-tight">
             Browser By Category
           </h3>
-          <div className="flex gap-2">
+          {/* <div className="flex gap-2">
             <MoreCategoryButton total={categories?.total || 0} />
-          </div>
+          </div> */}
         </span>
-        <Collection
-          data={categories?.data}
-          emptyTitle="No categories available"
-          collectiontype="Categories"
-          emptyStateSubtext="Please come back later"
-        />
+        <div className="h-auto  flex justify-center">
+          {" "}
+          <CategoryCarousel categories={categories?.data} />
+        </div>
       </section>
       <section className=" flex flex-col gap-5 mt-32">
         <span className="flex justify-between">
