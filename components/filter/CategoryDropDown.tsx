@@ -24,7 +24,7 @@ export function CategoryDropdown({
   const [categories, setCategoreis] = useState<ICategory[]>([]);
   useEffect(() => {
     async function getData() {
-      const result = await getAllCategories({ query: "", skip: 0 });
+      const result = await getAllCategories({ query: "" });
       result?.data && setCategoreis(result.data);
     }
     getData();
