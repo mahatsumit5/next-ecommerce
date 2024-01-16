@@ -21,7 +21,7 @@ const Search = ({
   useEffect(() => {
     async function getData() {
       setLoading(true);
-      getAllCategories({ query, skip: 0 }).then((categories) => {
+      getAllCategories({ query }).then((categories) => {
         setCategories(categories?.data as ICategory[]);
         setLoading(false);
       });

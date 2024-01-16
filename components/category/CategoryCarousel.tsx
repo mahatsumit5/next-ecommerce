@@ -4,16 +4,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "swiper/css/effect-coverflow";
+
 import "swiper/css/scrollbar";
-import {
-  Navigation,
-  EffectCoverflow,
-  Autoplay,
-  Pagination,
-  Scrollbar,
-  A11y,
-} from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 import { ICategory } from "@/types";
 import CustomCard from "../shared/Card";
 import { useEffect, useState } from "react";
@@ -50,18 +43,11 @@ export function CategoryCarousel({ categories }: { categories: ICategory[] }) {
   }, [width]);
   return (
     <Swiper
-      modules={[Pagination, Autoplay, EffectCoverflow]}
+      modules={[Pagination, Autoplay]}
       centeredSlides={true}
       pagination={{
         dynamicBullets: true,
         clickable: true,
-      }}
-      coverflowEffect={{
-        rotate: 50,
-        stretch: 0,
-        depth: 100,
-        modifier: 1,
-        slideShadows: true,
       }}
       loop
       autoplay={{
