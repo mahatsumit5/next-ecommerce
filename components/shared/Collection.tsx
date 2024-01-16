@@ -38,7 +38,7 @@ async function Collection({
                     data={data as InterfaceProduct}
                     slug={slug}
                     heart={Boolean(
-                      wishlist.items.product.filter(
+                      wishlist.items?.product.filter(
                         (item: FavouriteItems) => item._id === data._id
                       ).length
                     )}
