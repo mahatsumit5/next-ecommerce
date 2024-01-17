@@ -22,6 +22,7 @@ export default authMiddleware({
     "/api/webhook/clerk",
     "/api/webhook/stripe",
     "/api/catalogue",
+    "/_vercel/speed-insights/vitals",
     "/api/checkout_sessions",
   ],
 });

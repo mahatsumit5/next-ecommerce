@@ -33,16 +33,12 @@ async function Home({ searchParams }: SearchParamProps) {
           <h3 className="scroll-m-20 text-xl font-semibold tracking-tight">
             Browser By Category
           </h3>
-          {/* <div className="flex gap-2">
-            <MoreCategoryButton total={categories?.total || 0} />
-          </div> */}
         </span>
         <div className="h-auto  flex justify-center">
-          {" "}
           <CategoryCarousel categories={categories?.data} />
         </div>
       </section>
-      <section className=" flex flex-col gap-5 mt-32">
+      <section className=" flex flex-col gap-5 mt-4">
         <span className="flex justify-between">
           <h3 className="scroll-m-20 text-xl font-semibold tracking-tight">
             Featured products

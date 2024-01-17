@@ -24,7 +24,7 @@ async function page() {
           My orders
         </h2>
         <OrderTable
-          data={[]}
+          data={orders}
           emptySubtitle="Please buy some products first."
           emptyTitle="You dont not have any orders."
         />

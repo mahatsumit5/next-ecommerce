@@ -52,7 +52,7 @@ export function CategoryCarousel({ categories }: { categories: ICategory[] }) {
       }}
       loop
       autoplay={{
-        delay: 3500,
+        delay: 2500,
         disableOnInteraction: false,
       }}
       spaceBetween={10}

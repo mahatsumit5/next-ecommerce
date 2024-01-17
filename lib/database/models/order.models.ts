@@ -5,14 +5,23 @@ export interface InterfaceOrder extends Document {
   _id: string;
   stripeId: string;
   status: string;
-  totalAmount: number;
+  total_details: {
+    amount_discount: number;
+    amount_shipping: number;
+    amount_tax: number;
+    amount_subtotal: number;
+    amount_total: number;
+  };
   buyer: string;
   orderItems: [
     {
       _id: string;
+      title: string;
       orderQty: string;
       size: string;
       color: string;
+      price: number;
+      thumbnail: string;
     }
   ];
   address: {
@@ -23,6 +32,7 @@ export interface InterfaceOrder extends Document {
     postal_code: string;
     state: string;
   };
+  createdAt: Date;
 }
 
 const orderSchema = new Schema(

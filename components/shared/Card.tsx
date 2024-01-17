@@ -12,7 +12,7 @@ function CustomCard({ data }: CardProps) {
     return (
       <Link href={`/category/${data.slug}`}>
         <div>
-          <div className="rounded-sm  relative w-full h-[350px] sm:w-[300px] overflow-hidden ">
+          <div className="rounded-sm  relative  h-[350px] w-[400px] sm:w-[300px] overflow-hidden ">
             <Image
               src={data.image}
               fill
