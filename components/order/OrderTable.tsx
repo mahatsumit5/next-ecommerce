@@ -93,7 +93,10 @@ const OrderTable = ({ data, emptySubtitle, emptyTitle }: OrderTableProps) => {
           <thead>
             <tr>
               {header.map((item) => (
-                <th className="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+                <th
+                  className="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50"
+                  key={item}
+                >
                   <p className="block font-sans text-sm antialiased font-normal leading-none  opacity-70">
                     {item}
                   </p>
@@ -132,9 +135,11 @@ const OrderTable = ({ data, emptySubtitle, emptyTitle }: OrderTableProps) => {
                     ${item.total_details.amount_total.toLocaleString()}
                   </p>
                 </td>
-                <td className="p-1 ">
-                  {item.address.line1},{item.address.city},{item.address.state},
-                  {item.address.country}
+                <td className="p-1 w-[150px]">
+                  {item.address.line1},<br></br>
+                  {/* {item.address.city},<br></br>
+                  {item.address.state},<br></br> */}
+                  {/* {item.address.country} */}
                 </td>
               </tr>
             ))}

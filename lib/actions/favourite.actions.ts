@@ -7,6 +7,7 @@ import Favourite, {
 } from "../database/models/favourites.models";
 import Product from "../database/models/product.models";
 import { handleError } from "../utils";
+import { FavouriteItems } from "@/types";
 
 type AddToFavProps = {
   userId: string;
@@ -107,13 +108,22 @@ export const getFavouriteByUser = async (user: string) => {
   }
 };
 
-export const deleteFavouriteById = async (id: string) => {
+export const deleteFavouriteById = async (id: string, userId: string) => {
   try {
     console.log(id);
     await connectToDatabase();
-
-    const result = await Favourite.findByIdAndDelete(id);
-    if (result.ok) {
+    const uid = new mongoose.Types.ObjectId(userId);
+    const productObjId = new mongoose.Types.ObjectId(id);
+    const favourites = await Favourite.findOne({ user: uid });
+    const newItems = favourites.product.filter(
+      (favItem: FavouriteItems) => String(favItem._id) !== id
+    );
+    console.log(newItems);
+    const result = await Favourite.findOneAndUpdate(
+      { user: uid },
+      { product: newItems }
+    );
+    if (result._id) {
       return JSON.parse(JSON.stringify(result));
     } else {
       return {

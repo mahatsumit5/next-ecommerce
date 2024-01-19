@@ -6,22 +6,29 @@ import { Button } from "../ui/button";
 import { MdDelete } from "react-icons/md";
 import { deleteFavouriteById } from "@/lib/actions/favourite.actions";
 import { toast } from "sonner";
+import { useUser } from "@clerk/nextjs";
 type CardProps = {
   data: FavouriteItems;
 };
 
-async function handleDelete(_id: string) {
-  const result = await deleteFavouriteById(_id);
-  if (result._id) {
-    toast.success("Item Removed");
-    window.location.reload();
-  } else {
-    toast.error("Unable to delete");
-  }
-}
 function FavouriteCard({ data }: CardProps) {
+  const { user } = useUser();
+
+  async function handleDelete(_id: string) {
+    const result = await deleteFavouriteById(
+      _id,
+      user?.publicMetadata.userId as string
+    );
+    if (result._id) {
+      toast.success("Item Removed");
+      window.location.reload();
+    } else {
+      toast.error("Unable to delete");
+    }
+  }
+
   return (
-    <div className=" w-[180px] sm:w-[200px] md:w-[280px] ">
+    <div className=" w-[170px] sm:w-[200px] md:w-[280px] ">
       <div className="flex flex-col gap-2  hover:underline relative ">
         <Link href={`/category/item/${data.slug}`}>
           <div className=" product-card relative  w-full overflow-hidden">
