@@ -106,3 +106,22 @@ export const getFavouriteByUser = async (user: string) => {
     };
   }
 };
+
+export const deleteFavouriteById = async (id: string) => {
+  try {
+    console.log(id);
+    await connectToDatabase();
+
+    const result = await Favourite.findByIdAndDelete(id);
+    if (result.ok) {
+      return JSON.parse(JSON.stringify(result));
+    } else {
+      return {
+        status: "error",
+        message: "Unable to delete",
+      };
+    }
+  } catch (error) {
+    return handleError(error);
+  }
+};
