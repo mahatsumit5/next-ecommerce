@@ -9,6 +9,7 @@ import { MdOutlineWorkHistory } from "react-icons/md";
 import { GoListUnordered } from "react-icons/go";
 import { GiClothes } from "react-icons/gi";
 import { usePathname, useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 const navigationFont = Raleway({ weight: ["400"], subsets: ["latin"] });
 
 export const menu = [
@@ -65,16 +66,22 @@ function NavigationMenu({
             setIsSheetOpen && setIsSheetOpen(false);
           }}
         >
-          <li
+          <motion.li
             className={`header-menu-navigation ${
               pathname === item.path
-                ? " bg-slate-200 dark:bg-slate-600"
-                : " bg-slate-500/10"
+                ? " bg-slate-600/40 dark:bg-slate-600 scale-110"
+                : " bg-slate-200"
             } `}
+            initial={{ x: 200 }}
+            animate={{ x: 0 }}
+            transition={{
+              ease: "easeIn",
+              duration: 500,
+            }}
           >
             <p className="mt-1">{item.icon}</p>
             <p>{item.name}</p>
-          </li>
+          </motion.li>
         </Link>
       ))}
       <li
