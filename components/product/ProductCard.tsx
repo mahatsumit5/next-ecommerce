@@ -89,10 +89,10 @@ function CustomProductCard({ data, slug, key, heart }: CardProps) {
 
           <p>${data.price}</p>
         </span>{" "}
-        <h5 className="scroll-m-20 text-sm   font-semibold   text-muted-foreground">
-          {data.category.title}
-        </h5>
         <div className="flex justify-between">
+          <h5 className="scroll-m-20 text-sm   font-semibold   text-muted-foreground">
+            {data.category.title}
+          </h5>
           {loading ? (
             <span className="flex gap-1">
               <Skeleton className="w-[20px] rounded-full" />

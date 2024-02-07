@@ -74,10 +74,6 @@ function NavigationMenu({
             } `}
             initial={{ x: 200 }}
             animate={{ x: 0 }}
-            transition={{
-              ease: "easeIn",
-              duration: 500,
-            }}
           >
             <p className="mt-1">{item.icon}</p>
             <p>{item.name}</p>
@@ -85,7 +81,7 @@ function NavigationMenu({
         </Link>
       ))}
       <li
-        className="p-3 flex hover:cursor-pointer md:hidden  gap-1 lg:p-2 rounded-md bg-slate-400/10 hover:bg-slate-200 transition-all dark:hover:bg-slate-700 dark:bg-slate-800 dark:text-blue-400 hover:scale-110 "
+        className="p-3 flex hover:cursor-pointer md:hidden  gap-1 lg:p-2 rounded-md bg-slate-200 hover:bg-slate-200 transition-all dark:hover:bg-slate-700 dark:bg-slate-800 dark:text-blue-400 hover:scale-110 "
         onClick={() => {
           setDisplayContent && setDisplayContent("category");
         }}
