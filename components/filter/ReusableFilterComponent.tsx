@@ -21,6 +21,7 @@ const ReuseableFilter = ({
     let newUrl = "";
 
     if (query) {
+      console.log(query);
       newUrl = formUrlQuery({
         params: searchParams.toString(),
         key: name,
@@ -34,7 +35,7 @@ const ReuseableFilter = ({
     }
 
     router.push(newUrl, { scroll: false });
-  }, 500);
+  }, 10);
   useEffect(() => {
     delayDebounceFn();
     return delayDebounceFn.cancel;

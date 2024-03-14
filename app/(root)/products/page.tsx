@@ -13,7 +13,7 @@ async function page({ searchParams }: SearchParamProps) {
   const rangeAray = priceRange.split("-");
   const sort = (searchParams?.sort as "asc" | "desc") || "asc";
   const category = (searchParams?.category as string) || "";
-  const limit = (searchParams?.limit as string) || 4;
+  const limit = (searchParams?.limit as string) || 8;
   const size = (searchParams?.size as string)?.split(",") || [
     "xs",
     "lg",

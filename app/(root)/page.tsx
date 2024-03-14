@@ -18,7 +18,7 @@ async function Home({ searchParams }: SearchParamProps) {
   const categories = await getAllCategories({
     query,
   });
-  const products = await getFewProducts(4, query);
+  const products = await getFewProducts(8, query);
 
   return (
     <>

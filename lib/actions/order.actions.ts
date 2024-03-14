@@ -67,7 +67,7 @@ export const checkOutOrder = async ({
             product_data: {
               name: item.title,
               description: item.description,
-              images: [item.thumbnail],
+              images: item.images,
             },
             tax_behavior: "inclusive",
           },
